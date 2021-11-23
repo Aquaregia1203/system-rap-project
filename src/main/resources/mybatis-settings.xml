@@ -7,4 +7,12 @@
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+
+    <typeAliases>
+        <typeAlias type="kr.co.rap.system.model.Manager" alias="Manager" />
+        <typeAlias type="kr.co.rap.system.model.Ingredient" alias="Ingredient" />
+        <typeAlias type="kr.co.rap.system.model.Recipe" alias="Recipe" />
+        <typeAlias type="kr.co.rap.system.model.Mix" alias="Mix" />
+        <typeAlias type="kr.co.rap.system.model.Manufacture" alias="Manufacture" />
+    </typeAliases>
 </configuration>
