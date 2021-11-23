@@ -14,6 +14,7 @@ public class AccessServiceImple{
     private ManagerMapper managerMapper;
 
     public boolean login(Manager manager) {
+        manager = managerMapper.select(manager);
         String id = managerMapper.select(manager).getId();
         String password = managerMapper.select(manager).getPassword();
         char status = managerMapper.select(manager).getStatus();
