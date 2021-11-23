@@ -10,6 +10,6 @@ public interface IngredientMapper {
     public List<Ingredient> selectAll(Ingredient ingredient);
     public Ingredient select(Ingredient ingredient);
     public int insert(Ingredient ingredient);
-    public int edit(Ingredient ingredient);
+    public int update(Ingredient ingredient);
     public int delete(Ingredient ingredient);
 }

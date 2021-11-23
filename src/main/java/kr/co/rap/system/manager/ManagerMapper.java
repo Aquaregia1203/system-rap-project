@@ -10,5 +10,5 @@ public interface ManagerMapper {
     public List<Manager> selectAll(Manager manager);
     public Manager select(Manager manager);
     public int insert(Manager manager);
-    public int edit(Manager manager);
+    public int update(Manager manager);
 }
