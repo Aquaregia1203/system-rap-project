@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.rap.system.manager.ManagerMapper">
+    <select id="selectAll"
+            parameterType="Manager"
+            resultType="Manager">
+        SELECT ID, PASSWORD, NAME, CONTACT, DIVISION, ADD_DATE, STATUS FROM MANAGER
+        <where>
+            <if test="name != null and name != ''">
+                NAME = #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="select"
+            parameterType="Manager"
+            resultType="Manager">
+        SELECT ID, PASSWORD, NAME, CONTACT, DIVISION, ADD_DATE, STATUS FROM MANAGER
+        <where>
+            <if test="id != null and id != ''">
+                ID = #{id}
+            </if>
+            <if test="password != null and password != ''">
+                AND PASSWORD = #{password}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert"
+            parameterType="Manager">
+        INSERT INTO MANAGER (ID, PASSWORD, NAME, CONTACT, DIVISION, ADD_DATE)
+        VALUES (#{id}, #{password}, #{name}, #{contact}, #{division}, now())
+    </insert>
+
+    <update id="update"
+            parameterType="Manager">
+        UPDATE MANAGER
+        <set>
+            <if test="password != null and password != ''">
+                PASSWORD = #{password}
+            </if>
+            <if test="name != null and name != ''">
+                NAME = #{name}
+            </if>
+            <if test="contact != null and contact != ''">
+                CONTACT = #{contact}
+            </if>
+            <if test="status != null and status != ''">
+                STATUS = #{status}
+            </if>
+        </set>
+        WHERE ID = #{id}
+    </update>
+</mapper>
