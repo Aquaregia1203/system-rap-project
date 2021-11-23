@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.rap.system.ingredient.IngredientMapper">
+    <select id="selectAll"
+            parameterType="kr.co.rap.system.model.Ingredient"
+            resultType="kr.co.rap.system.model.Ingredient">
+        SELECT NO, NAME, USED_COUNT, ADD_DATE FROM INGREDIENT
+        <where>
+            <if test="name != null and name != ''">
+                NAME = #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="select"
+            parameterType="Ingredient"
+            resultType="Ingredient">
+        SELECT NO, NAME, USED_COUNT, ADD_DATE FROM INGREDIENT
+        <where>
+            <if test="no gt 0">
+                AND NO = #{no}
+            </if>
+        </where>
+    </select>
+    
+    <insert id="insert"
+            parameterType="kr.co.rap.system.model.Ingredient">
+        INSERT INTO INGREDIENT (NAME, ADD_DATE) VALUES (#{name}, NOW())
+    </insert>
+    
+    <update id="update"
+            parameterType="Ingredient">
+        UPDATE INGREDIENT
+        <set>
+            <if test="name != null and name != ''">
+                NAME = #{name}
+            </if>
+        </set>
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="delete"
+            parameterType="Ingredient">
+        DELETE FROM INGREDIENT
+        <if test="no gt 0">
+            WHERE NO = #{no}
+        </if>
+    </delete>
+</mapper>
