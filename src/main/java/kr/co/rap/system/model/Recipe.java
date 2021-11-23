@@ -9,6 +9,9 @@ public class Recipe implements Serializable {
     private int usedCount;
     private Date addDate;
 
+    public Recipe() {
+    }
+
     public int getNo() {
         return no;
     }

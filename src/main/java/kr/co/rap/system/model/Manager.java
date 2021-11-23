@@ -12,6 +12,9 @@ public class Manager implements Serializable {
     private Date addDate;
     private char status;
 
+    public Manager() {
+    }
+
     public String getId() {
         return id;
     }

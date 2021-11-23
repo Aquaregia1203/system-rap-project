@@ -13,6 +13,9 @@ public class Manufacture implements Serializable {
     private Date addDate;
     private char status;
 
+    public Manufacture() {
+    }
+
     public int getNo() {
         return no;
     }

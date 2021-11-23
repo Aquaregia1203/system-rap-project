@@ -7,6 +7,9 @@ import java.util.Map;
 public class ManufactureInfo implements Serializable {
     private List<Map<String, String>> pumpInfo;
 
+    public ManufactureInfo() {
+    }
+
     public List<Map<String, String>> getPumpInfo() {
         return pumpInfo;
     }

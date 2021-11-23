@@ -9,6 +9,9 @@ public class Mix implements Serializable {
     private int pumpNo;
     private int ratio;
 
+    public Mix() {
+    }
+
     public int getNo() {
         return no;
     }
