@@ -5,11 +5,29 @@ import java.io.Serializable;
 public class Mix implements Serializable {
     private int no;
     private int recipeNo;
+    private String recipeName;
     private int ingredientNo;
+    private String ingredientName;
     private int pumpNo;
     private int ratio;
 
     public Mix() {
+    }
+
+    public String getIngredientName() {
+        return ingredientName;
+    }
+
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
+    }
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
     }
 
     public int getNo() {

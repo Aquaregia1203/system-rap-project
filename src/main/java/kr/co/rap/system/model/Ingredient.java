@@ -7,7 +7,7 @@ public class Ingredient implements Serializable {
     private int no;
     private String name;
     private int usedCount;
-    private Date addDate;
+    private String addDate;
 
     public Ingredient() {
     }
@@ -36,11 +36,11 @@ public class Ingredient implements Serializable {
         this.usedCount = usedCount;
     }
 
-    public Date getAddDate() {
+    public String getAddDate() {
         return addDate;
     }
 
-    public void setAddDate(Date addDate) {
+    public void setAddDate(String addDate) {
         this.addDate = addDate;
     }
 }

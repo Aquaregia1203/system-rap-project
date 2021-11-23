@@ -25,18 +25,21 @@
             </if>
         </where>
     </select>
-    
+
     <insert id="insert"
             parameterType="kr.co.rap.system.model.Ingredient">
         INSERT INTO INGREDIENT (NAME, ADD_DATE) VALUES (#{name}, NOW())
     </insert>
-    
+
     <update id="update"
             parameterType="Ingredient">
         UPDATE INGREDIENT
         <set>
             <if test="name != null and name != ''">
-                NAME = #{name}
+                NAME = #{name},
+            </if>
+            <if test="usedCount eq 1 or usedCount eq -1">
+                USED_COUNT = USED_COUNT + #{usedCount},
             </if>
         </set>
         WHERE NO = #{no}

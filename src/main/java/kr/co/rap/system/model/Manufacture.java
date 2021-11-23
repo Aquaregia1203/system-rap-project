@@ -5,12 +5,12 @@ import java.util.Date;
 
 public class Manufacture implements Serializable {
     private int no;
-    private Date manufactureDate;
+    private String manufactureDate;
     private int recipeNo;
     private int output;
     private int id;
     private int errorAmount;
-    private Date addDate;
+    private String addDate;
     private char status;
 
     public Manufacture() {
@@ -24,11 +24,11 @@ public class Manufacture implements Serializable {
         this.no = no;
     }
 
-    public Date getManufactureDate() {
+    public String getManufactureDate() {
         return manufactureDate;
     }
 
-    public void setManufactureDate(Date manufactureDate) {
+    public void setManufactureDate(String manufactureDate) {
         this.manufactureDate = manufactureDate;
     }
 
@@ -64,11 +64,11 @@ public class Manufacture implements Serializable {
         this.errorAmount = errorAmount;
     }
 
-    public Date getAddDate() {
+    public String getAddDate() {
         return addDate;
     }
 
-    public void setAddDate(Date addDate) {
+    public void setAddDate(String addDate) {
         this.addDate = addDate;
     }
 

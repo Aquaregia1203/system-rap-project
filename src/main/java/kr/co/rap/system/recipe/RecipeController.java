@@ -69,6 +69,8 @@ public class RecipeController {
 
     @DeleteMapping
     public ModelAndView removeRecipe(Recipe recipe) {
+        recipeService.removeRecipe(recipe);
+
         return new ModelAndView(new RedirectView("/recipe"));
     }
 }

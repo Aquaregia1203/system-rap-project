@@ -4,8 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.rap.system.recipe.RecipeMapper">
-    <cache />
-
     <select id="selectAll" parameterType="Recipe"
                            resultType="Recipe">
         SELECT NO, NAME, USED_COUNT, ADD_DATE FROM RECIPE

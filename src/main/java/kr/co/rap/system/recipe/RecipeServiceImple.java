@@ -34,6 +34,15 @@ public class RecipeServiceImple {
         mix.setRecipeNo(recipe.getNo());
 
         List<Mix> mixList = mixMapper.selectAll(mix);
+        for (int i = 0; i < mixList.size(); i++) {
+            Ingredient ingredient = new Ingredient();
+
+            ingredient.setNo(mixList.get(i).getIngredientNo());
+            ingredient = ingredientMapper.select(ingredient);
+
+            mixList.get(i).setIngredientName(ingredient.getName());
+        }
+
         recipe.setMixList(mixList);
 
         return recipe;
@@ -90,19 +99,20 @@ public class RecipeServiceImple {
 
     public boolean removeRecipe(Recipe recipe) {
         recipe = recipeMapper.select(recipe);
-        if (recipe == null
-                || recipe.getUsedCount() == 0) {
+
+        if (recipe.getUsedCount() != 0) {
             return false;
         }
 
         Mix mix = new Mix();
+
         mix.setRecipeNo(recipe.getNo());
         List<Mix> mixList = mixMapper.selectAll(mix);
 
-        for (Mix mixs : mixList) {
+        for (Mix tempMix : mixList) {
             Ingredient ingredient = new Ingredient();
 
-            ingredient.setNo(mixs.getIngredientNo());
+            ingredient.setNo(tempMix.getIngredientNo());
             ingredient.setUsedCount(-1);
 
             ingredientMapper.update(ingredient);

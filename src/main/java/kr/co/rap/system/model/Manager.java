@@ -9,7 +9,7 @@ public class Manager implements Serializable {
     private String name;
     private String contact;
     private char division;
-    private Date addDate;
+    private String addDate;
     private char status;
 
     public Manager() {
@@ -55,11 +55,11 @@ public class Manager implements Serializable {
         this.division = division;
     }
 
-    public Date getAddDate() {
+    public String getAddDate() {
         return addDate;
     }
 
-    public void setAddDate(Date addDate) {
+    public void setAddDate(String addDate) {
         this.addDate = addDate;
     }
 
