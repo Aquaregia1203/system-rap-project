@@ -25,16 +25,25 @@
             </c:if>
         </tr>
     </table>
-    <form action="/ingredient/${ingredient.no}/form" method="get">
-        <input type="submit" value="수정">
-    </form>
-    <form action="/ingredient" method="post">
-        <input type="submit" value="삭제">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="no" value="${ingredient.no}">
-    </form>
-    <form action="/ingredient" method="get">
-        <input type="submit" value="목록">
-    </form>
+    <c:choose>
+        <c:when test="${ingredient.usedCount eq 0}">
+            <form action="/ingredient/${ingredient.no}/form" method="get">
+                <input type="submit" value="수정">
+            </form>
+            <form action="/ingredient" method="post">
+                <input type="submit" value="삭제">
+                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="no" value="${ingredient.no}">
+            </form>
+            <form action="/ingredient" method="get">
+                <input type="submit" value="목록">
+            </form>
+        </c:when>
+        <c:otherwise>
+            <form action="/ingredient" method="get">
+                <input type="submit" value="목록">
+            </form>
+        </c:otherwise>
+    </c:choose>
 </body>
 </html>

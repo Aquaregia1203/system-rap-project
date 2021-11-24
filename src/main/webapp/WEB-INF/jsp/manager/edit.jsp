@@ -33,17 +33,21 @@
                 </td>
             </tr>
             <tr>
-                <td>상태 :</td>
-                <td>
-                    <c:if test="${manager.status eq 'Y'}">
-                        <input type="radio" name="status" value="Y" checked>활성화
-                        <input type="radio" name="status" value="N">비활성화
-                    </c:if>
-                    <c:if test="${manager.status eq 'N'}">
-                        <input type="radio" name="status" value="Y">활성화
-                        <input type="radio" name="status" value="N" checked>비활성화
-                    </c:if>
-                </td>
+                <c:if test="${manager.division eq 'M'}">
+                    <td>상태 :</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${manager.status eq 'Y'}">
+                                <input type="radio" name="status" value="Y" checked>활성화
+                                <input type="radio" name="status" value="N">비활성화
+                            </c:when>
+                            <c:otherwise>
+                                <input type="radio" name="status" value="Y">활성화
+                                <input type="radio" name="status" value="N" checked>비활성화
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                </c:if>
             </tr>
         </table>
         <input type="submit" value="수정">

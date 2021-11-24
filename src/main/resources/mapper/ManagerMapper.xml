@@ -13,7 +13,7 @@
                 NAME LIKE '%${name}%'
             </if>
         </where>
-        ORDER BY NAME ASC
+        ORDER BY DIVISION DESC, STATUS DESC, NAME ASC
     </select>
 
     <select id="select"

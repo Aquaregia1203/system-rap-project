@@ -19,6 +19,7 @@
             <th>이름</th>
             <th>연락처</th>
             <th>등록 일자</th>
+            <th>상태</th>
         </tr>
         <c:forEach items="${managerList}" var="manager"
                     begin="${start}" end="${end}" varStatus="row">
@@ -34,6 +35,14 @@
                 <td>${manager.name}</td>
                 <td>${manager.contact}</td>
                 <td>${manager.addDate}</td>
+                <c:choose>
+                    <c:when test="${manager.status eq 'Y'}">
+                        <td>활성</td>
+                    </c:when>
+                    <c:otherwise>
+                        <td>비활성</td>
+                    </c:otherwise>
+                </c:choose>
             </tr>
         </c:forEach>
     </table>
