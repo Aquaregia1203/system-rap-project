@@ -9,7 +9,7 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="kr.co.rap.system.access.Manager" alias="Manager" />
+        <typeAlias type="kr.co.rap.system.manager.Manager" alias="Manager" />
         <typeAlias type="kr.co.rap.system.ingredient.Ingredient" alias="Ingredient" />
         <typeAlias type="kr.co.rap.system.recipe.Recipe" alias="Recipe" />
         <typeAlias type="kr.co.rap.system.recipe.Mix" alias="Mix" />

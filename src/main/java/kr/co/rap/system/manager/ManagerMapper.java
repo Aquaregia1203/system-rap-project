@@ -1,6 +1,5 @@
 package kr.co.rap.system.manager;
 
-import kr.co.rap.system.access.Manager;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

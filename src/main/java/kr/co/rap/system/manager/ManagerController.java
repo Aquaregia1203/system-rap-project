@@ -1,6 +1,5 @@
 package kr.co.rap.system.manager;
 
-import kr.co.rap.system.access.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +49,9 @@ public class ManagerController {
     }
 
     @PostMapping
-    public ModelAndView addManager(Manager manager) {
+    public ModelAndView addManager(Manager manager, String[] phone) {
+        String number = phone[0] + "-" + phone[1] + "-" + phone[2];
+        manager.setContact(number);
         managerServiceImple.addManager(manager);
         return new ModelAndView(new RedirectView("/admin/" + manager.getId()));
     }
@@ -60,9 +61,12 @@ public class ManagerController {
         Manager manager = new Manager();
         manager.setId(id);
         manager = managerServiceImple.viewManager(manager);
+        String phone = manager.getContact();
+        String[] number =  phone.split("-");
 
         ModelAndView mav = new ModelAndView("manager/edit");
         mav.addObject("manager", manager);
+        mav.addObject("phone", number);
 
         return mav;
     }

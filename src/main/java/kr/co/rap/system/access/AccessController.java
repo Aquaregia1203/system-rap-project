@@ -1,5 +1,6 @@
 package kr.co.rap.system.access;
 
+import kr.co.rap.system.manager.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class AccessController {
         boolean result = accessServiceImple.login(manager);
 
         if (result) {
-            if ('S' == manager.getDivision()) {
+            if ("S".equals( manager.getDivision())) {
                 ModelAndView toManager = new ModelAndView(new RedirectView("/admin"));
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());

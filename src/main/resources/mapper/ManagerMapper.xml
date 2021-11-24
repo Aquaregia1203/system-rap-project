@@ -10,9 +10,10 @@
         SELECT ID, PASSWORD, NAME, CONTACT, DIVISION, ADD_DATE, STATUS FROM MANAGER
         <where>
             <if test="name != null and name != ''">
-                NAME = #{name}
+                NAME LIKE '%${name}%'
             </if>
         </where>
+        ORDER BY NAME ASC
     </select>
 
     <select id="select"

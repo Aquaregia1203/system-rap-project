@@ -1,4 +1,4 @@
-package kr.co.rap.system.access;
+package kr.co.rap.system.manager;
 
 import java.io.Serializable;
 
@@ -7,9 +7,9 @@ public class Manager implements Serializable {
     private String password;
     private String name;
     private String contact;
-    private char division;
+    private String division;
     private String addDate;
-    private char status;
+    private String status;
 
     public Manager() {
     }
@@ -46,11 +46,11 @@ public class Manager implements Serializable {
         this.contact = contact;
     }
 
-    public char getDivision() {
+    public String getDivision() {
         return division;
     }
 
-    public void setDivision(char division) {
+    public void setDivision(String division) {
         this.division = division;
     }
 
@@ -62,11 +62,11 @@ public class Manager implements Serializable {
         this.addDate = addDate;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

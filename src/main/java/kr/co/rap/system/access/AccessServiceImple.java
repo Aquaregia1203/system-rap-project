@@ -1,5 +1,6 @@
 package kr.co.rap.system.access;
 
+import kr.co.rap.system.manager.Manager;
 import kr.co.rap.system.manager.ManagerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,11 @@ public class AccessServiceImple{
             return false;
         }
         Manager checkManager = managerMapper.select(manager);
-        char status = checkManager.getStatus();
+        String status = checkManager.getStatus();
         String password = checkManager.getPassword();
 
         if (password.equals(pw)
-                && 'Y' == (status)) {
+                && "Y".equals(status)) {
             manager.setName(checkManager.getName());
             manager.setDivision(checkManager.getDivision());
             return true;

@@ -11,7 +11,7 @@ public class Manufacture implements Serializable {
     private int id;
     private int errorAmount;
     private String addDate;
-    private char status;
+    private String status;
 
     public Manufacture() {
     }
@@ -72,11 +72,11 @@ public class Manufacture implements Serializable {
         this.addDate = addDate;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

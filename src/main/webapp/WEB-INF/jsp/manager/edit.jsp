@@ -23,7 +23,14 @@
             </tr>
             <tr>
                 <td>연락처 :</td>
-                <td><input type="text" name="contact" value="${manager.contact}"></td>
+                <td>
+                    <select name="phone">
+                        <option value="">선택..</option>
+                        <option value="010" selected>010</option>
+                    </select> -
+                    <input type="text" name="phone" value="${phone[1]}"> -
+                    <input type="text" name="phone" value="${phone[2]}">
+                </td>
             </tr>
             <tr>
                 <td>상태 :</td>
@@ -33,7 +40,7 @@
                         <input type="radio" name="status" value="N">비활성화
                     </c:if>
                     <c:if test="${manager.status eq 'N'}">
-                        <input type="radio" name="status" value="Y" checked>활성화
+                        <input type="radio" name="status" value="Y">활성화
                         <input type="radio" name="status" value="N" checked>비활성화
                     </c:if>
                 </td>

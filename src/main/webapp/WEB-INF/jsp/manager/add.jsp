@@ -23,7 +23,14 @@
             </tr>
             <tr>
                 <td>연락처 :</td>
-                <td><input type="text" name="contact"></td>
+                <td>
+                    <select name="phone">
+                        <option value="">선택..</option>
+                        <option value="010">010</option>
+                    </select> -
+                    <input type="text" name="phone"> -
+                    <input type="text" name="phone">
+                </td>
             </tr>
         </table>
         <input type="submit" value="등록">

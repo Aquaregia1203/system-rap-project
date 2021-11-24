@@ -1,7 +1,5 @@
 package kr.co.rap.system.manager;
 
-import kr.co.rap.system.access.Manager;
-
 import java.util.List;
 
 public interface ManagerService {
