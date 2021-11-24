@@ -20,34 +20,25 @@
 
     <select id="select" parameterType="Manufacture"
                         resultType="Manufacture">
---         SELECT NO, MANUFACTURE_DATE, RECIPE_NO, OUTPUT, ID, ERROR_AMOUNT,
---                ADD_DATE, STATUS
---         FROM MANUFACTURE_PLAN
---         WHERE NO = #{no}
-
         SELECT PLAN.NO, PLAN.RECIPE_NO, RP.NAME as RECIPE_NAME, OUTPUT,
             MANUFACTURE_DATE, ERROR_AMOUNT, MGR.NAME as MANAGER_NAME, PLAN.STATUS,
             PLAN.ADD_DATE
         FROM manufacture_plan as PLAN INNER JOIN MANAGER as MGR INNER JOIN RECIPE as RP
         ON PLAN.ID = MGR.ID AND RP.NO = PLAN.RECIPE_NO
-        WHERE PLAN.NO = #{no};
-
+        WHERE PLAN.NO = #{no}
     </select>
 
-    <insert id="insert" parameterType="Manufacture">
+    <insert id="insert" useGeneratedKeys="true" parameterType="Manufacture">
         INSERT INTO MANUFACTURE_PLAN (RECIPE_NO, OUTPUT, ID, ADD_DATE)
         VALUES (#{recipeNo},
                 #{output},
                 #{id},
-                now()
+                current_timestamp()
                 )
-        <selectKey order="AFTER" keyColumn="NO" keyProperty="no"
-                   resultType="int">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
     </insert>
 
-    <update id="update" parameterType="Manufacture">
+    <update id="update" useGeneratedKeys="true"
+            parameterType="Manufacture">
         UPDATE MANUFACTURE_PLAN
         <set>
             <if test="manufactureDate != null and manufactureDate != ''">
@@ -70,15 +61,10 @@
             </if>
         </set>
         WHERE NO = #{no}
-
-        <selectKey order="AFTER" keyColumn="NO" keyProperty="no"
-                   resultType="int">
-            SELECT LAST_UPDATE_ID()
-        </selectKey>
     </update>
 
     <delete id="delete" parameterType="Manufacture">
-        DELETE FROM MANUFACUTURE_PLAN
+        DELETE FROM MANUFACTURE_PLAN
         WHERE NO = #{no}
     </delete>
 </mapper>

@@ -37,14 +37,14 @@
         <tr>
             <td>${index.count}</td>
             <!-- 생산일자 없을 때는 '-'로 표기 -->
-                <c:if test="${manufacture.manufactureDate eq null} or
-                                ${manufacture.manufactureDate  eq ''}">
-                    <td> - </td>
-                </c:if>
-                <c:if test="${manufacture.manufactureDate ne null} or
-                                ${manufacture.manufactureDate ne ''}">
-                    <td>${manufacture.manufactureDate}</td>
-                </c:if>
+                <c:choose>
+                    <c:when test="${empty manufacture.manufactureDate}">
+                        <td> - </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td>${manufacture.manufactureDate}</td>
+                    </c:otherwise>
+                </c:choose>
 
             <td><a href="/manufacture-plan/${manufacture.no}">${manufacture.recipeName}</a></td>
             <td>${manufacture.output} kg</td>

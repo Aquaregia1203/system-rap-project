@@ -20,32 +20,29 @@
         WHERE  NO = #{no}
     </select>
 
-    <insert id="insert" parameterType="Recipe">
+    <insert id="insert" useGeneratedKeys="true" parameterType="Recipe">
         INSERT INTO RECIPE (NAME, ADD_DATE)
             VALUES(
                       #{name},
                       now()
                   )
-        <selectKey order="AFTER" keyColumn="NO" keyProperty="no"
-                   resultType="int">
-            SELECT NO FROM RECIPE WHERE NAME = #{name}
-        </selectKey>
+<!--        <selectKey order="AFTER" keyColumn="NO" keyProperty="no"-->
+<!--                   resultType="int">-->
+<!--            SELECT NO FROM RECIPE WHERE NAME = #{name}-->
+<!--        </selectKey>-->
     </insert>
 
-    <update id="update" parameterType="Recipe">
+    <update id="update" useGeneratedKeys="true" parameterType="Recipe">
         UPDATE RECIPE
         <set>
             <if test="name != null and name != ''">
                 NAME = #{name},
             </if>
-            <if test="usedCount eq 1 and usedCount eq -1">
+            <if test="usedCount eq 1 or usedCount eq -1">
                 USED_COUNT = USED_COUNT + #{usedCount},
             </if>
         </set>
-
-        <if test="name != null and name != ''">
-            WHERE NO = #{no}
-        </if>
+        WHERE NO = #{no}
     </update>
 
     <delete id="delete" parameterType="Recipe">

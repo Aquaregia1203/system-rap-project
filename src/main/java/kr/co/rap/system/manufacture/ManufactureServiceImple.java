@@ -2,6 +2,9 @@ package kr.co.rap.system.manufacture;
 
 import kr.co.rap.system.recipe.Recipe;
 import kr.co.rap.system.recipe.RecipeMapper;
+import kr.co.rap.system.recipe.RecipeServiceImple;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ public class ManufactureServiceImple {
     private ManufactureMapper manufactureMapper;
     @Autowired
     private RecipeMapper recipeMapper;
+    private static Logger logger
+            = LogManager.getLogger(ManufactureServiceImple.class);
 
     public List<Manufacture> viewManufactureList(Map<String, String> period) {
         return manufactureMapper.selectAll(period);
@@ -38,10 +43,13 @@ public class ManufactureServiceImple {
     public boolean editManufacture(Manufacture newManufacture) {
         Manufacture beforeManufacture =
                 manufactureMapper.select(newManufacture);
+
         if (beforeManufacture == null
                 || "Y".equals(beforeManufacture.getStatus())) {
             return false;
         }
+
+        logger.debug(newManufacture.getRecipeNo());
 
         manufactureMapper.update(newManufacture);
         if (newManufacture.getRecipeNo() != beforeManufacture.getRecipeNo()) {
@@ -54,11 +62,9 @@ public class ManufactureServiceImple {
             recipe.setNo(beforeManufacture.getRecipeNo());
             recipe.setUsedCount(-1);
             recipeMapper.update(recipe);
-
-            return true;
         }
 
-        return false;
+        return true;
     }
 
     public boolean removeManufacture(Manufacture manufacture) {
@@ -75,10 +81,12 @@ public class ManufactureServiceImple {
 
         manufactureMapper.delete(manufacture);
 
-        return false;
+        return true;
     }
 
     public boolean executeManufacture(Manufacture manufacture) {
-        return false;
+
+
+        return true;
     }
 }
