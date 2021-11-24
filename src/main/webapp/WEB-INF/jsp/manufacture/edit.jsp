@@ -5,6 +5,7 @@
     <title>생산계획 수정</title>
 </head>
 <body>
+<jsp:include page="../top.jsp" />
 <form action="/manufacture-plan" method="post">
     <input type="hidden" name="_method" value="PUT" />
     <input type="hidden" name="no" value="${manufacture.no}" />

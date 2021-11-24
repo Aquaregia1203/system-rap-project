@@ -28,7 +28,8 @@
         WHERE PLAN.NO = #{no}
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" parameterType="Manufacture">
+    <insert id="insert" useGeneratedKeys="true" parameterType="Manufacture"
+                        keyColumn="NO" keyProperty="no">
         INSERT INTO MANUFACTURE_PLAN (RECIPE_NO, OUTPUT, ID, ADD_DATE)
         VALUES (#{recipeNo},
                 #{output},
@@ -37,7 +38,7 @@
                 )
     </insert>
 
-    <update id="update" useGeneratedKeys="true"
+    <update id="update" useGeneratedKeys="true" keyColumn="NO" keyProperty="no"
             parameterType="Manufacture">
         UPDATE MANUFACTURE_PLAN
         <set>

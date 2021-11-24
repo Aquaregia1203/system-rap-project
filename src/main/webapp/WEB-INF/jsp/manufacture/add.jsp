@@ -5,12 +5,13 @@
     <title>생산계획 등록</title>
 </head>
 <body>
+<jsp:include page="../top.jsp" />
     <form action="/manufacture-plan" method="post">
     <table>
         <tr>
             <td>레시피 : </td>
             <td>
-                <select id="manufacture.recipeNo">
+                <select name="recipeNo">
                     <option value="">선택..</option>
                     <c:forEach items="${recipeList}" var="recipe">
                         <option value="${recipe.no}">${recipe.name}</option>

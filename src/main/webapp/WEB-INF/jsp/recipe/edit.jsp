@@ -24,19 +24,17 @@
                 </td>
                 <td>
                     <select name="mixList[${index.index}].ingredientNo">
-
                     <%-- 원재료 목록 선택 박스 --%>
                         <option value="">선택..</option>
                         <c:forEach items="${ingredientList}" var="ingredient">
-<%--                            <c:if test="${ingredient.no} eq ${mix.ingredientNo}">--%>
-<%--                                <option value="${ingredient.no}" selected>${ingredient.name}</option>--%>
-<%--                            </c:if>--%>
-
-<%--                            <c:if test="${ingredient.no} != ${mix.ingredientNo}">--%>
-<%--                                <option value="${ingredient.no}">${ingredient.name}</option>--%>
-<%--                            </c:if>--%>
-
-                                <option value="${ingredient.no}">${ingredient.name}</option>
+                                <c:choose>
+                                    <c:when test="${ingredient.no eq mix.ingredientNo}">
+                                        <option value="${ingredient.no}" selected>${ingredient.name}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${ingredient.no}">${ingredient.name}</option>
+                                    </c:otherwise>
+                                </c:choose>
                         </c:forEach>
                     </select>
                 </td>

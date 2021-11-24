@@ -4,7 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-    <jsp:include page="../top.jsp" />
+    <jsp:include page="top.jsp" />
     <h2>관리자 등록하기</h2>
     <hr>
     <form action="/admin" method="post">

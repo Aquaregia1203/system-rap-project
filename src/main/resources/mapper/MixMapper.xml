@@ -14,7 +14,8 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="Mix">
+    <insert id="insert" parameterType="Mix" useGeneratedKeys="true"
+                        keyColumn="NO" keyProperty="no">
         INSERT INTO MIX (RECIPE_NO, INGREDIENT_NO, PUMP_NO, RATIO)
         VALUES(
                 #{recipeNo},

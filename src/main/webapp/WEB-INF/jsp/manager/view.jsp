@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <jsp:include page="../top.jsp" />
+<jsp:include page="top.jsp" />
     <h2>관리자 상세 조회</h2>
     <hr>
     <table border="1">

@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<jsp:include page="../top.jsp" />
     <h2>조회 화면입니다.</h2>
     <hr>
     <table border="1">

@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <jsp:include page="../top.jsp" />
+<jsp:include page="top.jsp" />
     <h2>관리자 수정 화면입니다</h2>
     <hr>
     <form action="/admin" method="post">

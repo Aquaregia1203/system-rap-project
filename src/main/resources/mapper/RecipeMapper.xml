@@ -20,16 +20,13 @@
         WHERE  NO = #{no}
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" parameterType="Recipe">
+    <insert id="insert" useGeneratedKeys="true" parameterType="Recipe"
+                        keyColumn="NO" keyProperty="no">
         INSERT INTO RECIPE (NAME, ADD_DATE)
             VALUES(
                       #{name},
                       now()
                   )
-<!--        <selectKey order="AFTER" keyColumn="NO" keyProperty="no"-->
-<!--                   resultType="int">-->
-<!--            SELECT NO FROM RECIPE WHERE NAME = #{name}-->
-<!--        </selectKey>-->
     </insert>
 
     <update id="update" useGeneratedKeys="true" parameterType="Recipe">
