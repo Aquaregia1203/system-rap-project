@@ -1,13 +1,12 @@
 package kr.co.rap.system.recipe;
 
-import kr.co.rap.system.model.Mix;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
 public interface MixMapper {
-    public List<Mix> selectAll(Mix mix);
+    public List<Mix> selectAll(Recipe recipe);
 
     public int insert(Mix mix);
 

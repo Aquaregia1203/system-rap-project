@@ -1,7 +1,5 @@
 package kr.co.rap.system.ingredient;
 
-import kr.co.rap.system.model.Ingredient;
-
 import java.util.List;
 
 public interface IngredientService {

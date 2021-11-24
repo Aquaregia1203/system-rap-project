@@ -1,4 +1,4 @@
-package kr.co.rap.system.model;
+package kr.co.rap.system.manufacture;
 
 import java.io.Serializable;
 import java.util.List;

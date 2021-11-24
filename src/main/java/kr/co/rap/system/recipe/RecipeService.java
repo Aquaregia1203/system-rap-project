@@ -1,8 +1,5 @@
 package kr.co.rap.system.recipe;
 
-import kr.co.rap.system.model.Recipe;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 public interface RecipeService {

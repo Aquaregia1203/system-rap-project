@@ -1,6 +1,8 @@
 package kr.co.rap.system.recipe;
 
-import kr.co.rap.system.model.Recipe;
+import kr.co.rap.system.ingredient.Ingredient;
+import kr.co.rap.system.ingredient.IngredientMapper;
+import kr.co.rap.system.ingredient.IngredientServiceImple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,8 @@ import java.util.List;
 public class RecipeController {
     @Autowired
     private RecipeServiceImple recipeService;
+    @Autowired
+    private IngredientServiceImple ingredientService;
 
     @GetMapping
     public ModelAndView viewRecipeList(
@@ -43,27 +47,57 @@ public class RecipeController {
         recipe = recipeService.viewRecipe(recipe);
         mav.addObject("recipe", recipe);
 
+        if (recipe == null) {
+            return new ModelAndView(new RedirectView("/recipe"));
+        }
+
+
         return mav;
     }
 
     @GetMapping("/form")
     public ModelAndView addRecipe() {
-        return new ModelAndView("recipe/add");
+        ModelAndView mav = new ModelAndView("recipe/add");
+
+        List<Ingredient> ingredientList =
+                ingredientService.viewIngredientList(new Ingredient());
+        mav.addObject("ingredientList", ingredientList);
+
+        return mav;
     }
 
     @PostMapping
     public ModelAndView addRecipe(Recipe recipe) {
+        if (recipe.getName() != null) {
+            recipeService.addRecipe(recipe);
+        }
+
         return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo()));
     }
 
     @GetMapping("/{no}/form")
-    public ModelAndView editRecipe(@PathVariable String no) {
+    public ModelAndView editRecipe(@PathVariable int no) {
+        ModelAndView mav = new ModelAndView("recipe/edit");
 
-        return new ModelAndView("recipe/edit");
+        Recipe recipe = new Recipe();
+        recipe.setNo(no);
+        recipe = recipeService.viewRecipe(recipe);
+
+        mav.addObject("recipe", recipe);
+        mav.addObject("ingredientList",
+                ingredientService.viewIngredientList(new Ingredient()));
+
+        if (recipe == null) {
+            return new ModelAndView(new RedirectView("/recipe"));
+        } else {
+            return mav;
+        }
     }
 
     @PutMapping
     public ModelAndView editRecipe(Recipe recipe) {
+        recipeService.editRecipe(recipe);
+
         return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo()));
     }
 

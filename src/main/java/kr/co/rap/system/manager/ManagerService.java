@@ -1,6 +1,6 @@
 package kr.co.rap.system.manager;
 
-import kr.co.rap.system.model.Manager;
+import kr.co.rap.system.access.Manager;
 
 import java.util.List;
 

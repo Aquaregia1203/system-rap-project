@@ -1,6 +1,6 @@
 package kr.co.rap.system.control;
 
-import kr.co.rap.system.model.ManufactureInfo;
+import kr.co.rap.system.manufacture.ManufactureInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;

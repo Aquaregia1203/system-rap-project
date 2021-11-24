@@ -4,20 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.rap.system.recipe.MixMapper">
-    <select id="selectAll" parameterType="Mix"
+    <select id="selectAll" parameterType="Recipe"
             resultType="Mix">
         SELECT NO, RECIPE_NO, INGREDIENT_NO, PUMP_NO, RATIO FROM MIX
         <where>
-            <if test="recipeNo gt 0">
-                AND RECIPE_NO = #{recipeNo}
+            <if test="no gt 0">
+                AND RECIPE_NO = #{no}
             </if>
         </where>
     </select>
 
     <insert id="insert" parameterType="Mix">
-        INSERT INTO MIX (NO, RECIPE_NO, INGREDIENT_NO, PUMP_NO, RATIO)
+        INSERT INTO MIX (RECIPE_NO, INGREDIENT_NO, PUMP_NO, RATIO)
         VALUES(
-                #{no},
                 #{recipeNo},
                 #{ingredientNo},
                 #{pumpNo},
@@ -29,13 +28,13 @@
         UPDATE MIX
         <set>
             <if test="ingredientNo gt 0">
-                SET INGREDIENT_NO = #{ingredientNo},
+                INGREDIENT_NO = #{ingredientNo},
             </if>
             <if test="pumpNo gt 0">
-                SET PUMP_NO = #{pumpNo}
+                PUMP_NO = #{pumpNo},
             </if>
             <if test="ratio gt 0">
-                SET RATIO = #{ratio}
+                RATIO = #{ratio},
             </if>
         </set>
 

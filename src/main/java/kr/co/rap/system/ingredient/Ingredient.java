@@ -1,17 +1,15 @@
-package kr.co.rap.system.model;
+package kr.co.rap.system.ingredient;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-public class Recipe implements Serializable {
+public class Ingredient implements Serializable {
     private int no;
     private String name;
     private int usedCount;
     private String addDate;
-    private List<Mix> mixList;
 
-    public Recipe() {
+    public Ingredient() {
     }
 
     public int getNo() {
@@ -44,13 +42,5 @@ public class Recipe implements Serializable {
 
     public void setAddDate(String addDate) {
         this.addDate = addDate;
-    }
-
-    public List<Mix> getMixList() {
-        return mixList;
-    }
-
-    public void setMixList(List<Mix> mixList) {
-        this.mixList = mixList;
     }
 }

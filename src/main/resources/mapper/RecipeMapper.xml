@@ -17,11 +17,7 @@
     <select id="select" parameterType="Recipe"
                         resultType="Recipe">
         SELECT NO, NAME, USED_COUNT, ADD_DATE FROM RECIPE
-        <where>
-            <if test="no gt 0">
-                AND NO = #{no}
-            </if>
-        </where>
+        WHERE  NO = #{no}
     </select>
 
     <insert id="insert" parameterType="Recipe">
@@ -30,24 +26,26 @@
                       #{name},
                       now()
                   )
+        <selectKey order="AFTER" keyColumn="NO" keyProperty="no"
+                   resultType="int">
+            SELECT NO FROM RECIPE WHERE NAME = #{name}
+        </selectKey>
     </insert>
 
     <update id="update" parameterType="Recipe">
         UPDATE RECIPE
         <set>
             <if test="name != null and name != ''">
-                SET NAME = #{name},
+                NAME = #{name},
             </if>
             <if test="usedCount eq 1 and usedCount eq -1">
-                SET USED_COUNT = USED_COUNT + #{usedCount},
+                USED_COUNT = USED_COUNT + #{usedCount},
             </if>
         </set>
 
-        <where>
-            <if test="no gt 0">
-                AND NO = #{no}
-            </if>
-        </where>
+        <if test="name != null and name != ''">
+            WHERE NO = #{no}
+        </if>
     </update>
 
     <delete id="delete" parameterType="Recipe">

@@ -1,4 +1,4 @@
-package kr.co.rap.system.model;
+package kr.co.rap.system.recipe;
 
 import java.io.Serializable;
 

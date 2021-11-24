@@ -1,6 +1,5 @@
 package kr.co.rap.system.manufacture;
 
-import kr.co.rap.system.model.Manufacture;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

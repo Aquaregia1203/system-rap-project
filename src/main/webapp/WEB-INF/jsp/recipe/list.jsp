@@ -34,6 +34,11 @@
                     <td>${recipe.addDate}</td>
                 </tr>
             </c:forEach>
+            <tr>
+                <td>
+                    <a href="/recipe/form">등록</a>
+                </td>
+            </tr>
         </table>
         <table border="2">
             <tr>

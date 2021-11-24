@@ -43,10 +43,12 @@
         </c:forEach>
         <form action="/recipe" METHOD="POST">
             <tr>
-                <td><a herf="/recipe/${recipe.no}/form">수정</a></td>
-
-                <td><input type="submit" value="삭제" /> </td>
-
+                <td>
+                    <a href="/recipe/${recipe.no}/form">수정</a>
+                </td>
+                <td>
+                    <input type="submit" value="삭제" />
+                </td>
                 <td><a href="/recipe">목록</a></td>
             </tr>
             <input tpye="hidden" name="_method" value="DELETE" />

@@ -1,7 +1,7 @@
 package kr.co.rap.system.control;
 
-import kr.co.rap.system.model.Manufacture;
-import kr.co.rap.system.model.ManufactureInfo;
+import kr.co.rap.system.manufacture.Manufacture;
+import kr.co.rap.system.manufacture.ManufactureInfo;
 import org.springframework.stereotype.Controller;
 
 import java.util.Map;

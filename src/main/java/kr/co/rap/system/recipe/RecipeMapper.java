@@ -1,6 +1,5 @@
 package kr.co.rap.system.recipe;
 
-import kr.co.rap.system.model.Recipe;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

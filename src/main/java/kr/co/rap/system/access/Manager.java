@@ -1,4 +1,4 @@
-package kr.co.rap.system.model;
+package kr.co.rap.system.access;
 
 import java.io.Serializable;
 import java.util.Date;

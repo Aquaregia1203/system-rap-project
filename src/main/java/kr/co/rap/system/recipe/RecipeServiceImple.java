@@ -1,10 +1,7 @@
 package kr.co.rap.system.recipe;
 
 import kr.co.rap.system.ingredient.IngredientMapper;
-import kr.co.rap.system.model.Ingredient;
-import kr.co.rap.system.model.Manager;
-import kr.co.rap.system.model.Mix;
-import kr.co.rap.system.model.Recipe;
+import kr.co.rap.system.ingredient.Ingredient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +27,21 @@ public class RecipeServiceImple {
     public Recipe viewRecipe(Recipe recipe) {
         recipe = recipeMapper.select(recipe);
 
-        Mix mix = new Mix();
-        mix.setRecipeNo(recipe.getNo());
+        if (recipe != null) {
+            List<Mix> mixList = mixMapper.selectAll(recipe);
 
-        List<Mix> mixList = mixMapper.selectAll(mix);
-        for (int i = 0; i < mixList.size(); i++) {
             Ingredient ingredient = new Ingredient();
+            for (int i = 0; i < mixList.size(); i++) {
+                ingredient.setNo(mixList.get(i).getIngredientNo());
+                ingredient = ingredientMapper.select(ingredient);
 
-            ingredient.setNo(mixList.get(i).getIngredientNo());
-            ingredient = ingredientMapper.select(ingredient);
+                mixList.get(i).setIngredientName(ingredient.getName());
+            }
 
-            mixList.get(i).setIngredientName(ingredient.getName());
+            recipe.setMixList(mixList);
+
+            return recipe;
         }
-
-        recipe.setMixList(mixList);
 
         return recipe;
     }
@@ -54,16 +52,18 @@ public class RecipeServiceImple {
         int ratio = 0;
         for (int i = 0; i < mixList.size(); i++) {
             ratio = ratio + mixList.get(i).getRatio();
+            System.out.println(ratio + " : 비율");
         }
 
         if (ratio != 100
-                || recipeMapper.select(recipe) == null) {
+                || recipeMapper.selectAll(recipe).size() != 0) {
             return false;
         }
 
         recipeMapper.insert(recipe);
 
         for (Mix mix : mixList) {
+            mix.setRecipeNo(recipe.getNo());
             mixMapper.insert(mix);
 
             Ingredient ingredient = new Ingredient();
@@ -77,22 +77,23 @@ public class RecipeServiceImple {
     }
 
     public boolean editRecipe(Recipe recipe) {
-        if (recipeMapper.select(recipe) == null
-                || recipeMapper.select(recipe).getNo() != 0) {
+        Recipe checkRecipe = recipeMapper.select(recipe);
+
+        if (checkRecipe == null
+                && recipe.getName() != null
+                    && recipeMapper.selectAll(recipe).size() != 0
+                        && checkRecipe.getUsedCount() != 0) {
             return false;
-        } else if (recipe.getName() != null) {
-            if (recipeMapper.selectAll(recipe) != null) {
-                return false;
-            }
         }
 
         recipeMapper.update(recipe);
-        
-        List<Mix> mixList = recipe.getMixList();
-        for (Mix mix : mixList) {
-            mixMapper.update(mix);
-        }
-        // TODO:: 원재료 수정 로직 필요
+
+        List<Mix> afterMixList = recipe.getMixList();
+        List<Mix> beforeMixList = mixMapper.selectAll(null);
+//        for (Mix mix : mixList) {
+//
+//            mixMapper.update(mix);
+//        }
 
         return true;
     }
@@ -104,10 +105,7 @@ public class RecipeServiceImple {
             return false;
         }
 
-        Mix mix = new Mix();
-
-        mix.setRecipeNo(recipe.getNo());
-        List<Mix> mixList = mixMapper.selectAll(mix);
+        List<Mix> mixList = mixMapper.selectAll(recipe);
 
         for (Mix tempMix : mixList) {
             Ingredient ingredient = new Ingredient();
@@ -118,6 +116,8 @@ public class RecipeServiceImple {
             ingredientMapper.update(ingredient);
         }
 
+        Mix mix = new Mix();
+        mix.setRecipeNo(recipe.getNo());
         mixMapper.delete(mix);
         recipeMapper.delete(recipe);
 
