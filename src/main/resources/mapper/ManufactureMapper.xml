@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.rap.system.manufacture.ManufactureMapper">
+    <select id="selectAll" parameterType="Map"
+                           resultType="Manufacture">
+        SELECT PLAN.NO, PLAN.MANUFACTURE_DATE, PLAN.RECIPE_NO, PLAN.OUTPUT, PLAN.ID,
+        PLAN.ERROR_AMOUNT, PLAN.ADD_DATE, PLAN.STATUS, RP.NAME as RECIPE_NAME
+        FROM MANUFACTURE_PLAN as PLAN INNER JOIN RECIPE as RP
+        ON RP.NO = PLAN.RECIPE_NO
+        <if test="start != null and start != ''
+                        and end != null and end != ''">
+        WHERE MANUFACTURE_DATE BETWEEN #{start} AND #{end}
+        </if>
+        ORDER BY MANUFACTURE_DATE DESC
+    </select>
+
+    <select id="select" parameterType="Manufacture"
+                        resultType="Manufacture">
+--         SELECT NO, MANUFACTURE_DATE, RECIPE_NO, OUTPUT, ID, ERROR_AMOUNT,
+--                ADD_DATE, STATUS
+--         FROM MANUFACTURE_PLAN
+--         WHERE NO = #{no}
+
+        SELECT PLAN.NO, PLAN.RECIPE_NO, RP.NAME as RECIPE_NAME, OUTPUT,
+            MANUFACTURE_DATE, ERROR_AMOUNT, MGR.NAME as MANAGER_NAME, PLAN.STATUS,
+            PLAN.ADD_DATE
+        FROM manufacture_plan as PLAN INNER JOIN MANAGER as MGR INNER JOIN RECIPE as RP
+        ON PLAN.ID = MGR.ID AND RP.NO = PLAN.RECIPE_NO
+        WHERE PLAN.NO = #{no};
+
+    </select>
+
+    <insert id="insert" parameterType="Manufacture">
+        INSERT INTO MANUFACTURE_PLAN (RECIPE_NO, OUTPUT, ID, ADD_DATE)
+        VALUES (#{recipeNo},
+                #{output},
+                #{id},
+                now()
+                )
+        <selectKey order="AFTER" keyColumn="NO" keyProperty="no"
+                   resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="Manufacture">
+        UPDATE MANUFACTURE_PLAN
+        <set>
+            <if test="manufactureDate != null and manufactureDate != ''">
+                MANUFACTURE_DATE = #{manufactureDate},
+            </if>
+            <if test="recipeNo gt 0">
+                RECIPE_NO = #{recipeNo},
+            </if>
+            <if test="output gt 0">
+                OUTPUT = #{output},
+            </if>
+            <if test="id != null and id != ''">
+                ID = #{id},
+            </if>
+            <if test="errorAmount != 0">
+                ERROR_AMOUNT = #{errorAmount},
+            </if>
+            <if test="status != null and status != ''">
+                STATUS = #{status},
+            </if>
+        </set>
+        WHERE NO = #{no}
+
+        <selectKey order="AFTER" keyColumn="NO" keyProperty="no"
+                   resultType="int">
+            SELECT LAST_UPDATE_ID()
+        </selectKey>
+    </update>
+
+    <delete id="delete" parameterType="Manufacture">
+        DELETE FROM MANUFACUTURE_PLAN
+        WHERE NO = #{no}
+    </delete>
+</mapper>

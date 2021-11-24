@@ -1,14 +1,15 @@
 package kr.co.rap.system.manufacture;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Manufacture implements Serializable {
     private int no;
     private String manufactureDate;
     private int recipeNo;
+    private String recipeName;
     private int output;
-    private int id;
+    private String id;
+    private String managerName;
     private int errorAmount;
     private String addDate;
     private String status;
@@ -72,11 +73,11 @@ public class Manufacture implements Serializable {
         this.addDate = addDate;
     }
 
-    public String getStatus() {
+    public char getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(char status) {
         this.status = status;
     }
 }

@@ -29,11 +29,15 @@ public class AccessController {
                 ModelAndView toManager = new ModelAndView(new RedirectView("/admin"));
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());
+                httpSession.setAttribute("saveId", manager.getId());
+
                 return toManager;
             } else {
                 ModelAndView toManufacture = new ModelAndView(new RedirectView("/manufacture"));
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());
+                httpSession.setAttribute("saveId", manager.getId());
+
                 return toManufacture;
             }
         }
@@ -43,8 +47,9 @@ public class AccessController {
     @GetMapping("/logout")
     public ModelAndView logout(HttpSession httpSession) {
         httpSession.removeAttribute("id");
-        ModelAndView mav = new ModelAndView(new RedirectView("/login"));
-        return mav;
+        httpSession.removeAttribute("name");
+
+        return new ModelAndView(new RedirectView("/login"));
     }
 
 }

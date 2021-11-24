@@ -85,15 +85,28 @@ public class RecipeServiceImple {
                         && checkRecipe.getUsedCount() != 0) {
             return false;
         }
+        // TODO:: 배합 조회 만들던가 기존 배합 원재료 수정 로직 필요함
 
         recipeMapper.update(recipe);
 
-        List<Mix> afterMixList = recipe.getMixList();
-        List<Mix> beforeMixList = mixMapper.selectAll(null);
-//        for (Mix mix : mixList) {
+        List<Mix> mixList = recipe.getMixList();
+        Ingredient ingredient = new Ingredient();
+
+//        for (Mix mix : beforeMixList) {
+//            mix.setRecipeNo(recipe.getNo());
 //
-//            mixMapper.update(mix);
+//            ingredient.setNo(mix.getIngredientNo());
+//            ingredient.setUsedCount(-1);
+//            ingredientMapper.update(ingredient);
 //        }
+
+        for (Mix mix : mixList) {
+            ingredient.setNo(mix.getIngredientNo());
+            ingredient.setUsedCount(1);
+            ingredientMapper.update(ingredient);
+
+            mixMapper.update(mix);
+        }
 
         return true;
     }
