@@ -24,7 +24,8 @@ public class IngredientServiceImple {
 
 
     public boolean addIngredient(Ingredient ingredient) {
-        if (ingredientMapper.selectAll(ingredient) != null) {
+        List<Ingredient> checkIngredient = ingredientMapper.selectAll(ingredient);
+        if (checkIngredient.size() != 0) {
             return false;
         }
         ingredientMapper.insert(ingredient);

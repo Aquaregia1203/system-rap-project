@@ -1,16 +1,33 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 2018A00588
-  Date: 2021-11-24
-  Time: 오전 1:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-
+    <h2>조회 화면입니다.</h2>
+    <hr>
+    <table border="1">
+        <tr>
+            <td>이름</td>
+            <td>등록 일자</td>
+            <td>사용 여부</td>
+        </tr>
+        <tr>
+            <td>${ingredient.name}</td>
+            <td>${ingredient.addDate}</td>
+            <td>${ingredient.usedCount}</td>
+        </tr>
+    </table>
+    <form action="/ingredient/${ingredient.no}/form" method="get">
+        <input type="submit" value="수정">
+    </form>
+    <form action="/ingredient" method="post">
+        <input type="submit" value="삭제">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="no" value="${ingredient.no}">
+    </form>
+    <form action="/ingredient" method="get">
+        <input type="submit" value="목록">
+    </form>
 </body>
 </html>

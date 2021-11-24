@@ -19,16 +19,15 @@
             parameterType="Ingredient"
             resultType="Ingredient">
         SELECT NO, NAME, USED_COUNT, ADD_DATE FROM INGREDIENT
-        <where>
-            <if test="no gt 0">
-                AND NO = #{no}
-            </if>
-        </where>
+        WHERE NO = #{no}
     </select>
 
     <insert id="insert"
-            parameterType="kr.co.rap.system.ingredient.Ingredient">
+            parameterType="Ingredient">
         INSERT INTO INGREDIENT (NAME, ADD_DATE) VALUES (#{name}, NOW())
+        <selectKey order="AFTER" keyColumn="NO" keyProperty="no" resultType="int">
+            SELECT NO FROM INGREDIENT WHERE NAME = #{name}
+        </selectKey>
     </insert>
 
     <update id="update"
