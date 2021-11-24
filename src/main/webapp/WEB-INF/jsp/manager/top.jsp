@@ -2,13 +2,7 @@
 <table border="2">
     <tr>
         <td>
-            <h1><a href="/ingredient">원재료</a></h1>
-        </td>
-        <td>
-            <h1><a href="/recipe">레시피</a></h1>
-        </td>
-        <td>
-            <h1><a href="/manufacture-plan">생산계획</a></h1>
+            <h1><a href="/admin">관리자</a></h1>
         </td>
         <td>
             ${sessionScope.id}<br/>

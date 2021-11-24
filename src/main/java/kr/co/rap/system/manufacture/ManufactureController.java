@@ -69,7 +69,7 @@ public class ManufactureController {
         manufacture.setId((String) session.getAttribute("id"));
         manufactureService.addManufacture(manufacture);
 
-        return new ModelAndView(new RedirectView("/manufacture-plan" + manufacture.getNo()));
+        return new ModelAndView(new RedirectView("/manufacture-plan/" + manufacture.getNo()));
     }
 
     @GetMapping("/{no}/form")

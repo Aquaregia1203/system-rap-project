@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <jsp:include page="../top.jsp" />
+<jsp:include page="top.jsp" />
     <h2>관리자 목록을 나열합니다.</h2>
     <form action="/admin" method="get">
         관리자 명: <input type="search" name="name">

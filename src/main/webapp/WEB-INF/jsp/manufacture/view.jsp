@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
 </head>
+<jsp:include page="../top.jsp" />
 <body>
         <h2>생산계획 상세 정보</h2>
         <form action="/manufacture-plan/execution" method="get">
