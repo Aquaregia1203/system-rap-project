@@ -37,7 +37,7 @@
     <c:forEach items="${manufactureList}" var="manufacture"
                begin="${start}" end="${end}" varStatus="index">
         <tr>
-            <td>${index.count}</td>
+            <td>${manufactureList.size() - index.index}</td>
             <!-- 생산일자 없을 때는 '-'로 표기 -->
                 <c:choose>
                     <c:when test="${empty manufacture.manufactureDate}">

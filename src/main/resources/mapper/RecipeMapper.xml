@@ -12,6 +12,7 @@
                 AND NAME = #{name}
             </if>
         </where>
+        ORDER BY NAME ASC
     </select>
 
     <select id="select" parameterType="Recipe"
