@@ -18,7 +18,7 @@ public class ManufactureController {
 
     @GetMapping
     public ModelAndView viewManufactureList(Map<String, String> period,
-                                               int page) {
+                                               @RequestParam(defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("manufacture/list");
 
         List<Manufacture> manufactureList =
@@ -50,22 +50,34 @@ public class ManufactureController {
     public ModelAndView addManufacture(Manufacture manufacture,
                                         HttpSession session) {
         manufacture.setId((String) session.getAttribute("id"));
+        manufactureService.addManufacture(manufacture);
+
         return new ModelAndView(new RedirectView("/manufacture-plan" + manufacture.getNo()));
     }
 
     @GetMapping("/{no}/form")
     public ModelAndView editManufacture(Manufacture manufacture) {
+        ModelAndView mav = new ModelAndView("manufacture/edit");
+
+        manufacture = manufactureService.viewManufacture(manufacture);
+        mav.addObject("manufacture", manufacture);
+
         return new ModelAndView("manufacture/edit");
     }
 
     @PutMapping
     public ModelAndView editManufacture(Manufacture manufacture,
                                             HttpSession session) {
+        manufacture.setId((String) session.getAttribute("id"));
+        manufactureService.editManufacture(manufacture);
+
         return new ModelAndView(new RedirectView("/manufacture-plan/" + manufacture.getNo()));
     }
 
     @DeleteMapping
     public ModelAndView removeManufacture(Manufacture manufacture) {
+        manufactureService.removeManufacture(manufacture);
+
         return new ModelAndView(new RedirectView("/manufacture-plan/"));
     }
 }

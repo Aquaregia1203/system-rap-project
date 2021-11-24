@@ -35,11 +35,26 @@
     <c:forEach items="${manufactureList}" var="manufacture"
                begin="${start}" end="${end}" varStatus="index">
         <tr>
-            <td>${index.last - index.index}</td>
-            <td>${manufacture.manufactureDate}</td>
+            <td>${index.count}</td>
+            <!-- 생산일자 없을 때는 '-'로 표기 -->
+                <c:if test="${manufacture.manufactureDate eq null} or
+                                ${manufacture.manufactureDate  eq ''}">
+                    <td> - </td>
+                </c:if>
+                <c:if test="${manufacture.manufactureDate ne null} or
+                                ${manufacture.manufactureDate ne ''}">
+                    <td>${manufacture.manufactureDate}</td>
+                </c:if>
+
             <td><a href="/manufacture-plan/${manufacture.no}">${manufacture.recipeName}</a></td>
-            <td>${manufacture.output}</td>
-            <td>${manufacture.status}</td>
+            <td>${manufacture.output} kg</td>
+
+                <c:if test="${manufacture.status eq 'Y'}">
+                    <th>완료</th>
+                </c:if>
+                <c:if test="${manufacture.status  eq 'N'}">
+                    <td> - </td>
+                </c:if>
             <td>${manufacture.addDate}</td>
         </tr>
     </c:forEach>

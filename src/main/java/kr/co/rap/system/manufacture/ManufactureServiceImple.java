@@ -39,7 +39,7 @@ public class ManufactureServiceImple {
         Manufacture beforeManufacture =
                 manufactureMapper.select(newManufacture);
         if (beforeManufacture == null
-                || beforeManufacture.getStatus() == 'Y') {
+                || "Y".equals(beforeManufacture.getStatus())) {
             return false;
         }
 
@@ -64,7 +64,7 @@ public class ManufactureServiceImple {
     public boolean removeManufacture(Manufacture manufacture) {
         manufacture = manufactureMapper.select(manufacture);
 
-        if (manufacture.getStatus() == 'Y') {
+        if ("Y".equals(manufacture.getStatus())) {
             return false;
         }
 

@@ -7,13 +7,13 @@
 <mapper namespace="kr.co.rap.system.manufacture.ManufactureMapper">
     <select id="selectAll" parameterType="Map"
                            resultType="Manufacture">
-        SELECT NO, MANUFACTURE_DATE, RECIPE_NO, OUTPUT, ID,
-               ERROR_AMOUNT, ADD_DATE, STATUS
-        FROM MANUFACTURE_PLAN
-        WHERE
+        SELECT PLAN.NO, PLAN.MANUFACTURE_DATE, PLAN.RECIPE_NO, PLAN.OUTPUT, PLAN.ID,
+        PLAN.ERROR_AMOUNT, PLAN.ADD_DATE, PLAN.STATUS, RP.NAME as RECIPE_NAME
+        FROM MANUFACTURE_PLAN as PLAN INNER JOIN RECIPE as RP
+        ON RP.NO = PLAN.RECIPE_NO
         <if test="start != null and start != ''
                         and end != null and end != ''">
-            MANUFACTURE_DATE BETWEEN #{start} AND #{end}
+        WHERE MANUFACTURE_DATE BETWEEN #{start} AND #{end}
         </if>
         ORDER BY MANUFACTURE_DATE DESC
     </select>
