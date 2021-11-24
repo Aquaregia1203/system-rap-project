@@ -26,7 +26,7 @@ public class AccessController {
 
         if (result) {
             if ('S' == manager.getDivision()) {
-                ModelAndView toManager = new ModelAndView(new RedirectView("/manager"));
+                ModelAndView toManager = new ModelAndView(new RedirectView("/admin"));
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());
                 return toManager;
@@ -40,11 +40,11 @@ public class AccessController {
         return new ModelAndView(new RedirectView("/login"));
     }
 
-    @GetMapping("logout")
+    @GetMapping("/logout")
     public ModelAndView logout(HttpSession httpSession) {
         httpSession.removeAttribute("id");
-        ModelAndView mov = new ModelAndView(new RedirectView("/login"));
-        return mov;
+        ModelAndView mav = new ModelAndView(new RedirectView("/login"));
+        return mav;
     }
 
 }

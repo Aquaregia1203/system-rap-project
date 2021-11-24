@@ -1,7 +1,6 @@
 package kr.co.rap.system.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Manager implements Serializable {
     private String id;

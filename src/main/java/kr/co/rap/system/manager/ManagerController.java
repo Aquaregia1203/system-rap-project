@@ -10,13 +10,13 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("/admin")
 public class ManagerController {
     @Autowired
     private ManagerServiceImple managerServiceImple;
 
     @GetMapping
-    public ModelAndView viewManagerList(@RequestParam String name,
+    public ModelAndView viewManagerList(@RequestParam(required = false) String name,
                                         @RequestParam(defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("manager/list");
 
@@ -24,7 +24,7 @@ public class ManagerController {
         manager.setName(name);
         List<Manager> managerList = managerServiceImple.viewManagerList(manager);
 
-        mav.addObject("managerRows",managerList);
+        mav.addObject("managerList",managerList);
         mav.addObject("start", page * 10 - 10);
         mav.addObject("end", page * 10 - 1);
 
@@ -52,7 +52,7 @@ public class ManagerController {
     @PostMapping
     public ModelAndView addManager(Manager manager) {
         managerServiceImple.addManager(manager);
-        return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
+        return new ModelAndView(new RedirectView("/admin/" + manager.getId()));
     }
 
     @GetMapping("/{id}/form")
@@ -70,6 +70,6 @@ public class ManagerController {
     @PutMapping
     public ModelAndView editManaer(Manager manager) {
         managerServiceImple.editManager(manager);
-        return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
+        return new ModelAndView(new RedirectView("/admin/" + manager.getId()));
     }
 }
