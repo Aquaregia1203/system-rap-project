@@ -24,7 +24,12 @@
                     begin="${start}" end="${end}" varStatus="row">
             <tr>
                 <td>${row.count}</td>
-                <td>${manager.division}</td>
+                <c:if test="${manager.division eq 'S'}">
+                    <td>시스템 관리자</td>
+                </c:if>
+                <c:if test="${manager.division eq 'M'}">
+                    <td>생산 관리자</td>
+                </c:if>
                 <td><a href="/admin/${manager.id}">${manager.id}</a></td>
                 <td>${manager.name}</td>
                 <td>${manager.contact}</td>

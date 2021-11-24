@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -15,7 +16,12 @@
         <tr>
             <td>${ingredient.name}</td>
             <td>${ingredient.addDate}</td>
-            <td>${ingredient.usedCount}</td>
+            <c:if test="${ingredient.usedCount gt 0}">
+                <td>사용</td>
+            </c:if>
+            <c:if test="${ingredient.usedCount eq 0}">
+                <td>미사용</td>
+            </c:if>
         </tr>
     </table>
     <form action="/ingredient/${ingredient.no}/form" method="get">
