@@ -39,7 +39,7 @@
                     ${manufacture.recipeName}
                 </td>
                 <td>
-                    ${manufacture.output}
+                    ${manufacture.output} kg
                 </td>
                 <td>
                     <c:choose>
@@ -57,7 +57,7 @@
                             -
                         </c:when>
                         <c:otherwise>
-                            ${manufacture.errorAmount}
+                            ${manufacture.errorAmount} g
                         </c:otherwise>
                     </c:choose>
                 </td>

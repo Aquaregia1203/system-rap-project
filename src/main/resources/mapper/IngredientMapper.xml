@@ -10,7 +10,7 @@
         SELECT NO, NAME, USED_COUNT, ADD_DATE FROM INGREDIENT
         <where>
             <if test="name != null and name != ''">
-                NAME LIKE '%${name}%'
+                NAME = #{name}
             </if>
         </where>
         ORDER BY NAME ASC

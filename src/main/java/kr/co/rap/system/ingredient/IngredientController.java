@@ -46,7 +46,7 @@ public class IngredientController {
     @PostMapping
     public ModelAndView addIngredient(Ingredient ingredient) {
         ingredientServiceImple.addIngredient(ingredient);
-        return new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo()));
+        return new ModelAndView(new RedirectView("/ingredient"));
     }
 
     @GetMapping("/{no}/form")
