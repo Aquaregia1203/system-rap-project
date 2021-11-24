@@ -1,14 +1,15 @@
 package kr.co.rap.system.manufacture;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Manufacture implements Serializable {
     private int no;
     private String manufactureDate;
     private int recipeNo;
+    private String recipeName;
     private int output;
-    private int id;
+    private String id;
+    private String managerName;
     private int errorAmount;
     private String addDate;
     private char status;
@@ -48,11 +49,11 @@ public class Manufacture implements Serializable {
         this.output = output;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -78,5 +79,21 @@ public class Manufacture implements Serializable {
 
     public void setStatus(char status) {
         this.status = status;
+    }
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
+
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
     }
 }
