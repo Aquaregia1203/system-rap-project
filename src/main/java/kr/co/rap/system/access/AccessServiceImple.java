@@ -10,20 +10,23 @@ public class AccessServiceImple{
     private ManagerMapper managerMapper;
 
     public boolean login(Manager manager) {
-        manager = managerMapper.select(manager);
-        String id = managerMapper.select(manager).getId();
-        String password = managerMapper.select(manager).getPassword();
-        char status = managerMapper.select(manager).getStatus();
-
-        if(id.isEmpty()
-                || password.isEmpty()) {
+        String id = manager.getId();
+        String pw = manager.getPassword();
+        if (id == null
+                || pw == null) {
             return false;
         }
+        Manager checkManager = managerMapper.select(manager);
+        char status = checkManager.getStatus();
+        String password = checkManager.getPassword();
 
-        if ('Y' != status) {
-            return false;
+        if (password.equals(pw)
+                && 'Y' == (status)) {
+            manager.setName(checkManager.getName());
+            manager.setDivision(checkManager.getDivision());
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void logout() {
