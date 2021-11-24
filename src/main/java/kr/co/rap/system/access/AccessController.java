@@ -21,23 +21,25 @@ public class AccessController {
     }
 
     @PostMapping("/login")
-    public ModelAndView login(Manager manager, HttpSession httpSession) {
+    public ModelAndView login(Manager manager, HttpSession httpSession, String remember) {
         boolean result = accessServiceImple.login(manager);
+
+        if ("check".equals(remember)) {
+            httpSession.setAttribute("saveId", manager.getId());
+        } else {
+            httpSession.removeAttribute("saveId");
+        }
 
         if (result) {
             if ("S".equals( manager.getDivision())) {
                 ModelAndView toManager = new ModelAndView(new RedirectView("/admin"));
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());
-                httpSession.setAttribute("saveId", manager.getId());
-
                 return toManager;
             } else {
-                ModelAndView toManufacture = new ModelAndView(new RedirectView("/manufacture"));
+                ModelAndView toManufacture = new ModelAndView(new RedirectView("/manufacture-plan"));
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());
-                httpSession.setAttribute("saveId", manager.getId());
-
                 return toManufacture;
             }
         }
@@ -48,7 +50,6 @@ public class AccessController {
     public ModelAndView logout(HttpSession httpSession) {
         httpSession.removeAttribute("id");
         httpSession.removeAttribute("name");
-
         return new ModelAndView(new RedirectView("/login"));
     }
 

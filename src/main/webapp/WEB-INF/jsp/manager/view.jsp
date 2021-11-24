@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -22,7 +23,12 @@
         </tr>
         <tr>
             <td>구분</td>
-            <td>${manager.division}</td>
+            <c:if test="${manager.division eq 'S'}">
+                <td>시스템 관리자</td>
+            </c:if>
+            <c:if test="${manager.division eq 'M'}">
+                <td>생산 관리자</td>
+            </c:if>
         </tr>
         <tr>
             <td>등록 일자</td>
@@ -30,7 +36,12 @@
         </tr>
         <tr>
             <td>상태</td>
-            <td>${manager.status}</td>
+            <c:if test="${manager.status eq 'Y'}">
+                <td>활성</td>
+            </c:if>
+            <c:if test="${manager.status eq 'N'}">
+                <td>비활성</td>
+            </c:if>
         </tr>
     </table>
     <form action="/admin/${manager.id}/form" method="get">
