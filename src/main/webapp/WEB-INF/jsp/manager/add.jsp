@@ -2,12 +2,17 @@
 <html>
 <head>
     <title>Title</title>
+    <script type="text/javascript">
+        function auth() {
+
+        }
+    </script>
 </head>
 <body>
     <jsp:include page="../top.jsp" />
     <h2>관리자 등록하기</h2>
     <hr>
-    <form action="/admin" method="post">
+    <form name="ManagerAuth" action="/admin" method="post">
         <table>
             <tr>
                 <td>아이디 :</td>
@@ -38,5 +43,6 @@
     <form action="/admin" method="get">
         <input type="submit" value="목록">
     </form>
+    <div id="errorInfo"></div>
 </body>
 </html>

@@ -43,7 +43,9 @@ public class AccessController {
                 return toManufacture;
             }
         }
-        return new ModelAndView(new RedirectView("/login"));
+        ModelAndView failLogin = new ModelAndView("access/login");
+        failLogin.addObject("result","로그인 정보가 일치하지 않습니다.");
+        return failLogin;
     }
 
     @GetMapping("/logout")

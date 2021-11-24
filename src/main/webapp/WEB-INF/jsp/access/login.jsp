@@ -10,6 +10,7 @@
             var password = loginForm.password.value;
             const errorId = document.getElementById("errorId");
             const errorPw = document.getElementById("errorPw");
+            const errorInfo = document.getElementById("errorInfo")
 
             if(!id) {
                 errorId.innerHTML = '<div style="color:red">*아이디를 입력하세요<div>'
@@ -31,14 +32,17 @@
             비밀번호 :<input type="text" name="password">
             <div id="errorPw"></div>
             <input type="button" onclick="login()" value="로그인">
+            <div id="errorInfo"></div>
             <input type="checkbox" name="remember" value="check" checked> 아이디 저장
         </c:if>
+
         <c:if test="${empty sessionScope.saveId}">
             아이디   :<input type="text" name="id">
-            <div id="errorId"></div>
+            <div  id="errorId"></div>
             비밀번호 :<input type="text" name="password">
             <div id="errorPw"></div>
             <input type="button" onclick="login()" value="로그인">
+            <div style="color:red" id="errorInfo">${result}</div>
             <input type="checkbox" name="remember" value="check"> 아이디 저장
         </c:if>
     </form>
