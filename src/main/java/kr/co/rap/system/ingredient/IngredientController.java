@@ -28,9 +28,8 @@ public class IngredientController {
     }
 
     @GetMapping("/{no}")
-    public ModelAndView viewIngredient(@PathVariable int no) {
-        Ingredient ingredient = new Ingredient();
-        ingredient.setNo(no);
+    public ModelAndView viewIngredient(Ingredient ingredient) {
+
         ingredient = ingredientServiceImple.viewIngredient(ingredient);
 
         ModelAndView mav = new ModelAndView("ingredient/view");

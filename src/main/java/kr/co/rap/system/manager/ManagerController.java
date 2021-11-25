@@ -31,11 +31,8 @@ public class ManagerController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView viewManager(@PathVariable String id) {
+    public ModelAndView viewManager(Manager manager) {
         ModelAndView mav = new ModelAndView("manager/view");
-
-        Manager manager = new Manager();
-        manager.setId(id);
 
         manager = managerServiceImple.viewManager(manager);
 
