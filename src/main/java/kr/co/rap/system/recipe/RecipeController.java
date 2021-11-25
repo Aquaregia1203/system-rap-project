@@ -19,11 +19,6 @@ public class RecipeController {
     @Autowired
     private IngredientServiceImple ingredientService;
 
-    @PostMapping("/test")
-    public void test() {
-        System.out.println();
-    }
-
     @GetMapping
     public ModelAndView viewRecipeList(
                 @RequestParam(required = false) String name,

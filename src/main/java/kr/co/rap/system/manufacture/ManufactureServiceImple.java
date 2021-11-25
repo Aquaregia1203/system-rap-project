@@ -100,7 +100,7 @@ public class ManufactureServiceImple {
         Map<String, String> pumpAndInput = null;
 
         for (Mix mix : mixList) {
-            int input = (int) (manufacture.getOutput() * mix.getRatio() * 0.01);
+            int input = (int) (manufacture.getOutput() * 1000 * mix.getRatio() * 0.01);
 
             pumpAndInput = new HashMap<String, String>();
             pumpAndInput.put("input", input + "");

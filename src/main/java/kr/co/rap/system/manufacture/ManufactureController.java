@@ -29,8 +29,6 @@ public class ManufactureController {
     public ModelAndView viewManufactureList(@RequestParam(required = false) Map<String, String> period,
                                                @RequestParam(defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("manufacture/list");
-        System.out.println(period);
-        System.out.println(page);
 
         List<Manufacture> manufactureList =
                     manufactureService.viewManufactureList(period);
@@ -122,7 +120,7 @@ public class ManufactureController {
                              ? (String) servletContext.getAttribute("status")
                              : "OFF";
 
-        if ("ON".equals(status)) {
+        if ("OFF".equals(status)) {
             manufactureService.executeManufacture(manufacture);
 
             return new ModelAndView(new RedirectView("/manufacture-plan"));

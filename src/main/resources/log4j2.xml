@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Configuration status="trace" strict="true">
+<Configuration status="info" strict="true">
 	<Appenders>
 		<Console name="STDOUT">
 			<PatternLayout pattern="%5p [%c{1}] - %m%n" />
@@ -9,7 +9,11 @@
 	
 	<Loggers>
 		<Logger name="kr.co.rap.system"
-				level="trace" additivity="false">
+				level="info" additivity="false">
+			<AppenderRef ref="STDOUT" />
+		</Logger>
+		<Logger name="kr.co.rap.system.control"
+				level="debug" additivity="false">
 			<AppenderRef ref="STDOUT" />
 		</Logger>
 		

@@ -23,7 +23,7 @@ public class ControlServiceImple {
     public Map<String, String> receiveProductInfo(Map<String, Integer> productInfo) {
         int manufactureNo = (int) servletContext.getAttribute("manufactureNo");
         int output = (int) servletContext.getAttribute("output");
-        int errorAmount = output - productInfo.get("productWeight");
+        int errorAmount = (output * 1000) - productInfo.get("productWeight");
 
         String currentTime = LocalDateTime.now()
                                           .format(
@@ -56,7 +56,6 @@ public class ControlServiceImple {
             }
         } catch (Exception e) {
             String msg = e.getMessage();
-            System.out.println(msg);
 
             return false;
         }
