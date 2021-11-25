@@ -2,15 +2,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Title</title>
 </head>
 <body>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $("#search").click(function (){
+                $("#ingredientInfo").html("");
+                $.ajax({
+                    url:'/ingredient',
+                    data:'name=' + $('#keywordName').val(),
+                    type:'GET',
+                    dataType:'json',
+                    contentType:'application/json',
+                    success:function (result){
+                        console.log(result)
+                        alert(result[0].name)
+                    }
+                });
+            });
+        });
+    </script>
     <jsp:include page="../top.jsp" />
     <h2>원재료 목록</h2>
-    <form>
-        원재료 명: <input type="search" name="name">
-        <input type="submit" value="검색">
-    </form>
+    원재료 명: <input type="text" id="keywordName">
+    <input type="submit" id="search" value="검색">
+    <span id="ingredientInfo"></span>
+    <hr>
+    <div id="table"></div>
     <table border="1">
         <tr>
             <th>번호</th>

@@ -10,7 +10,6 @@
             var password = loginForm.password.value;
             const errorId = document.getElementById("errorId");
             const errorPw = document.getElementById("errorPw");
-            const errorInfo = document.getElementById("errorInfo")
 
             if(!id) {
                 errorId.innerHTML = '<div style="color:red">*아이디를 입력하세요<div>'

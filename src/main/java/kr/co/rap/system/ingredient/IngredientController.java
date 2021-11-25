@@ -1,6 +1,7 @@
 package kr.co.rap.system.ingredient;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -8,7 +9,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/ingredient")
 public class IngredientController {
     @Autowired
@@ -25,6 +26,12 @@ public class IngredientController {
         mav.addObject("end", page * 10 - 1);
 
         return mav;
+    }
+
+    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<Ingredient> search(Ingredient ingredient) {
+       List<Ingredient> ingredientList = ingredientServiceImple.viewIngredientList(ingredient);
+       return ingredientList;
     }
 
     @GetMapping("/{no}")

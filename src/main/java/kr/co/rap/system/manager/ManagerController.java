@@ -1,6 +1,7 @@
 package kr.co.rap.system.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -8,7 +9,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class ManagerController {
     @Autowired
@@ -28,6 +29,12 @@ public class ManagerController {
         mav.addObject("end", page * 10 - 1);
 
         return mav;
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<Manager> search(@RequestBody(required = false) Manager manager) {
+        List<Manager> managerList = managerServiceImple.viewManagerList(manager);
+        return managerList;
     }
 
     @GetMapping("/{id}")
