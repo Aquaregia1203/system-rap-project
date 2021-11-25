@@ -49,10 +49,22 @@ public class RecipeServiceImple {
     public boolean addRecipe(Recipe recipe) {
         List<Mix> mixList = recipe.getMixList();
 
-        int ratio = 0;
-        for (int i = 0; i < mixList.size(); i++) {
+        int ratio = mixList.get(0).getRatio();
+
+        for (int i = 1; i < mixList.size(); i++) {
+            for (int j = 0; j < mixList.size() - 1; j ++) {
+                int no = mixList.get(j).getIngredientNo();
+                int nextNo = mixList.get(i).getIngredientNo();
+                int pumpNo = mixList.get(j).getPumpNo();
+                int nextPumpNo = mixList.get(i).getPumpNo();
+
+                if (no == nextNo
+                        && pumpNo == nextPumpNo) {
+                    return false;
+                }
+            }
+
             ratio = ratio + mixList.get(i).getRatio();
-            System.out.println(ratio + " : 비율");
         }
 
         if (ratio != 100
@@ -77,12 +89,35 @@ public class RecipeServiceImple {
     }
 
     public boolean editRecipe(Recipe recipe) {
+        List<Mix> mixList = recipe.getMixList();
+
+        int ratio = mixList.get(0).getRatio();
+
+        for (int i = 1; i < mixList.size(); i++) {
+            for (int j = 0; j < mixList.size() - 1; j ++) {
+                int no = mixList.get(j).getIngredientNo();
+                int nextNo = mixList.get(i).getIngredientNo();
+                int pumpNo = mixList.get(j).getPumpNo();
+                int nextPumpNo = mixList.get(i).getPumpNo();
+
+                if (no == nextNo
+                        && pumpNo == nextPumpNo) {
+                    return false;
+                }
+            }
+
+            ratio = ratio + mixList.get(i).getRatio();
+        }
+
+        if (ratio != 100
+                || recipeMapper.selectAll(recipe).size() != 0) {
+            return false;
+        }
+
         Recipe checkRecipe = recipeMapper.select(recipe);
 
         if (checkRecipe == null
-                && recipe.getName() != null
-                    && recipeMapper.selectAll(recipe).size() != 0
-                        && checkRecipe.getUsedCount() != 0) {
+                && checkRecipe.getUsedCount() != 0) {
             return false;
         }
 

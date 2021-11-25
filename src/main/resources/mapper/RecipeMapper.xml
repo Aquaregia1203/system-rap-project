@@ -18,7 +18,16 @@
     <select id="select" parameterType="Recipe"
                         resultType="Recipe">
         SELECT NO, NAME, USED_COUNT, ADD_DATE FROM RECIPE
-        WHERE  NO = #{no}
+        WHERE NO = #{no}
+
+<!--        <where>-->
+<!--            <if test="no gt 0">-->
+<!--                AND NO = #{no}-->
+<!--            </if>-->
+<!--            <if test="name != null and name != ''">-->
+<!--                AND NAME = #{name}-->
+<!--            </if>-->
+<!--        </where>-->
     </select>
 
     <insert id="insert" useGeneratedKeys="true" parameterType="Recipe"

@@ -38,11 +38,8 @@ public class RecipeController {
     }
 
     @GetMapping("/{no}")
-    public ModelAndView viewRecipe(@PathVariable int no) {
+    public ModelAndView viewRecipe(Recipe recipe) {
         ModelAndView mav = new ModelAndView("recipe/view");
-
-        Recipe recipe = new Recipe();
-        recipe.setNo(no);
 
         recipe = recipeService.viewRecipe(recipe);
         mav.addObject("recipe", recipe);
@@ -50,7 +47,6 @@ public class RecipeController {
         if (recipe == null) {
             return new ModelAndView(new RedirectView("/recipe"));
         }
-
 
         return mav;
     }
@@ -68,8 +64,22 @@ public class RecipeController {
 
     @PostMapping
     public ModelAndView addRecipe(Recipe recipe) {
-        if (recipe.getName() != null) {
-            recipeService.addRecipe(recipe);
+        List<Mix> mixList = recipe.getMixList();
+
+        if (recipe.getName() == null) {
+            return new ModelAndView(new RedirectView("/recipe/form"));
+        }
+
+        for (Mix mix : mixList) {
+            if (mix.getIngredientNo() == 0
+                    && mix.getPumpNo() == 0
+                        && mix.getRatio() == 0) {
+                return new ModelAndView(new RedirectView("/recipe/form"));
+            }
+        }
+
+        if (!recipeService.addRecipe(recipe)) {
+            return new ModelAndView(new RedirectView("/recipe/form"));
         }
 
         return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo()));
@@ -96,7 +106,24 @@ public class RecipeController {
 
     @PutMapping
     public ModelAndView editRecipe(Recipe recipe) {
-        recipeService.editRecipe(recipe);
+        List<Mix> mixList = recipe.getMixList();
+
+        if (recipe.getName() == null) {
+            return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo() + "/form"));
+        }
+
+        for (Mix mix : mixList) {
+            if (mix.getIngredientNo() == 0
+                    && mix.getPumpNo() == 0
+                        && mix.getRatio() == 0) {
+
+                return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo() + "/form"));
+            }
+        }
+
+        if (!recipeService.editRecipe(recipe)) {
+            return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo() + "/form"));
+        }
 
         return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo()));
     }
