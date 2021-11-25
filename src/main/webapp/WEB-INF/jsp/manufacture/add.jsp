@@ -12,7 +12,7 @@
             <td>레시피 : </td>
             <td>
                 <select name="recipeNo">
-                    <option value="">선택..</option>
+                    <option value="0">선택..</option>
                     <c:forEach items="${recipeList}" var="recipe">
                         <option value="${recipe.no}">${recipe.name}</option>
                     </c:forEach>

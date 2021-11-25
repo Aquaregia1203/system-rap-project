@@ -25,7 +25,7 @@
                 <td>
                     <select name="mixList[${index.index}].ingredientNo">
                     <%-- 원재료 목록 선택 박스 --%>
-                        <option value="">선택..</option>
+                        <option value="0">선택..</option>
                         <c:forEach items="${ingredientList}" var="ingredient">
                                 <c:choose>
                                     <c:when test="${ingredient.no eq mix.ingredientNo}">

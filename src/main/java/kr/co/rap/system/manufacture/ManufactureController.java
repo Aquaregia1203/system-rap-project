@@ -26,9 +26,11 @@ public class ManufactureController {
     private ServletContext servletContext;
 
     @GetMapping
-    public ModelAndView viewManufactureList(Map<String, String> period,
+    public ModelAndView viewManufactureList(@RequestParam(required = false) Map<String, String> period,
                                                @RequestParam(defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("manufacture/list");
+        System.out.println(period);
+        System.out.println(page);
 
         List<Manufacture> manufactureList =
                     manufactureService.viewManufactureList(period);
@@ -41,13 +43,10 @@ public class ManufactureController {
     }
 
     @GetMapping("/{no}")
-    public ModelAndView viewManufacture(@PathVariable int no) {
+    public ModelAndView viewManufacture(Manufacture manufacture) {
         ModelAndView mav = new ModelAndView("manufacture/view");
 
-        Manufacture manufacture = new Manufacture();
-        manufacture.setNo(no);
         manufacture = manufactureService.viewManufacture(manufacture);
-
         mav.addObject("manufacture", manufacture);
 
         return mav;
@@ -66,6 +65,11 @@ public class ManufactureController {
     @PostMapping
     public ModelAndView addManufacture(Manufacture manufacture,
                                         HttpSession session) {
+        if (manufacture.getRecipeNo() == 0
+                && manufacture.getOutput() == 0)  {
+            return new ModelAndView(new RedirectView("/manufacture-plan/form"));
+        }
+
         manufacture.setId((String) session.getAttribute("id"));
         manufactureService.addManufacture(manufacture);
 
@@ -73,8 +77,11 @@ public class ManufactureController {
     }
 
     @GetMapping("/{no}/form")
-    public ModelAndView editManufacture(Manufacture manufacture) {
+    public ModelAndView editManufacture(@PathVariable int no) {
         ModelAndView mav = new ModelAndView("manufacture/edit");
+
+        Manufacture manufacture = new Manufacture();
+        manufacture.setNo(no);
 
         manufacture = manufactureService.viewManufacture(manufacture);
         if ("Y".equals(manufacture.getStatus())) {
@@ -91,8 +98,8 @@ public class ManufactureController {
     @PutMapping
     public ModelAndView editManufacture(Manufacture manufacture,
                                             HttpSession session) {
-        if (manufacture.getRecipeNo() == 0) {
-            //TODO:: JavaScript로 로직 수정한 뒤 삭제할 것
+        if (manufacture.getRecipeNo() == 0
+                && manufacture.getOutput() == 0) {
             new ModelAndView(new RedirectView("/manufacture-plan/" + manufacture.getNo()));
         }
 

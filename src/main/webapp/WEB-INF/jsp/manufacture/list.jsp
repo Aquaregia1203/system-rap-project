@@ -11,8 +11,12 @@
 <jsp:include page="../top.jsp" />
 
 <h1>생산계획 목록</h1>
+<form action="/manufacture-plan" method="get" >
+생산 일자 : 시작일 <input type="date" name="start" > ~
+            종료일<input type="date" name="end" >
 
-
+            <input type="submit" value="검색" />
+</form>
 <table border="2">
     <tr>
         <th>

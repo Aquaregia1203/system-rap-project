@@ -15,7 +15,7 @@
                         and end != null and end != ''">
         WHERE MANUFACTURE_DATE BETWEEN #{start} AND #{end}
         </if>
-        ORDER BY MANUFACTURE_DATE DESC
+        ORDER BY MANUFACTURE_DATE ASC
     </select>
 
     <select id="select" parameterType="Manufacture"

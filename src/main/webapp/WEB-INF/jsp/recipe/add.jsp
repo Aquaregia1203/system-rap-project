@@ -26,7 +26,7 @@
             <td>
 <%--                <input type="text" name="mixList[0].ingredientNo" />--%>
                 <select name="mixList[0].ingredientNo">
-                    <option value="">선택..</option>
+                    <option value="0">선택..</option>
                     <c:forEach items="${ingredientList}" var="ingredient">
                         <option value="${ingredient.no}">${ingredient.name}</option>
                     </c:forEach>
@@ -57,7 +57,7 @@
             <td>
 <%--                <input type="text" name="mixList[1].ingredientNo" />--%>
                 <select name="mixList[1].ingredientNo">
-                    <option value="">선택..</option>
+                    <option value="0">선택..</option>
                     <c:forEach items="${ingredientList}" var="ingredient">
                         <option value="${ingredient.no}">${ingredient.name}</option>
                     </c:forEach>
@@ -83,7 +83,7 @@
         <tr>
             <td><input type="submit" value="등록" /></td>
             <td><a href="/recipe" >목록</a></td>
-            <td><button value="" /></td>
+            <td><button value="원재료 추가" /></td>
         </tr>
     </table>
 </form>
