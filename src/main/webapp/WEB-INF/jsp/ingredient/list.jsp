@@ -9,16 +9,28 @@
     <script type="text/javascript">
         $(document).ready(function (){
             $("#search").click(function (){
-                $("#ingredientInfo").html("");
+                $("#table").html("");
                 $.ajax({
                     url:'/ingredient',
                     data:'name=' + $('#keywordName').val(),
                     type:'GET',
                     dataType:'json',
-                    contentType:'application/json',
+                    headers: { "Content-Type" : "application/json;charset=UTF-8" },
                     success:function (result){
                         console.log(result)
-                        alert(result[0].name)
+                        var script = "";
+                        script += "<table border='1'><tr><th>번호</th><th>원재료</th><th>등록일자</th></tr>"
+
+                        for (var i = 0; i < result.length; i++) {
+                            script += "<tr>";
+                            script += "   <td>" + (i + 1) +"</td>";
+                            script += "   <td><a href='/ingredient/" + result[i].no + "'>" + result[i].name + "</a></td>";
+                            script += "   <td>" + result[i].addDate + "</td>";
+                            script += "</tr>";
+                        }
+                        script += "</table>";
+                        $("#table").html(script);
+                        $("#allTable").remove();
                     }
                 });
             });
@@ -27,11 +39,10 @@
     <jsp:include page="../top.jsp" />
     <h2>원재료 목록</h2>
     원재료 명: <input type="text" id="keywordName">
-    <input type="submit" id="search" value="검색">
-    <span id="ingredientInfo"></span>
+    <input type="button" id="search" value="검색">
     <hr>
     <div id="table"></div>
-    <table border="1">
+    <table border="1" id="allTable">
         <tr>
             <th>번호</th>
             <th>원재료</th>

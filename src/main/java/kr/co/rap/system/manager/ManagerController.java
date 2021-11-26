@@ -31,8 +31,8 @@ public class ManagerController {
         return mav;
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Manager> search(@RequestBody(required = false) Manager manager) {
+    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<Manager> search(Manager manager) {
         List<Manager> managerList = managerServiceImple.viewManagerList(manager);
         return managerList;
     }
