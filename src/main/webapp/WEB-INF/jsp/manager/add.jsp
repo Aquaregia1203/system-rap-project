@@ -8,7 +8,9 @@
             var id = addForm.id.value;
             var password = addForm.password.value;
             var name = addForm.name.value;
-            var contact = addForm.contact.value;
+            var top = addForm.top.value;
+            var middle = addForm.middle.value;
+            var bottom = addForm.bottom.value;
             const errorId = document.getElementById("errorId");
             const errorPwd = document.getElementById("errorPwd");
             const errorName = document.getElementById("errorName");
@@ -32,13 +34,13 @@
                 errorName.innerHTML = '';
             }
 
-            if (!contact) {
+            if (!top || !middle || !bottom) {
                 errorContact.innerHTML = '<div style="color:red; font-size: 8px">*연락처를 입력해 주세요.</div>';
             } else {
                 errorContact.innerHTML = '';
             }
 
-            if (!id || !password || !name || !contact) {
+            if (!id || !password || !name || !top || !middle || !bottom) {
             } else {
                 addForm.submit();
             }
@@ -82,17 +84,17 @@
             <tr>
                 <td>연락처 :</td>
                 <td>
-                    <select name="contact">
+                    <select name="top">
                         <option value="">선택..</option>
                         <option value="010">010</option>
                     </select> -
-                    <input type="text" name="contact"> -
-                    <input type="text" name="contact">
+                    <input type="text" name="middle"> -
+                    <input type="text" name="bottom">
                 </td>
             </tr>
             <tr>
                 <th colspan="2">
-                    <div id="errorContact"></div>
+                    <div id="errorContact">${message}</div>
                 </th>
             </tr>
         </table>
