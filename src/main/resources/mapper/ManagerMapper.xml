@@ -10,7 +10,7 @@
         SELECT ID, PASSWORD, NAME, CONTACT, DIVISION, ADD_DATE, STATUS FROM MANAGER
         <where>
             <if test="name != null and name != ''">
-                NAME LIKE '%${name}%'
+                NAME LIKE CONCAT('%', #{name}, '%')
             </if>
         </where>
         ORDER BY DIVISION DESC, STATUS DESC, NAME ASC

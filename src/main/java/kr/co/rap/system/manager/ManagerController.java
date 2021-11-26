@@ -53,11 +53,17 @@ public class ManagerController {
     }
 
     @PostMapping
-    public ModelAndView addManager(Manager manager, String[] phone) {
-        String number = phone[0] + "-" + phone[1] + "-" + phone[2];
+    public ModelAndView addManager(Manager manager, String[] contact) {
+        String number = contact[0] + "-" + contact[1] + "-" + contact[2];
         manager.setContact(number);
-        managerServiceImple.addManager(manager);
-        return new ModelAndView(new RedirectView("/admin/" + manager.getId()));
+        boolean result = managerServiceImple.addManager(manager);
+        if (result) {
+            ModelAndView mav = new ModelAndView(new RedirectView("/admin/" + manager.getId()));
+            return mav;
+        }
+        ModelAndView retry = new ModelAndView("mamger/add");
+        retry.addObject("message", "정보를 올바르게 입력해 주세요.");
+        return new ModelAndView("manager/add");
     }
 
     @GetMapping("/{id}/form")
@@ -65,18 +71,20 @@ public class ManagerController {
         Manager manager = new Manager();
         manager.setId(id);
         manager = managerServiceImple.viewManager(manager);
-        String phone = manager.getContact();
-        String[] number =  phone.split("-");
+        String contact = manager.getContact();
+        String[] number =  contact.split("-");
 
         ModelAndView mav = new ModelAndView("manager/edit");
         mav.addObject("manager", manager);
-        mav.addObject("phone", number);
+        mav.addObject("contact", number);
 
         return mav;
     }
 
     @PutMapping
-    public ModelAndView editManaer(Manager manager) {
+    public ModelAndView editManager(Manager manager, String[] contact) {
+        String number = contact[0] + "-" + contact[1] + "-" + contact[2];
+        manager.setContact(number);
         managerServiceImple.editManager(manager);
         return new ModelAndView(new RedirectView("/admin/" + manager.getId()));
     }

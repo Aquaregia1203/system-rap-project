@@ -51,8 +51,14 @@ public class IngredientController {
 
     @PostMapping
     public ModelAndView addIngredient(Ingredient ingredient) {
-        ingredientServiceImple.addIngredient(ingredient);
-        return new ModelAndView(new RedirectView("/ingredient"));
+        boolean result = ingredientServiceImple.addIngredient(ingredient);
+        if (result) {
+            ModelAndView mav = new ModelAndView(new RedirectView("/ingredient"));
+            return mav;
+        }
+        ModelAndView retry = new ModelAndView("ingredient/add");
+        retry.addObject("message", "*중복되는 원재료 입니다.");
+        return retry;
     }
 
     @GetMapping("/{no}/form")
@@ -68,8 +74,14 @@ public class IngredientController {
 
     @PutMapping
     public ModelAndView editIngredient(Ingredient ingredient) {
-        ingredientServiceImple.editIngredient(ingredient);
-        return new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo()));
+        boolean result = ingredientServiceImple.editIngredient(ingredient);
+        if (result) {
+            ModelAndView mav = new ModelAndView(new RedirectView("/ingredient"));
+            return mav;
+        }
+        ModelAndView retry = new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo() + "/form"));
+        retry.addObject("msg", "1");
+        return retry;
     }
 
     @DeleteMapping

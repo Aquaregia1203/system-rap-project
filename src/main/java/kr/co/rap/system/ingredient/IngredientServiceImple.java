@@ -24,8 +24,10 @@ public class IngredientServiceImple {
 
 
     public boolean addIngredient(Ingredient ingredient) {
-        List<Ingredient> checkIngredient = ingredientMapper.selectAll(ingredient);
-        if (checkIngredient.size() != 0) {
+        String checkIngredient = ingredient.getName();
+        String duplicateIngredient = ingredientMapper.selectAll(ingredient).get(0).getName();
+
+        if (checkIngredient.equals(duplicateIngredient)) {
             return false;
         }
         ingredientMapper.insert(ingredient);
@@ -39,12 +41,12 @@ public class IngredientServiceImple {
         if (checkIngredient != null
                 && checkIngredient.getUsedCount() == 0) {
             List<Ingredient> duplicateIngredient = ingredientMapper.selectAll(ingredient);
-            if (duplicateIngredient.isEmpty()) {
-                ingredientMapper.update(ingredient);
-                return true;
+            if (duplicateIngredient.size() == 1) {
+                return false;
             }
         }
-        return false;
+        ingredientMapper.update(ingredient);
+        return true;
     }
 
     public boolean removeIngredient(Ingredient ingredient) {

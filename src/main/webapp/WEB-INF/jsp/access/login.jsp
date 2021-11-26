@@ -12,9 +12,9 @@
             const errorPw = document.getElementById("errorPw");
 
             if(!id) {
-                errorId.innerHTML = '<div style="color:red">*아이디를 입력하세요<div>'
+                errorId.innerHTML = '<div style="color:red">*아이디를 입력하세요</div>'
             } else if (!password) {
-                errorPw.innerHTML = '<div style="color:red">*비밀번호를 입력하세요<div>'
+                errorPw.innerHTML = '<div style="color:red">*비밀번호를 입력하세요</div>'
             } else {
                 loginForm.submit();
             }

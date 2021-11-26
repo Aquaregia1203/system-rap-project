@@ -21,7 +21,8 @@ public class ManagerServiceImple{
     }
 
     public boolean addManager(Manager manager) {
-        if (managerMapper.select(manager) != null) {
+        Manager checkDuplicate = managerMapper.select(manager);
+        if (checkDuplicate != null) {
             return false;
         }
         managerMapper.insert(manager);
