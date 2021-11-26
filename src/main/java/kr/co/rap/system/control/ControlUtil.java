@@ -17,7 +17,7 @@ import java.util.Map;
 public class ControlUtil {
     private static Logger logger
             = LogManager.getLogger(ControlUtil.class);
-    private final static String url = "http://172.16.30.232:8080/servertest/manufacture-execute-info";
+    private final static String url = "http://192.168.0.92:8080//servertest/manufacture-execute-info";
 
     public boolean sendInputInfo(InputInfo inputInfo) throws Exception {
         List<Map<String, String>> pumpInfo = inputInfo.getPumpInfo();

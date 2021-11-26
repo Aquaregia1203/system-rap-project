@@ -21,8 +21,12 @@ public class ControlServiceImple {
     private ManufactureMapper manufactureMapper;
 
     public Map<String, String> receiveProductInfo(Map<String, Integer> productInfo) {
-        int manufactureNo = (int) servletContext.getAttribute("manufactureNo");
-        int output = (int) servletContext.getAttribute("output");
+        int manufactureNo = servletContext.getAttribute("manufactureNo") != null
+                            ? (int) servletContext.getAttribute("manufactureNo")
+                            : 0;
+        int output = servletContext.getAttribute("output") != null
+                            ? (int) servletContext.getAttribute("output")
+                            : 0;
         int errorAmount = (output * 1000) - productInfo.get("productWeight");
 
         String currentTime = LocalDateTime.now()
@@ -40,7 +44,8 @@ public class ControlServiceImple {
         servletContext.setAttribute("status", "OFF");
         servletContext.removeAttribute("manufactureNo");
         servletContext.removeAttribute("output");
-
+        
+        // TODO:: 성공 여부 로직 반환
         return new HashMap<String, String>();
     }
 

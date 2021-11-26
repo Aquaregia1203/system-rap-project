@@ -8,7 +8,9 @@
 <body>
         <h2>생산계획 상세 정보</h2>
         <form action="/manufacture-plan/execution" method="get">
-            <input type="submit" value="생산 시작" />
+            <c:if test="${applicationScope.status eq 'OFF' or applicationScope.status eq null}">
+                <input type="submit" value="생산 시작" />
+            </c:if>
         </form>
         <table border="2">
             <tr>
@@ -81,21 +83,21 @@
         </table>
         <table>
             <tr>
-                <form action="/manufacture-plan/${manufacture.no}/form" method="GET">
-                <td>
-                    <input type="submit" value="수정"/>
-                    <input type="hidden" name="no" value="${manufacture.no}"/>
-                </td>
-                </form>
-
-                <form action="/manufacture-plan" method="post">
-                <td>
-                    <input type="submit" value="삭제"/>
-                    <input type="hidden" name="_method" value="DELETE" />
-                    <input type="hidden" name="no" value="${manufacture.no}"/>
-                </td>
-                </form>
-
+                <c:if test="${manufacture.status eq 'N'}">
+                    <form action="/manufacture-plan/${manufacture.no}/form" method="GET">
+                        <td>
+                            <input type="submit" value="수정"/>
+                            <input type="hidden" name="no" value="${manufacture.no}"/>
+                        </td>
+                    </form>
+                    <form action="/manufacture-plan" method="post">
+                        <td>
+                            <input type="submit" value="삭제"/>
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <input type="hidden" name="no" value="${manufacture.no}"/>
+                        </td>
+                    </form>
+                </c:if>
                 <td>
                     <a href="/manufacture-plan">목록</a>
                 </td>

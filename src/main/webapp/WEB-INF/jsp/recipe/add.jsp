@@ -4,12 +4,13 @@
 <html>
     <head>
         <title>Title</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
 <body>
     <jsp:include page="../top.jsp" />
 
     레시피 등록
-<form action="/recipe" method="post">
+<form action="/recipe" method="post" id="formId">
 <table border="2" id="recipeTable">
         <tr>
             <td>레시피 명 :</td>
@@ -70,21 +71,27 @@
         var button = document.getElementById("removeButton");
         var nameNo = 2;
 
-        var ingredientTitle = "원재료 : ";
-        var ingredientValue = "<select name=\"mixList[" + nameNo + "].ingredientNo\">"
-                            + "<option value='0'> 선택.. </option>"
-                            + "<c:forEach items='${ingredientList}' var='ingredient'>"
-                            + "<option value='${ingredient.no}'> ${ingredient.name}</option>"
-                            + "</c:forEach>"
-                            + "</select>";
-        var ratioTitle = "비율 : ";
-        var ratioValue = "<input type='text' name='mixList[" + nameNo + "].ratio' /> %";
+         $("#formId [name='mixList']").val()
+        function modifyInput() {
 
-        var pumpTitle = "펌프 : ";
-        var pumpValue = "<input type='number' min='1' MAX='10' name='mixList[" + nameNo + "].pumpNo' />번 펌프";
-
+        }
 
         function addIngredient() {
+            var ingredientTitle = "원재료 : ";
+            var ingredientValue = "<select name='mixList[" + nameNo + "].ingredientNo'>"
+                                + "<option value='0'> 선택.. </option>"
+                                + "<c:forEach items='${ingredientList}' var='ingredient'>"
+                                + "<option value='${ingredient.no}'> ${ingredient.name}</option>"
+                                + "</c:forEach>"
+                                + "</select>";
+            var ratioTitle = "비율 : ";
+            var ratioValue = "<input type='text' name='mixList[" + nameNo + "].ratio' /> %";
+
+            var pumpTitle = "펌프 : ";
+            var pumpValue = "<input type='number' min='1' name='mixList[" + nameNo + "].pumpNo' />번 펌프";
+
+
+            console.log(ratioValue);
             let table = document.getElementById("recipeTable");
 
             let newRow = table.insertRow();
@@ -126,10 +133,5 @@
             }
         }
     </script>
-    <script src="//code.jquery.com/jquery.min.js"></script>
-
-<%--    <script type="text/javascript">--%>
-<%--        $("#addButton").click(addIngredient());--%>
-<%--    </script>--%>
 </body>
 </html>
