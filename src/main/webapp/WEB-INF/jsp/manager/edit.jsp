@@ -8,7 +8,9 @@
             var editForm = document.editForm;
             var password = editForm.password.value;
             var name = editForm.name.value;
-            var contact = editForm.contact.value;
+            var top = editForm.top.value;
+            var middle = editForm.middle.value;
+            var bottom = editForm.bottom.value;
             const errorPwd = document.getElementById("errorPwd");
             const errorName = document.getElementById("errorName");
             const errorContact = document.getElementById("errorContact");
@@ -25,13 +27,14 @@
                 errorName.innerHTML = '';
             }
 
-            if (!contact) {
+            if (!top || !middle || !bottom) {
                 errorContact.innerHTML = '<div style="color:red">*연락처를 입력해 주세요.</div>';
             } else {
                 errorContact.innerHTML = '';
             }
 
-            if (!(!id || !password || !name || !contact)) {
+            if (!password || !name || !top || !middle || !bottom) {
+            } else {
                 editForm.submit();
             }
 
@@ -68,12 +71,12 @@
             <tr>
                 <td>연락처 :</td>
                 <td>
-                    <select name="contact">
+                    <select name="top">
                         <option value="">선택..</option>
                         <option value="010" selected>010</option>
                     </select> -
-                    <input type="text" name="contact" value="${contact[1]}"> -
-                    <input type="text" name="contact" value="${contact[2]}">
+                    <input type="text" name="middle" value="${contact.middle}"> -
+                    <input type="text" name="bottom" value="${contact.bottom}">
                 </td>
             </tr>
             <tr>

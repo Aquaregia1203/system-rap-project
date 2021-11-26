@@ -17,6 +17,14 @@ public class AccessController {
 
     @GetMapping("/login")
     public ModelAndView login(HttpSession httpSession) {
+        if (httpSession.getAttribute("id") != null) {
+            String id = httpSession.getAttribute("id") + "";
+            if ("systemadmin".equals(id)) {
+                return new ModelAndView(new RedirectView("/admin"));
+            } else {
+                return new ModelAndView(new RedirectView("/manufacture-plan"));
+            }
+        }
         return new ModelAndView("access/login");
     }
 

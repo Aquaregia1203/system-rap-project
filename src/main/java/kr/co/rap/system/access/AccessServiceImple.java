@@ -22,12 +22,12 @@ public class AccessServiceImple{
             return false;
         }
 
-        String checkid = checkManager.getId();
+        String checkId = checkManager.getId();
         String status = checkManager.getStatus();
         String password = checkManager.getPassword();
 
         if (pw.equals(password)
-                && id.equals(checkid)
+                && id.equals(checkId)
                 && "Y".equals(status)) {
             manager.setName(checkManager.getName());
             manager.setDivision(checkManager.getDivision());
