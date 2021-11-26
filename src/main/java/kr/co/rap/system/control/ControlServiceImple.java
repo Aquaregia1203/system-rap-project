@@ -3,6 +3,8 @@ package kr.co.rap.system.control;
 import kr.co.rap.system.manufacture.Manufacture;
 import kr.co.rap.system.manufacture.InputInfo;
 import kr.co.rap.system.manufacture.ManufactureMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.*;
 
 @Service
 public class ControlServiceImple {
+    private static Logger logger
+            = LogManager.getLogger(ControlServiceImple.class);
     @Autowired
     private ControlUtil controlUtil;
     @Autowired
@@ -38,15 +42,27 @@ public class ControlServiceImple {
         manufacture.setNo(manufactureNo);
         manufacture.setErrorAmount(errorAmount);
         manufacture.setManufactureDate(currentTime);
+        manufacture.setStatus("Y");
 
-        manufactureMapper.update(manufacture);
+        int result = manufactureMapper.update(manufacture);
 
         servletContext.setAttribute("status", "OFF");
         servletContext.removeAttribute("manufactureNo");
         servletContext.removeAttribute("output");
-        
-        // TODO:: 성공 여부 로직 반환
-        return new HashMap<String, String>();
+
+        Map<String, String> responseInfo = new HashMap<String, String>();
+
+        if (result != 1) {
+            responseInfo.put("code", "300");
+            responseInfo.put("message", "생산계획 수정을 실패하였습니다. 수치가 부적합할 수 있습니다.");
+
+            return responseInfo;
+        } else {
+            responseInfo.put("code", "200");
+            responseInfo.put("message", "생산이 정상적으로 반영되었습니다.");
+
+            return responseInfo;
+        }
     }
 
     public boolean sendInputInfo(InputInfo inputInfo,
@@ -56,15 +72,15 @@ public class ControlServiceImple {
                 servletContext.setAttribute("status", "ON");
                 servletContext.setAttribute("manufactureNo", manufacture.getNo());
                 servletContext.setAttribute("output", manufacture.getOutput());
-
+                
                 return true;
             }
         } catch (Exception e) {
-            String msg = e.getMessage();
+            e.printStackTrace();
 
             return false;
         }
 
-        return false;
+        return true;
     }
 }

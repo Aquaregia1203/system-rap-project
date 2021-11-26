@@ -17,7 +17,7 @@ import java.util.Map;
 public class ControlUtil {
     private static Logger logger
             = LogManager.getLogger(ControlUtil.class);
-    private final static String url = "http://192.168.0.92:8080//servertest/manufacture-execute-info";
+    private final static String url = "http://192.168.0.128:80/manufacture-execute-info";
 
     public boolean sendInputInfo(InputInfo inputInfo) throws Exception {
         List<Map<String, String>> pumpInfo = inputInfo.getPumpInfo();
@@ -40,23 +40,37 @@ public class ControlUtil {
         body.append("]}");
 
         OkHttpClient okHttpClient = new OkHttpClient();
+        Response response = null;
 
-        RequestBody requestBody = RequestBody.create(
-                MediaType.parse("application/json; charset=UTF-8"), body.toString());
+        try {
+            RequestBody requestBody = RequestBody.create(
+                    MediaType.parse("application/json; charset=UTF-8"), body.toString());
 
-        Request.Builder builder = new Request.Builder()
-                                             .url(url)
-                                             .post(requestBody);
-        Request request = builder.build();
-        Response response = okHttpClient.newCall(request).execute();
+            Request.Builder builder = new Request.Builder()
+                                                 .url(url)
+                                                 .post(requestBody);
+            Request request = builder.build();
+            response = okHttpClient.newCall(request).execute();
 
-        if (response.isSuccessful()) {
-            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                ResponseBody responseBody = response.body();
 
-            if (responseBody != null) {
-                System.out.println(responseBody.string());
+                if (responseBody != null) {
+                    String result = responseBody.string();
 
-                return true;
+                    responseBody.close();
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (response != null) {
+                    response.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

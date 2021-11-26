@@ -95,7 +95,6 @@ public class ManufactureServiceImple {
         recipe.setNo(manufacture.getRecipeNo());
         List<Mix> mixList = mixMapper.selectAll(recipe);
 
-
         List<Map<String, String>> pumpInfo = new ArrayList<Map<String, String>>();
         Map<String, String> pumpAndInput = null;
 

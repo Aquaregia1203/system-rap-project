@@ -1,8 +1,11 @@
 package kr.co.rap.system.manufacture;
 
+import kr.co.rap.system.control.ControlUtil;
 import kr.co.rap.system.recipe.Recipe;
 import kr.co.rap.system.recipe.RecipeService;
 import kr.co.rap.system.recipe.RecipeServiceImple;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/manufacture-plan")
 public class ManufactureController {
+    private static Logger logger
+            = LogManager.getLogger(ManufactureController.class);
     @Autowired
     private ManufactureServiceImple manufactureService;
     @Autowired
@@ -120,7 +125,8 @@ public class ManufactureController {
                              ? (String) servletContext.getAttribute("status")
                              : "OFF";
 
-        if ("OFF".equals(status)) {
+        if ("OFF".equals(status)
+                && "N".equals(manufacture.getStatus())) {
             manufactureService.executeManufacture(manufacture);
 
             return new ModelAndView(new RedirectView("/manufacture-plan"));

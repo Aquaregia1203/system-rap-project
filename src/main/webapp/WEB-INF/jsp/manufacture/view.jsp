@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Title</title>
@@ -8,9 +9,14 @@
 <body>
         <h2>생산계획 상세 정보</h2>
         <form action="/manufacture-plan/execution" method="get">
-            <c:if test="${applicationScope.status eq 'OFF' or applicationScope.status eq null}">
+            <c:if test="${(applicationScope.status eq 'OFF' or applicationScope.status eq null)
+                                and manufacture.status eq 'N'}">
                 <input type="submit" value="생산 시작" />
             </c:if>
+            <input type="hidden" name="recipeNo" value="${manufacture.recipeNo}" />
+            <input type="hidden" name="output" value="${manufacture.output}" />
+            <input type="hidden" name="no" value="${manufacture.no}" />
+            <input type="hidden" name="status" value="${manufacture.status}" />
         </form>
         <table border="2">
             <tr>
@@ -59,7 +65,7 @@
                             -
                         </c:when>
                         <c:otherwise>
-                            ${manufacture.errorAmount} g
+                            <fmt:formatNumber type="number" maxFractionDigits="3" value="${manufacture.errorAmount}" /> g
                         </c:otherwise>
                     </c:choose>
                 </td>
