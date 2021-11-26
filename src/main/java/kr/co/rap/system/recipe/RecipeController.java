@@ -3,18 +3,24 @@ package kr.co.rap.system.recipe;
 import kr.co.rap.system.ingredient.Ingredient;
 import kr.co.rap.system.ingredient.IngredientMapper;
 import kr.co.rap.system.ingredient.IngredientServiceImple;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
 @RequestMapping("/recipe")
 public class RecipeController {
+    private static Logger logger
+            = LogManager.getLogger(RecipeController.class);
     @Autowired
     private RecipeServiceImple recipeService;
     @Autowired
@@ -86,6 +92,7 @@ public class RecipeController {
         }
 
         if (!recipeService.addRecipe(recipe)) {
+
             return new ModelAndView(new RedirectView("/recipe/form"));
         }
 
@@ -119,12 +126,15 @@ public class RecipeController {
             return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo() + "/form"));
         }
 
-        for (Mix mix : mixList) {
-            if (mix.getIngredientNo() == 0
-                    && mix.getPumpNo() == 0
-                        && mix.getRatio() == 0) {
+        Iterator<Mix> mixIterator = mixList.iterator();
 
-                return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo() + "/form"));
+        while (mixIterator.hasNext()) {
+            Mix mix = mixIterator.next();
+
+            if (mix.getIngredientNo() == 0
+                    || mix.getPumpNo() == 0
+                        || mix.getRatio() == 0) {
+                mixIterator.remove();
             }
         }
 
@@ -139,6 +149,9 @@ public class RecipeController {
     public ModelAndView removeRecipe(Recipe recipe) {
         recipeService.removeRecipe(recipe);
 
-        return new ModelAndView(new RedirectView("/recipe"));
+        ModelAndView mav = new ModelAndView(new RedirectView("/recipe"));
+        mav.addObject("redirect", "라고합니다");
+
+        return mav;
     }
 }

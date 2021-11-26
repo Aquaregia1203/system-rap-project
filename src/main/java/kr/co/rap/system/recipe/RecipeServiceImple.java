@@ -49,14 +49,15 @@ public class RecipeServiceImple {
     public boolean addRecipe(Recipe recipe) {
         List<Mix> mixList = recipe.getMixList();
 
-        int ratio = mixList.get(0).getRatio();
+        int ratio = mixList.get(mixList.size() - 1).getRatio();
 
-        for (int i = 1; i < mixList.size(); i++) {
-            for (int j = 0; j < mixList.size() - 1; j ++) {
-                int no = mixList.get(j).getIngredientNo();
-                int nextNo = mixList.get(i).getIngredientNo();
-                int pumpNo = mixList.get(j).getPumpNo();
-                int nextPumpNo = mixList.get(i).getPumpNo();
+        for (int i = 0; i < mixList.size() - 1; i++) {
+            for (int j = i + 1; j < mixList.size(); j ++) {
+                int no = mixList.get(i).getIngredientNo();
+                int nextNo = mixList.get(j).getIngredientNo();
+
+                int pumpNo = mixList.get(i).getPumpNo();
+                int nextPumpNo = mixList.get(j).getPumpNo();
 
                 if (no == nextNo
                         && pumpNo == nextPumpNo) {
@@ -91,14 +92,14 @@ public class RecipeServiceImple {
     public boolean editRecipe(Recipe recipe) {
         List<Mix> mixList = recipe.getMixList();
 
-        int ratio = mixList.get(0).getRatio();
+        int ratio = mixList.get(mixList.size() - 1).getRatio();
 
-        for (int i = 1; i < mixList.size(); i++) {
-            for (int j = 0; j < mixList.size() - 1; j ++) {
-                int no = mixList.get(j).getIngredientNo();
-                int nextNo = mixList.get(i).getIngredientNo();
-                int pumpNo = mixList.get(j).getPumpNo();
-                int nextPumpNo = mixList.get(i).getPumpNo();
+        for (int i = 0; i < mixList.size() - 1; i++) {
+            for (int j = i + 1; j < mixList.size(); j ++) {
+                int no = mixList.get(i).getIngredientNo();
+                int nextNo = mixList.get(j).getIngredientNo();
+                int pumpNo = mixList.get(i).getPumpNo();
+                int nextPumpNo = mixList.get(j).getPumpNo();
 
                 if (no == nextNo
                         && pumpNo == nextPumpNo) {
@@ -110,7 +111,7 @@ public class RecipeServiceImple {
         }
 
         if (ratio != 100
-                || recipeMapper.selectAll(recipe).size() != 0) {
+                || recipeMapper.selectAll(recipe).size() > 1) {
             return false;
         }
 
@@ -123,17 +124,54 @@ public class RecipeServiceImple {
 
         recipeMapper.update(recipe);
 
-        List<Mix> newMixList = recipe.getMixList();
         List<Mix> oldMixList = mixMapper.selectAll(checkRecipe);
         Ingredient ingredient = new Ingredient();
 
-        for (Mix mix : newMixList) {
-            ingredient.setNo(mix.getIngredientNo());
-            ingredient.setUsedCount(1);
-            ingredientMapper.update(ingredient);
+        if (mixList.size() > oldMixList.size()) {
 
-            mixMapper.update(mix);
+            for (int i = 0; i < oldMixList.size(); i++) {
+                ingredient.setNo(mixList.get(i).getIngredientNo());
+                ingredient.setUsedCount(1);
+                ingredientMapper.update(ingredient);
+
+                mixMapper.update(mixList.get(i));
+            }
+
+            for (int i = oldMixList.size(); i < mixList.size(); i++) {
+                ingredient.setNo(mixList.get(i).getIngredientNo());
+                ingredient.setUsedCount(1);
+                ingredientMapper.update(ingredient);
+
+                mixList.get(i).setRecipeNo(recipe.getNo());
+                mixMapper.insert(mixList.get(i));
+            }
+        } else if (mixList.size() < oldMixList.size()) {
+
+            for (Mix mix : mixList) {
+                ingredient.setNo(mix.getIngredientNo());
+                ingredient.setUsedCount(1);
+                ingredientMapper.update(ingredient);
+
+                mixMapper.update(mix);
+            }
+
+            for (int i = mixList.size(); i < oldMixList.size(); i++) {
+                oldMixList.get(i).setRecipeNo(0);
+
+                mixMapper.delete(oldMixList.get(i));
+            }
+        } else {
+
+            for (Mix mix : mixList) {
+                ingredient.setNo(mix.getIngredientNo());
+                ingredient.setUsedCount(1);
+                ingredientMapper.update(ingredient);
+
+                mixMapper.update(mix);
+            }
         }
+
+
 
         for (Mix mix : oldMixList) {
             ingredient.setNo(mix.getIngredientNo());

@@ -9,11 +9,11 @@
 	
 	<Loggers>
 		<Logger name="kr.co.rap.system"
-				level="info" additivity="false">
+				level="debug" additivity="false">
 			<AppenderRef ref="STDOUT" />
 		</Logger>
 		<Logger name="kr.co.rap.system.control"
-				level="debug" additivity="false">
+				level="info" additivity="false">
 			<AppenderRef ref="STDOUT" />
 		</Logger>
 		

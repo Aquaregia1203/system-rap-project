@@ -12,6 +12,7 @@
                 AND RECIPE_NO = #{no}
             </if>
         </where>
+        ORDER BY PUMP_NO ASC;
     </select>
 
     <insert id="insert" parameterType="Mix" useGeneratedKeys="true"
@@ -51,6 +52,9 @@
         <where>
             <if test="recipeNo gt 0">
                 AND RECIPE_NO = #{recipeNo}
+            </if>
+            <if test="no gt 0">
+                AND NO = #{no}
             </if>
         </where>
     </delete>
