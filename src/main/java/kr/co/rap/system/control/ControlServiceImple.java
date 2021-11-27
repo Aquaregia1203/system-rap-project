@@ -18,7 +18,7 @@ public class ControlServiceImple {
     private static Logger logger
             = LogManager.getLogger(ControlServiceImple.class);
     @Autowired
-    private ControlUtil controlUtil;
+    private ControlMapper controlUtil;
     @Autowired
     private ServletContext servletContext;
     @Autowired

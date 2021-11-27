@@ -19,12 +19,14 @@ public class AccessController {
     public ModelAndView login(HttpSession httpSession) {
         if (httpSession.getAttribute("id") != null) {
             String division = httpSession.getAttribute("division") + "";
+
             if ("S".equals(division)) {
                 return new ModelAndView(new RedirectView("/admin"));
             } else {
                 return new ModelAndView(new RedirectView("/manufacture-plan"));
             }
         }
+
         return new ModelAndView("access/login");
     }
 
@@ -41,20 +43,26 @@ public class AccessController {
         if (result) {
             if ("S".equals( manager.getDivision())) {
                 ModelAndView toManager = new ModelAndView(new RedirectView("/admin"));
+
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());
                 httpSession.setAttribute("division", manager.getDivision());
+
                 return toManager;
             } else {
                 ModelAndView toManufacture = new ModelAndView(new RedirectView("/manufacture-plan"));
+
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());
                 httpSession.setAttribute("division",manager.getDivision());
+
                 return toManufacture;
             }
         }
+
         ModelAndView failLogin = new ModelAndView("access/login");
         failLogin.addObject("result","로그인 정보가 일치하지 않습니다.");
+
         return failLogin;
     }
 
@@ -63,6 +71,7 @@ public class AccessController {
         httpSession.removeAttribute("id");
         httpSession.removeAttribute("name");
         httpSession.removeAttribute("division");
+
         return new ModelAndView(new RedirectView("/login"));
     }
 

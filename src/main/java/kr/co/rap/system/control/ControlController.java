@@ -26,8 +26,7 @@ public class ControlController {
         Map<String, String> responseInfo =
                 controlService.receiveProductInfo(productInfo);
         responseInfo.put("code", "200");
-        responseInfo.put("message", "에러가 없습니다.");
-        
+
         return responseInfo;
     }
 }

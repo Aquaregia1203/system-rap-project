@@ -49,14 +49,12 @@ public class ManufactureServiceImple {
     public boolean editManufacture(Manufacture newManufacture) {
         Manufacture beforeManufacture =
                 manufactureMapper.select(newManufacture);
-
+        //TODO:: 말이 안됨
         if (beforeManufacture == null
                 || "Y".equals(beforeManufacture.getStatus())) {
             return false;
         }
-
-        logger.debug(newManufacture.getRecipeNo());
-
+        
         manufactureMapper.update(newManufacture);
         if (newManufacture.getRecipeNo() != beforeManufacture.getRecipeNo()) {
             Recipe recipe = new Recipe();

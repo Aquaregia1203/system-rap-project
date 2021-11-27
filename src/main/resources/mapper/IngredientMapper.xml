@@ -5,8 +5,8 @@
 
 <mapper namespace="kr.co.rap.system.ingredient.IngredientMapper">
     <select id="selectAll"
-            parameterType="kr.co.rap.system.ingredient.Ingredient"
-            resultType="kr.co.rap.system.ingredient.Ingredient">
+            parameterType="Ingredient"
+            resultType="Ingredient">
         SELECT NO, NAME, USED_COUNT, ADD_DATE FROM INGREDIENT
         <where>
             <if test="name != null and name != ''">
