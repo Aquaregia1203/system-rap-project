@@ -57,7 +57,7 @@ public class IngredientController {
             return mav;
         }
         ModelAndView retry = new ModelAndView("ingredient/add");
-        retry.addObject("message", "*중복되는 원재료 입니다.");
+        retry.addObject("msg", "*중복되는 원재료 입니다.");
         return retry;
     }
 

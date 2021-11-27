@@ -20,4 +20,24 @@
 	   <mvc:view-resolvers>
 	       <mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp" />
 	   </mvc:view-resolvers>
+
+	   <mvc:interceptors>
+		   <mvc:interceptor>
+			   <mvc:mapping path="/*"/>
+			   <mvc:exclude-mapping path="/login"/>
+			   <mvc:exclude-mapping path="/product"/>
+			   <bean class="kr.co.rap.system.access.SessionCheckInterceptor"/>
+		   </mvc:interceptor>
+
+		   <mvc:interceptor>
+			   <mvc:mapping path="/admin/**"/>
+			   <bean class="kr.co.rap.system.access.SystemManagerCheckInterceptor"/>
+		   </mvc:interceptor>
+		   <mvc:interceptor>
+			   <mvc:mapping path="/ingredient/**"/>
+			   <mvc:mapping path="/recipe/**"/>
+			   <mvc:mapping path="/manufacture-plan/**"/>
+			   <bean class="kr.co.rap.system.access.ManufactureManagerCheckInterceptor"/>
+		   </mvc:interceptor>
+	   </mvc:interceptors>
 </beans>
