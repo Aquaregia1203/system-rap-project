@@ -110,21 +110,21 @@ public class RecipeServiceImple {
             ratio = ratio + mixList.get(i).getRatio();
         }
 
-        if (ratio != 100
-                || recipeMapper.selectAll(recipe).size() > 1) {
+        if (ratio != 100) {
             return false;
         }
 
-        Recipe checkRecipe = recipeMapper.select(recipe);
+        Recipe oldRecipe = recipeMapper.select(recipe);
 
-        if (checkRecipe == null
-                && checkRecipe.getUsedCount() != 0) {
+        if ((!oldRecipe.getName().equals(recipe.getName())
+                  && recipeMapper.selectAll(recipe).size() != 0)
+                        || oldRecipe.getUsedCount() != 0) {
             return false;
         }
 
         recipeMapper.update(recipe);
 
-        List<Mix> oldMixList = mixMapper.selectAll(checkRecipe);
+        List<Mix> oldMixList = mixMapper.selectAll(oldRecipe);
         Ingredient ingredient = new Ingredient();
 
         if (mixList.size() > oldMixList.size()) {

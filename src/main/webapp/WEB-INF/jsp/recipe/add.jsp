@@ -19,6 +19,7 @@
         <tr>
             <th colspan="2">
                 <div style="color: crimson; font-size:8px" id="recipeError">
+                    ${recipeDuplication}
                 </div>
             </th>
         </tr>
@@ -104,6 +105,16 @@
             <td><input type="button" id="addButton" value="원재료 추가" /></td>
             <td><input type="button" id="removeButton" value="원재료 삭제" disabled="disabled" /></td>
         </tr>
+        <tr>
+            <td colspan="2">
+                <div style="color: crimson; font-size:8px" id="ratioMsg">
+                </div> <br/>
+                <div style="color: crimson; font-size:8px" id="ingredientMsg">
+                </div> <br />
+                <div style="color: crimson; font-size:8px" id="pumpMsg">
+                </div>
+            </td>
+        </tr>
     </table>
 </form>
     <script type="text/javascript">
@@ -116,6 +127,7 @@
 
         function submit() {
             var result = 0;
+            var ratio = 0;
 
             if ($("#recipe").val() == "") {
                 $("#recipeError").text("* 레시피를 입력해 주세요");
@@ -129,9 +141,10 @@
                 var selectValue = $("#selectBox" + i).val();
                 var ratioBox = Number($("#ratioBox" + i).val());
                 var pumpBox = Number($("#pumpBox" + i).val());
+                ratio = ratio + Number($("#ratioBox" + i).val());
 
                 if (selectValue == 0) {
-                    $("#ingredientError" + i).text("* 원재료를 선택해 주세요.")
+                    $("#ingredientError" + i).text("* 원재료를 선택해 주세요.");
                     result++;
                 } else {
                     $("#ingredientError" + i).text("");
@@ -139,7 +152,7 @@
 
                 if (ratioBox == ""
                         || (ratioBox > 99 && ratioBox < 1)) {
-                    $("#ratioError" + i).text("* 1 ~ 99 사이의 숫자를 입력해 주세요.")
+                    $("#ratioError" + i).text("* 1 ~ 99 사이의 숫자를 입력해 주세요.");
                     result++;
                 } else {
                     $("#ratioError" + i).text("");
@@ -148,9 +161,33 @@
                 if (pumpBox == ""
                         || pumpBox < 1) {
                     result++;
-                    $("#pumpError" + i).text("* 1이상의 번호를 선택해 주세요.")
+                    $("#pumpError" + i).text("* 1이상의 번호를 선택해 주세요.");
                 } else {
                     $("#pumpError" + i).text("");
+                }
+            }
+
+            if (ratio != 100) {
+                $("#ratioMsg").text("* 비율의 합이 100%이여야 합니다.");
+                result++;
+            } else {
+                $("#ratioMsg").text("");
+            }
+
+            for (let i = 0; i < nameNo - 1; i++) {
+                for (let j = i + 1; j < nameNo; j++) {
+                    let ingredient = $("#selectBox" + i).val();
+                    let ingredientNext = $("#selectBox" + j).val();
+                    let pump = $("#pumpBox" + i).val();
+                    let pumpNext = $("#pumpBox" + j).val();
+
+                    if (ingredient == ingredientNext
+                            || pump == pumpNext) {
+                        $("#ingredientMsg").text("* 원재료가 중복되거나 펌프 번호가 중복됩니다.");
+                        result++;
+                    } else {
+                        $("#ingredientMsg").text("");
+                    }
                 }
             }
 

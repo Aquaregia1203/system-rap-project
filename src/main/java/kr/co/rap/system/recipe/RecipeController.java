@@ -92,8 +92,10 @@ public class RecipeController {
         }
 
         if (!recipeService.addRecipe(recipe)) {
+            ModelAndView mav = new ModelAndView("recipe/add");
+            mav.addObject("recipeDuplication", "* 레시피명이 중복됩니다.");
 
-            return new ModelAndView(new RedirectView("/recipe/form"));
+            return mav;
         }
 
         return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo()));
@@ -139,6 +141,7 @@ public class RecipeController {
         }
 
         if (!recipeService.editRecipe(recipe)) {
+
             return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo() + "/form"));
         }
 
