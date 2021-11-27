@@ -9,54 +9,74 @@
 <jsp:include page="../top.jsp" />
 
 <h1>레시피 수정</h1>
-<form action="/recipe" method="post">
-    <table border="2" id="recipeTable">
+<form action="/recipe" method="post" id="formId">
+    <table id="recipeTable">
         <tr>
             <td>레시피 명 : </td>
             <td>
                 <input type="text" name="name" value="${recipe.name}"/>
             </td>
         </tr>
+        <tr>
+            <th colspan="2">
+                <div style="color: crimson; font-size:8px" id="recipeError">
+                </div>
+            </th>
+        </tr>
         <input type="hidden" name="no" value="${recipe.no}"/>
         <input type="hidden" id="listSize" value="${recipe.mixList.size()}" />
         <c:forEach items="${recipe.mixList}" var="mix" varStatus="index">
             <tr>
                 <td>
-                    원재료 :
+                    원재료 : ${index.index}
                 </td>
                 <td>
-                    <div id="selectBox">
-                        <select name="mixList[${index.index}].ingredientNo" id="ingredientSelect">
-                            <option value="0">선택..</option>
-                            <c:forEach items="${ingredientList}" var="ingredient">
-                                    <c:choose>
-                                        <c:when test="${ingredient.no eq mix.ingredientNo}">
-                                            <option value="${ingredient.no}" selected>${ingredient.name}</option>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <option value="${ingredient.no}">${ingredient.name}</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                            </c:forEach>
-                        </select>
-                    </div>
+                    <select name='mixList[${index.index}].ingredientNo' id='selectBox${index.index}'>"
+                        <option value="0">선택..</option>
+                        <c:forEach items="${ingredientList}" var="ingredient">
+                                <c:choose>
+                                    <c:when test="${ingredient.no eq mix.ingredientNo}">
+                                        <option value="${ingredient.no}" selected>${ingredient.name}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${ingredient.no}">${ingredient.name}</option>
+                                    </c:otherwise>
+                                </c:choose>
+                        </c:forEach>
+                    </select>
                 </td>
             </tr>
+            <th colspan="2">
+                <div style="color: crimson; font-size:8px" id='ingredientError${index.index}'>
+                </div>
+            </th>
             <tr>
                 <td>
                     비율 :
                 </td>
                 <td>
-                    <input type="text" name="mixList[${index.index}].ratio" value="${mix.ratio}"/>
+                    <input type="text" name="mixList[${index.index}].ratio" value="${mix.ratio}" id='ratioBox${index.index}'/>
                 </td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <div style="color: crimson; font-size:8px" id='ratioError${index.index}'>
+                    </div>
+                </th>
             </tr>
             <tr>
                 <td>
                     펌프 :
                 </td>
                 <td>
-                    <input type="number" name="mixList[${index.index}].pumpNo" value="${mix.pumpNo}"/>
+                    <input type="number" name="mixList[${index.index}].pumpNo" value="${mix.pumpNo}" id='pumpBox${index.index}'/>
                 </td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <div style="color: crimson; font-size:8px" id='pumpError${index.index}'>
+                    </div>
+                </th>
             </tr>
             <input type="hidden" name="mixList[${index.index}].no" value="${mix.no}"/>
             <input type="hidden" name="mixList[${index.index}].ingredientName" value="${mix.ingredientName}"/>
@@ -65,7 +85,7 @@
         <table>
             <tr>
                 <td>
-                    <input type="submit" value="수정" />
+                    <input type="button" value="수정" id="submitButton" />
                 </td>
                 <td>
                     <a href="/recipe">목록</a>
@@ -86,27 +106,88 @@
     <script type="text/javascript">
         document.getElementById("addButton").addEventListener("click", addIngredient, false);
         document.getElementById("removeButton").addEventListener("click", removeIngredient, false);
+        document.getElementById("submitButton").addEventListener("click", submit, false);
 
         var button = document.getElementById("removeButton");
-        var nameNo = Number(document.getElementById("listSize").value);
+        var nameNo = Number($("#listSize").val());
 
-        var selectedValue = $("ingredientSelect option:selected").val();
+        function submit() {
+            var result = 0;
 
+            if ($("#recipe").val() == "") {
+                $("#recipeError").text("* 레시피를 입력해 주세요");
+                result++;
+            } else {
+                $("#recipeError").text("");
+            }
+
+
+            for (let i = 0; i < nameNo; i++) {
+                var selectValue = $("#selectBox" + i).val();
+                var ratioBox = Number($("#ratioBox" + i).val());
+                var pumpBox = Number($("#pumpBox" + i).val());
+
+                if (selectValue == 0) {
+                    $("#ingredientError" + i).text("* 원재료를 선택해 주세요.")
+                    result++;
+                } else {
+                    $("#ingredientError" + i).text("");
+                }
+
+                if (ratioBox == ""
+                    || (ratioBox > 99 && ratioBox < 1)) {
+                    $("#ratioError" + i).text("* 1 ~ 99 사이의 숫자를 입력해 주세요.")
+                    result++;
+                } else {
+                    $("#ratioError" + i).text("");
+                }
+
+                if (pumpBox == ""
+                    || pumpBox < 1) {
+                    result++;
+                    $("#pumpError" + i).text("* 1이상의 번호를 선택해 주세요.")
+                } else {
+                    $("#pumpError" + i).text("");
+                }
+            }
+
+            if (result === 0) {
+                $("#formId").submit();
+            }
+        }
 
         function addIngredient() {
             var ingredientTitle = "원재료 : ";
-            var ingredientValue = "<select name='mixList[" + (nameNo) + "].ingredientNo'>"
-                                    + "<option value='0'> 선택.. </option>"
-                                    + "<c:forEach items='${ingredientList}' var='ingredient'>"
-                                    + "<option value='${ingredient.no}'> ${ingredient.name}</option>"
-                                    + "</c:forEach>"
-                                    + "</select>";
+            var ingredientValue = "<select name='mixList[" + nameNo + "].ingredientNo' id='selectBox" + nameNo + "'>"
+                + "<option value='0'> 선택.. </option>"
+                + "<c:forEach items='${ingredientList}' var='ingredient'>"
+                + "<option value='${ingredient.no}'> ${ingredient.name}</option>"
+                + "</c:forEach>"
+                + "</select>"
+                + "<tr>"
+                + "<th colspan='2'>"
+                + "<div style='color: crimson; font-size:8px' id='ingredientError"+ nameNo +"'>"
+                + "</div>"
+                + "</th>"
+                + "</tr>";
 
             var ratioTitle = "비율 : ";
-            var ratioValue = "<input type='text' name='mixList[" + (nameNo) + "].ratio' /> %";
+            var ratioValue = "<input type='text' name='mixList[" + nameNo + "].ratio' id='ratioBox" + nameNo + "' /> %"
+                + "<tr>"
+                + "<th colspan'2'>"
+                + "<div style='color: crimson; font-size:8px' id='ratioError" + nameNo + "'>"
+                + "</div>"
+                + "</th>"
+                + "</tr>";
 
             var pumpTitle = "펌프 : ";
-            var pumpValue = "<input type='number' name='mixList[" + (nameNo) + "].pumpNo' /> 번 펌프";
+            var pumpValue = "<input type='number' min='1' max='10' name='mixList[" + nameNo + "].pumpNo' id='pumpBox" + nameNo + "'/>번 펌프"
+                + "<tr>"
+                + "<th colspan='2'>"
+                + "<div style='color: crimson; font-size:8px' id='pumpError" + nameNo + "'>"
+                + "</div>"
+                + "</th>"
+                + "</tr>";
 
 
             let table = document.getElementById("recipeTable");

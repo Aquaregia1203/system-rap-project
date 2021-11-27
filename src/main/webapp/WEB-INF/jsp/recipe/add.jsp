@@ -115,8 +115,11 @@
         var nameNo = 2;
 
         function submit() {
+            var result = 0;
+
             if ($("#recipe").val() == "") {
                 $("#recipeError").text("* 레시피를 입력해 주세요");
+                result++;
             } else {
                 $("#recipeError").text("");
             }
@@ -129,6 +132,7 @@
 
                 if (selectValue == 0) {
                     $("#ingredientError" + i).text("* 원재료를 선택해 주세요.")
+                    result++;
                 } else {
                     $("#ingredientError" + i).text("");
                 }
@@ -136,19 +140,21 @@
                 if (ratioBox == ""
                         || (ratioBox > 99 && ratioBox < 1)) {
                     $("#ratioError" + i).text("* 1 ~ 99 사이의 숫자를 입력해 주세요.")
+                    result++;
                 } else {
                     $("#ratioError" + i).text("");
                 }
 
                 if (pumpBox == ""
                         || pumpBox < 1) {
+                    result++;
                     $("#pumpError" + i).text("* 1이상의 번호를 선택해 주세요.")
                 } else {
                     $("#pumpError" + i).text("");
                 }
             }
 
-            if (result) {
+            if (result === 0) {
                 $("#formId").submit();
             }
         }
