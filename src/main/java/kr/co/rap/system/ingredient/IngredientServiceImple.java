@@ -24,10 +24,8 @@ public class IngredientServiceImple {
 
 
     public boolean addIngredient(Ingredient ingredient) {
-        String checkIngredient = ingredient.getName();
-        String duplicateIngredient = ingredientMapper.selectAll(ingredient).get(0).getName();
-
-        if (checkIngredient.equals(duplicateIngredient)) {
+        List<Ingredient> duplicateIngredient = ingredientMapper.selectAll(ingredient);
+        if (duplicateIngredient.size() == 1) {
             return false;
         }
         ingredientMapper.insert(ingredient);

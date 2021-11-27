@@ -18,8 +18,8 @@ public class AccessController {
     @GetMapping("/login")
     public ModelAndView login(HttpSession httpSession) {
         if (httpSession.getAttribute("id") != null) {
-            String id = httpSession.getAttribute("id") + "";
-            if ("systemadmin".equals(id)) {
+            String division = httpSession.getAttribute("division") + "";
+            if ("S".equals(division)) {
                 return new ModelAndView(new RedirectView("/admin"));
             } else {
                 return new ModelAndView(new RedirectView("/manufacture-plan"));
@@ -43,11 +43,13 @@ public class AccessController {
                 ModelAndView toManager = new ModelAndView(new RedirectView("/admin"));
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());
+                httpSession.setAttribute("division", manager.getDivision());
                 return toManager;
             } else {
                 ModelAndView toManufacture = new ModelAndView(new RedirectView("/manufacture-plan"));
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());
+                httpSession.setAttribute("division",manager.getDivision());
                 return toManufacture;
             }
         }
@@ -60,6 +62,7 @@ public class AccessController {
     public ModelAndView logout(HttpSession httpSession) {
         httpSession.removeAttribute("id");
         httpSession.removeAttribute("name");
+        httpSession.removeAttribute("division");
         return new ModelAndView(new RedirectView("/login"));
     }
 

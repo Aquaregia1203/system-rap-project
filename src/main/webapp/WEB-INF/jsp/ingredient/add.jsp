@@ -29,8 +29,8 @@
             </tr>
         </table>
         <div style="color:red" id="errorName">
-            <c:if test="${!empty message}">
-                ${message}
+            <c:if test="${!empty msg}">
+                ${msg}
             </c:if>
         </div>
         <input type="button" onclick="auth()" value="등록">
