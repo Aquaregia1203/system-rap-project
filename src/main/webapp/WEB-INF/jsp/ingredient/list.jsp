@@ -8,33 +8,37 @@
 <body>
     <script type="text/javascript">
         $(document).ready(function (){
+            drawTable();
             $("#search").click(function (){
                 $("#table").html("");
-                $.ajax({
-                    url:'/ingredient',
-                    data:'name=' + $('#keywordName').val(),
-                    type:'GET',
-                    dataType:'json',
-                    headers: { "Content-Type" : "application/json;charset=UTF-8" },
-                    success:function (result){
-                        console.log(result)
-                        var script = "";
-                        script += "<table border='1'><tr><th>번호</th><th>원재료</th><th>등록일자</th></tr>"
-
-                        for (var i = 0; i < result.length; i++) {
-                            script += "<tr>";
-                            script += "   <td>" + (i + 1) +"</td>";
-                            script += "   <td><a href='/ingredient/" + result[i].no + "'>" + result[i].name + "</a></td>";
-                            script += "   <td>" + result[i].addDate + "</td>";
-                            script += "</tr>";
-                        }
-                        script += "</table>";
-                        $("#table").html(script);
-                        $("#allTable").remove();
-                    }
-                });
+                drawTable();
             });
         });
+
+        function drawTable() {
+            $.ajax({
+                url: '/ingredient',
+                data: 'name=' + $('#keywordName').val(),
+                type: 'GET',
+                dataType: 'json',
+                headers: {"Content-Type": "application/json;charset=UTF-8"},
+                success: function (result) {
+                    console.log(result)
+                    var script = "";
+                    script += "<table border='1'><tr><th>번호</th><th>원재료</th><th>등록일자</th></tr>"
+
+                    for (var i = 0; i < result.length; i++) {
+                        script += "<tr>";
+                        script += "   <td>" + (i + 1) + "</td>";
+                        script += "   <td><a href='/ingredient/" + result[i].no + "'>" + result[i].name + "</a></td>";
+                        script += "   <td>" + result[i].addDate + "</td>";
+                        script += "</tr>";
+                    }
+                    script += "</table>";
+                    $("#table").html(script);
+                }
+            });
+        }
     </script>
     <jsp:include page="../top.jsp" />
     <h2>원재료 목록</h2>
@@ -42,21 +46,6 @@
     <input type="button" id="search" value="검색">
     <hr>
     <div id="table"></div>
-    <table border="1" id="allTable">
-        <tr>
-            <th>번호</th>
-            <th>원재료</th>
-            <th>등록 일자</th>
-        </tr>
-        <c:forEach items="${ingredientList}" var="ingredient"
-                   begin="${start}" end="${end}" varStatus="status">
-            <tr>
-                <td>${status.count}</td>
-                <td><a href="/ingredient/${ingredient.no}">${ingredient.name}</a></td>
-                <td>${ingredient.addDate}</td>
-            </tr>
-        </c:forEach>
-    </table>
     <table border="1">
         <c:forEach begin="1" end="9" varStatus="index">
             <td>

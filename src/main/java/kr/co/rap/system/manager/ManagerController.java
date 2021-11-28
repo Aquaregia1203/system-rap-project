@@ -18,23 +18,12 @@ public class ManagerController {
     private ManagerServiceImple managerServiceImple;
 
     @GetMapping
-    public ModelAndView viewManagerList(@RequestParam(required = false) String name,
-                                        @RequestParam(defaultValue = "1") int page) {
-        ModelAndView mav = new ModelAndView("manager/list");
-
-        Manager manager = new Manager();
-        manager.setName(name);
-        List<Manager> managerList = managerServiceImple.viewManagerList(manager);
-
-        mav.addObject("managerList",managerList);
-        mav.addObject("start", page * 10 - 10);
-        mav.addObject("end", page * 10 - 1);
-
-        return mav;
+    public ModelAndView viewManagerList() {
+        return new ModelAndView("manager/list");
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Manager> search(Manager manager) {
+    public List<Manager> viewManagerList(Manager manager) {
         List<Manager> managerList = managerServiceImple.viewManagerList(manager);
         return managerList;
     }

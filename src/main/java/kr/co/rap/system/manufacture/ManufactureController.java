@@ -5,6 +5,7 @@ import kr.co.rap.system.recipe.RecipeServiceImple;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/manufacture-plan")
 public class ManufactureController {
     private static Logger logger
@@ -40,6 +41,12 @@ public class ManufactureController {
         mav.addObject("end", page * 10 - 1);
 
         return mav;
+    }
+
+    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<Manufacture> search(@RequestParam Map<String, String> period) {
+        List<Manufacture> manufactureList = manufactureService.viewManufactureList(period);
+        return manufactureList;
     }
 
     @GetMapping("/{no}")

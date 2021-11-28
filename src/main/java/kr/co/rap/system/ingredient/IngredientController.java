@@ -16,20 +16,12 @@ public class IngredientController {
     private IngredientServiceImple ingredientServiceImple;
 
     @GetMapping
-    public ModelAndView viewIngredientList(Ingredient ingredient,
-                                           @RequestParam(defaultValue = "1") int page) {
-
-        ModelAndView mav = new ModelAndView("ingredient/list");
-        List<Ingredient> ingredientList = ingredientServiceImple.viewIngredientList(ingredient);
-        mav.addObject("ingredientList", ingredientList);
-        mav.addObject("start", page * 10 -10);
-        mav.addObject("end", page * 10 - 1);
-
-        return mav;
+    public ModelAndView viewIngredientList() {
+        return new ModelAndView("ingredient/list");
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Ingredient> search(Ingredient ingredient) {
+    public List<Ingredient> viewIngredientList(Ingredient ingredient) {
        List<Ingredient> ingredientList = ingredientServiceImple.viewIngredientList(ingredient);
        return ingredientList;
     }
