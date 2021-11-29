@@ -23,25 +23,26 @@
 
         <div class="content-page">
 
-
             <div class="content">
 
                 <!-- Start Content-->
                 <div class="container-fluid">
 
                     <!-- start page title -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box">
 
+
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <div class="page-title-box">
                                 <h4 class="page-title">레시피 등록</h4>
                             </div>
                         </div>
                     </div>
+
                     <!-- end page title -->
 
-                    <div class="row">
-                        <div class="col-sm-12">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-8">
                             <div class="card-box">
                                 <h4 class="header-title"></h4>
 
@@ -50,20 +51,20 @@
                                 </p>
 
                                 <div class="row">
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12">
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">레시피 명</label>
-                                            <div class="col-md-5">
+                                            <div class="col-md-7">
                                                 <input type="text" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
 
 
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12">
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">1번 원재료</label>
-                                            <div class="col-md-5">
+                                            <div class="col-md-7">
                                                 <select class="form-control">
                                                     <option>1</option>
                                                     <option>2</option>
@@ -74,7 +75,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12">
                                         <div class="form-group row">
                                             <label class="col-md-2  control-label">펌프</label>
                                             <div class="col-md-2">
@@ -86,7 +87,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12">
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">비율</label>
                                             <div class="col-md-2">
@@ -98,10 +99,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12">
                                         <div class="form-group row">
                                             <label class="col-sm-2 control-label">2번 원재료</label>
-                                            <div class="col-sm-5">
+                                            <div class="col-sm-7">
                                                 <select class="form-control">
                                                     <option>1</option>
                                                     <option>2</option>
@@ -112,7 +113,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12">
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">펌프</label>
                                             <div class="col-md-2">
@@ -124,7 +125,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12">
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">비율</label>
                                             <div class="col-md-2">
@@ -136,19 +137,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12 text-right">
                                         <button type="submit" class="btn btn-purple waves-effect waves-light">원재료 추가</button>
                                         <button type="submit" class="btn btn-purple waves-effect waves-light">원재료 삭제</button>
                                     </div>
-                                    <div class="col-lg-10">
-                                        <br/>
-                                    </div>
-                                    <div class="col-lg-7" >
-                                        <button type="submit" class="btn btn-purple waves-effect waves-light" >등록</button>
-                                        <button type="submit" class="btn btn-purple waves-effect waves-light" >목록</button>
-                                    </div>
                                 </div>
                             </div>
+
+                            <div class="col-lg-12 text-right" >
+                                <button type="submit" class="btn btn-purple waves-effect waves-light" >등록</button>
+                                <button type="submit" class="btn btn-purple waves-effect waves-light" >목록</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

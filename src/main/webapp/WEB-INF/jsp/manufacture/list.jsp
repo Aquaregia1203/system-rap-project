@@ -4,8 +4,15 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <jsp:include page="../head.jsp" />
-    <link href="/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Responsive bootstrap 4 admin template" name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
     <link href="/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -14,7 +21,6 @@
     <link href="/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <title>생산계획 목록 조회</title>
 </head>
-
 <body class="center-menu" data-layout="horizontal">
 <div id="wrapper">
     <jsp:include page="../top.jsp" />
@@ -91,6 +97,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function (){
         drawTable();
@@ -161,14 +168,15 @@
         });
     }
 </script>
-<script src="assets/js/vendor.min.js"></script>
-<script src="assets/libs/moment/moment.min.js"></script>
-<script src="assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-<script src="assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-<script src="assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-<script src="assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script src="assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="assets/js/pages/form-pickers.init.js"></script>
-<script src="assets/js/app.min.js"></script>
+
+<script src="/assets/libs/moment/moment.min.js"></script>
+<script src="/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+<script src="/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+<script src="/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+<script src="/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/assets/js/pages/form-pickers.init.js"></script>
+<script src="/assets/js/app.min.js"></script>
+
 </body>
 </html>

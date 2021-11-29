@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,10 +17,8 @@
 </head>
 
 <body class="center-menu" data-layout="horizontal">
-
-<!-- Begin page -->
 <div id="wrapper">
-    <jsp:include page="../top.jsp" />
+    <jsp:include page="top.jsp" />
     <div class="content-page">
         <div class="content">
 
@@ -27,8 +26,8 @@
             <div class="container-fluid">
 
                 <!-- start page title -->
-                <div class="row">
-                    <div class="col-12">
+                <div class="row justify-content-center">
+                    <div class="col-8">
                         <div class="page-title-box">
 
                             <h4 class="page-title">관리자 등록</h4>
@@ -37,52 +36,50 @@
                 </div>
                 <!-- end page title -->
 
-                <div class="row">
-                    <div class="col-sm-12">
+                <div class="row row justify-content-center">
+                    <div class="col-sm-8">
                         <div class="card-box">
                             <h4 class="header-title"></h4>
                             <p class="sub-header">
                                 생산관리자를 등록합니다. <br/> * 아이디는 중복될 수 없습니다.
                             </p>
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <form class="form-horizontal">
+                                <div class="col-lg-12">
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">아이디</label>
-                                            <div class="col-md-10">
+                                            <div class="col-md-7">
                                                 <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">비밀번호</label>
-                                            <div class="col-md-10">
+                                            <div class="col-md-7">
                                                 <input type="password" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label" for="example-email">이름</label>
-                                            <div class="col-md-10">
+                                            <div class="col-md-7">
                                                 <input type="email" id="example-email" name="example-email" class="form-control" >
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">연락처</label>
-                                            <div class="col-md-5">
+                                            <div class="col-md-7">
                                                 <input type="text" class="form-control" placeholder="000-0000-0000" >
                                             </div>
                                         </div>
-                                        <div class="form-group text-right mb-0">
-                                            <button class="btn btn-primary waves-effect waves-light" type="submit">
-                                                등록
-                                            </button>
-                                            <button type="reset" class="btn btn-secondary waves-effect ml-1">
-                                                목록
-                                            </button>
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-lg-12 text-right">
+                            <button class="btn btn-primary waves-effect waves-light" type="submit">
+                                등록
+                            </button>
+                            <button type="reset" class="btn btn-secondary waves-effect ml-1">
+                                목록
+                            </button>
                         </div>
                     </div>
                 </div>
