@@ -3,8 +3,7 @@
 
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>레시피 목록</title>
+    <jsp:include page="../head.jsp" />
 </head>
 <body class="center-menu" data-layout="horizontal">
     <div id="wrapper">
@@ -16,6 +15,7 @@
         <input type="button" id="search" value="검색">
         <hr>
         <div id="table"></div>
+
         <table border="2">
             <tr>
                 <c:forEach begin="1" end="9" varStatus="index">
@@ -25,6 +25,7 @@
                 </c:forEach>
             </tr>
         </table>
+
         <script type="text/javascript">
             $(document).ready(function (){
                 drawTable();
