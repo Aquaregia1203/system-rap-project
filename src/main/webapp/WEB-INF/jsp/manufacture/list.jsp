@@ -65,7 +65,7 @@
         });
     }
 </script>
-<jsp:include page="../top.jsp" />
+
 <body class="center-menu" data-layout="horizontal">
 <div id="wrapper">
     <jsp:include page="../top.jsp" />
@@ -79,6 +79,9 @@
 <div id="table"></div>
 <table border="2">
     <tr>
+        <td>
+            <a href="/manufacture-plan/form">등록</a>
+        </td>
         <c:forEach begin="1" end="9" varStatus="index">
             <td>
                 <a href="/manufacture-plan?page=${index.count}&name=${param.get(name)}">${index.count}</a>

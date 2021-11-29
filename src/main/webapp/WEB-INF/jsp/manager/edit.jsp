@@ -1,48 +1,101 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
-    <script type="text/javascript">
-        function auth() {
-            var editForm = document.editForm;
-            var password = editForm.password.value;
-            var name = editForm.name.value;
-            var top = editForm.top.value;
-            var middle = editForm.middle.value;
-            var bottom = editForm.bottom.value;
-            const errorPwd = document.getElementById("errorPwd");
-            const errorName = document.getElementById("errorName");
-            const errorContact = document.getElementById("errorContact");
+    <meta charset="utf-8" />
+    <title>관리자 등록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Responsive bootstrap 4 admin template" name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
 
-            if (!password) {
-                errorPwd.innerHTML = '<div style="color:red">*비밀번호를 입력해 주세요.</div>';
-            } else {
-                errorPwd.innerHTML = '';
-            }
-
-            if (!name) {
-                errorName.innerHTML = '<div style="color:red">*이름을 입력해 주세요.</div>';
-            } else {
-                errorName.innerHTML = '';
-            }
-
-            if (!top || !middle || !bottom) {
-                errorContact.innerHTML = '<div style="color:red">*연락처를 입력해 주세요.</div>';
-            } else {
-                errorContact.innerHTML = '';
-            }
-
-            if (!password || !name || !top || !middle || !bottom) {
-            } else {
-                editForm.submit();
-            }
-
-        }
-    </script>
 </head>
-<body>
-<jsp:include page="top.jsp" />
+
+<body class="center-menu" data-layout="horizontal">
+<div id="wrapper">
+    <jsp:include page="../top.jsp" />
+
+    <div class="content-page">
+        <div class="content">
+
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+
+                            <h4 class="page-title">관리자 수정</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+                            <h4 class="header-title"></h4>
+                            <p class="sub-header">
+                                생산관리자를 수정합니다. <br/> * 아이디는 중복될 수 없습니다.
+                            </p>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form class="form-horizontal">
+                                        <div class="form-group row">
+                                            <label class="col-md-2 control-label">아이디</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-2 control-label">비밀번호</label>
+                                            <div class="col-md-10">
+                                                <input type="password" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-2 control-label" for="example-email">이름</label>
+                                            <div class="col-md-10">
+                                                <input type="email" id="example-email" name="example-email" class="form-control" >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2 control-label">연락처</label>
+                                            <div class="col-md-5">
+                                                <input type="text" class="form-control" placeholder="000-0000-0000" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-right mb-0">
+                                            <button class="btn btn-primary waves-effect waves-light" type="submit">
+                                                수정
+                                            </button>
+                                            <button type="reset" class="btn btn-secondary waves-effect ml-1">
+                                                목록
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
     <h2>관리자 수정 화면입니다</h2>
     <hr>
     <form name="editForm" action="/admin" method="post">

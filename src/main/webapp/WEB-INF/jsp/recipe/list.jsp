@@ -24,6 +24,11 @@
                     </td>
                 </c:forEach>
             </tr>
+            <tr>
+                <td>
+                    <a href="/recipe/form">등록</a>
+                </td>
+            </tr>
         </table>
 
         <script type="text/javascript">

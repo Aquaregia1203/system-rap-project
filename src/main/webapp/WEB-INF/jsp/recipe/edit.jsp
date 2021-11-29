@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE HTML>
 <html>
 <head>
     <jsp:include page="../head.jsp" />
@@ -7,7 +8,142 @@
 <body class="center-menu" data-layout="horizontal">
 <div id="wrapper">
     <jsp:include page="../top.jsp" />
-        <div class="content-page">
+
+    <div class="content-page">
+
+
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+
+                            <h4 class="page-title">레시피 수정</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+                            <h4 class="header-title"></h4>
+
+                            <p class="sub-header">
+                                레시피를 수정합니다. <br/>* 원재료와 펌프 번호는 중복될 수 없으며, 비율은 합이 100이여야 합니다.
+                            </p>
+
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 control-label">레시피 명</label>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" >
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-10">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 control-label">1번 원재료</label>
+                                        <div class="col-md-5">
+                                            <select class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10">
+                                    <div class="form-group row">
+                                        <label class="col-md-2  control-label">펌프</label>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                        <div class="col-md-2">
+                                            번 펌프
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-10">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 control-label">비율</label>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                        <div class="col-md-2">
+                                            %
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-10">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 control-label">2번 원재료</label>
+                                        <div class="col-sm-5">
+                                            <select class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 control-label">펌프</label>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                        <div class="col-md-2">
+                                            번 펌프
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-10">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 control-label">비율</label>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                        <div class="col-md-2">
+                                            %
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-10">
+                                    <button type="submit" class="btn btn-purple waves-effect waves-light">원재료 추가</button>
+                                    <button type="submit" class="btn btn-purple waves-effect waves-light">원재료 삭제</button>
+                                </div>
+                                <div class="col-lg-10">
+                                    <br/>
+                                </div>
+                                <div class="col-lg-7" >
+                                    <button type="submit" class="btn btn-purple waves-effect waves-light" >수정</button>
+                                    <button type="submit" class="btn btn-purple waves-effect waves-light" >목록</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
             <h1>레시피 수정</h1>
             <form action="/recipe" method="post" id="formId">
@@ -114,6 +250,7 @@
                     <input type="hidden" name="_method" value="PUT"/>
                     </table>
             </form>
+
         <script type="text/javascript">
             document.getElementById("addButton").addEventListener("click", addIngredient, false);
             document.getElementById("removeButton").addEventListener("click", removeIngredient, false);
@@ -268,7 +405,5 @@
                 }
             }
         </script>
-    </div>
-</div>
 </body>
 </html>

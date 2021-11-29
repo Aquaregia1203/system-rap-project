@@ -4,9 +4,6 @@
         <div class="navbar-custom">
             <div class="container-fluid">
                 <ul class="list-unstyled topnav-menu float-right mb-0">
-
-
-                    <!-- 우측 상단 메뉴. 로그아웃 버튼과 로그인 계정 및 이름이 들어가야함-->
                     <li class="dropdown d-none d-lg-block">
                         <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="" role="button" aria-haspopup="false" aria-expanded="false">
                             <span class="align-middle"> ${sessionScope.id} | ${sessionScope.name}</span>
@@ -14,21 +11,19 @@
 
                     </li>
                     <li class="dropdown d-none d-lg-block">
-                        <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="/logout" role="button" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="/logout" role="button" >
                             <input type="button" class="btn btn-info waves-effect width-md waves-light btn-lg" value="로그아웃" id="logoutButton">
-
+<%--                            <span class="align-middle"> 로그아웃 </span>--%>
                         </a>
                     </li>
                 </ul>
-
-                <!-- LOGO -->
-                <div class="logo-box">
-                    <a href="/manufacture-plan" class="logo text-center">
-                                    <span class="logo-lg">
-                                        <span class="logo-lg-text-light">RAP - System</span>
-                                    </span>
-                    </a>
-                </div>
+                    <div class="logo-box">
+                        <a href="/manufacture-plan" class="logo text-center">
+                                        <span class="logo-lg">
+                                            <span class="logo-lg-text-light">RAP - System</span>
+                                        </span>
+                        </a>
+                    </div>
                 <div class="clearfix"></div>
             </div>
         </div>

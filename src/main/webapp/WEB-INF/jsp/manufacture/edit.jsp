@@ -9,8 +9,73 @@
 <div id="wrapper">
     <jsp:include page="../top.jsp" />
     <div class="content-page">
+        <div class="content">
+            <!-- Start Content-->
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
 
-    <form action="/manufacture-plan" method="post" id="formId">
+                            <h4 class="page-title">생산계획 등록</h4>
+                        </div>
+                    </div>
+                </div>
+                <form action="/manufacture-plan" method="post" id="formId">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-box">
+                                <h4 class="header-title"></h4>
+
+                                <p class="sub-header">
+                                    생산계획을 수정합니다. <br/>* 생산량은 0 ~ 120 사이의 숫자만 입력 가능합니다.
+                                </p>
+
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <form class="form-horizontal">
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 control-label">레시피</label>
+                                                <div class="col-sm-4">
+                                                    <select class="form-control">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-lg-10">
+                                        <form class="form-horizontal">
+                                            <div class="form-group row">
+                                                <label class="col-md-2 control-label">생산량</label>
+                                                <div class="col-md-2">
+                                                    <input type="number" class="form-control" value="0">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    Kg
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-10 col-md-10">
+                                        <button type="submit" class="btn btn-purple waves-effect waves-light">등록</button>
+                                        <button type="submit" class="btn btn-purple waves-effect waves-light">목록</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+ <!-- 데이터 옮겨 붙일 것  -->
+
+
         <input type="hidden" name="_method" value="PUT" />
         <input type="hidden" name="no" value="${manufacture.no}" />
         <table>
@@ -62,7 +127,6 @@
                 </td>
             </tr>
         </table>
-    </form>
 
         <script type="text/javascript">
             document.getElementById("submitButton").addEventListener("click", click, false);
