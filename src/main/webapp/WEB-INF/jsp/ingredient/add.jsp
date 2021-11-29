@@ -2,7 +2,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <jsp:include page="../head.jsp" />
+
+</head>
+<body class="center-menu" data-layout="horizontal">
+    <div id="wrapper">
+    <jsp:include page="../top.jsp" />
+        <div class="content-page">
+
+            <h2>원재료 등록입니다</h2>
+            <hr>
+            <form name="addForm" action="/ingredient" method="post">
+                <table>
+                    <tr>
+                        <td>원재료 명 :</td>
+                        <td><input type="text" name="name"></td>
+                    </tr>
+                </table>
+                <div style="color:red" id="errorName">
+                    <c:if test="${!empty msg}">
+                        ${msg}
+                    </c:if>
+                </div>
+                <input type="button" onclick="auth()" value="등록">
+            </form>
+            <form action="/ingredient" method="get">
+                <input type="submit" value="목록">
+            </form>
+
+        </div>
+    </div>
     <script type="text/javascript">
         function auth(){
             var addForm = document.addForm;
@@ -16,27 +45,5 @@
             }
         }
     </script>
-</head>
-<body>
-    <jsp:include page="../top.jsp" />
-    <h2>원재료 등록입니다</h2>
-    <hr>
-    <form name="addForm" action="/ingredient" method="post">
-        <table>
-            <tr>
-                <td>원재료 명 :</td>
-                <td><input type="text" name="name"></td>
-            </tr>
-        </table>
-        <div style="color:red" id="errorName">
-            <c:if test="${!empty msg}">
-                ${msg}
-            </c:if>
-        </div>
-        <input type="button" onclick="auth()" value="등록">
-    </form>
-    <form action="/ingredient" method="get">
-        <input type="submit" value="목록">
-    </form>
 </body>
 </html>

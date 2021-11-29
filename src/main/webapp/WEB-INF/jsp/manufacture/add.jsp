@@ -2,14 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>생산계획 등록</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <jsp:include page="../head.jsp" />
 </head>
-<body>
+<body class="center-menu" data-layout="horizontal">
+<div id="wrapper">
+    <jsp:include page="../top.jsp" />
+    <div class="content-page">
 
-
-<jsp:include page="../top.jsp" />
     <form action="/manufacture-plan" method="post" id="formId">
     <table>
         <tr><td>
@@ -95,5 +94,7 @@
         }
     }
 </script>
+    </div>
+</div>
 </body>
 </html>

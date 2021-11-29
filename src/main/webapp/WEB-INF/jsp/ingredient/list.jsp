@@ -2,10 +2,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Title</title>
+    <jsp:include page="../head.jsp" />
 </head>
-<body>
+<body class="center-menu" data-layout="horizontal">
+    <div id="wrapper">
+    <jsp:include page="../top.jsp" />
+        <div class="content-page">
+
+
+
+            <h2>원재료 목록</h2>
+            원재료 명: <input type="text" id="keywordName">
+            <input type="button" id="search" value="검색">
+            <hr>
+            <div id="table"></div>
+            <table border="1">
+                <c:forEach begin="1" end="9" varStatus="index">
+                    <td>
+                        <a href="/ingredient?page=${index.count}&name=${param.get(name)}">${index.count}</a>
+                    </td>
+                </c:forEach>
+            </table>
+            <form action="/ingredient/form" method="get">
+                <input type="submit" value="등록">
+            </form>
+        </div>
+    </div>
+
     <script type="text/javascript">
         $(document).ready(function (){
             drawTable();
@@ -40,21 +63,5 @@
             });
         }
     </script>
-    <jsp:include page="../top.jsp" />
-    <h2>원재료 목록</h2>
-    원재료 명: <input type="text" id="keywordName">
-    <input type="button" id="search" value="검색">
-    <hr>
-    <div id="table"></div>
-    <table border="1">
-        <c:forEach begin="1" end="9" varStatus="index">
-            <td>
-                <a href="/ingredient?page=${index.count}&name=${param.get(name)}">${index.count}</a>
-            </td>
-        </c:forEach>
-    </table>
-    <form action="/ingredient/form" method="get">
-        <input type="submit" value="등록">
-    </form>
 </body>
 </html>

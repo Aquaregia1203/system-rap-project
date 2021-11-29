@@ -28,15 +28,11 @@ public class RecipeController {
 
     @GetMapping
     public ModelAndView viewRecipeList(
-                @RequestParam(required = false) String name,
+                @RequestParam(required = false) Recipe recipe,
                     @RequestParam(defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("recipe/list");
 
-        Recipe recipe = new Recipe();
-        recipe.setName(name);
-
         List<Recipe> recipeList = recipeService.viewRecipeList(recipe);
-
         mav.addObject("recipeList", recipeList);
         mav.addObject("start", page * 10 - 10);
         mav.addObject("end", page * 10 - 1);
@@ -46,8 +42,7 @@ public class RecipeController {
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<Recipe> search(Recipe recipe) {
-        List<Recipe> recipeList = recipeService.viewRecipeList(recipe);
-        return recipeList;
+        return recipeService.viewRecipeList(recipe);
     }
 
     @GetMapping("/{no}")

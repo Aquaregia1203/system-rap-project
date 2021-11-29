@@ -13,7 +13,7 @@ import java.util.Map;
 public class ControlMapper {
     private static Logger logger
             = LogManager.getLogger(ControlMapper.class);
-    private final static String url = "http://192.168.0.128:80/manufacture-execute-info";
+    private final static String url = "http://192.168.0.92/servertest/manufacture-execute-info";
 
     public boolean sendInputInfo(InputInfo inputInfo) throws Exception {
         List<Map<String, String>> pumpInfo = inputInfo.getPumpInfo();

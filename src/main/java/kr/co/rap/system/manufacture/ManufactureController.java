@@ -44,10 +44,10 @@ public class ManufactureController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Manufacture> search(@RequestParam Map<String, String> period) {
-        List<Manufacture> manufactureList = manufactureService.viewManufactureList(period);
-        return manufactureList;
+    public List<Manufacture> search(Map<String, String> period) {
+        return manufactureService.viewManufactureList(period);
     }
+
 
     @GetMapping("/{no}")
     public ModelAndView viewManufacture(Manufacture manufacture) {
