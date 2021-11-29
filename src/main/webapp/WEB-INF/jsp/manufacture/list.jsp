@@ -48,10 +48,10 @@
                                                                 <span class="input-group-text bg-secondary text-white b-0">to</span>
                                                             </div>
                                                             <input type="text" class="form-control" name="end">
-                                                            <input id="search" class="btn btn-sm btn-secondary waves-effect width-xs" type="button" value="검색">
                                                         </div>
                                                     </div>
                                                 </label>
+                                                <input id="search" class="btn btn-sm btn-secondary waves-effect width-xs" type="button" value="검색">
                                             </div>
                                         </div>
                                     </div>
