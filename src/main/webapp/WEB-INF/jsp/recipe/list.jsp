@@ -32,8 +32,8 @@
                         <label>
                             <div class="form-group form-inline">
                                 레시피 명:
-                                <input class="form-control" type="text" placeholder="Search...">
-                                <button class="btn btn-primary waves-effect">검색</button>
+                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">
+                                <button id="search" class="btn btn-primary waves-effect">검색</button>
                             </div>
                         </label>
                     </div>
@@ -41,25 +41,27 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
-                            <table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead class="text-center">
-                                <tr>
-                                    <th>번호</th>
-                                    <th>레시피</th>
-                                    <th>등록 일자</th>
-                                </tr>
-                                </thead>
+                            <div id="table">
+                                <table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead class="text-center">
+                                    <tr>
+                                        <th>번호</th>
+                                        <th>레시피</th>
+                                        <th>등록 일자</th>
+                                    </tr>
+                                    </thead>
 
-                                <tbody>
-                                <tr>
-                                    <td class="text-center">1</td>
-                                    <td>오리엔탈 소스</td>
-                                    <td class="text-center">2021-11-22</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td>오리엔탈 소스</td>
+                                        <td class="text-center">2021-11-22</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="col-sm-12 text-right">
-                                <button class="btn btn-primary waves-effect">등록</button>
+                                <a href="${pageContext.servletContext.contextPath}/recipe/form"><button class="btn btn-primary waves-effect">등록</button></a>
                             </div>
                         </div>
                     </div>
@@ -85,7 +87,7 @@
         });
         function drawTable() {
             $.ajax({
-                url:'/recipe',
+                url:'${pageContext.servletContext.contextPath}/recipe',
                 data:'name=' + $('#keywordName').val(),
                 type:'GET',
                 dataType:'json',
@@ -93,28 +95,22 @@
                 success:function (result){
                     console.log(result);
                     var script = "";
-                    script += '<table id="datatable" class="table table-sm table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">';
-                    script += '    <colgroup>';
-                    script += '        <col width="10%"/>';
-                    script += '        <col width="*"/>';
-                    script += '        <col width="20%"/>';
-
-                    script += '    </colgroup>';
-                    script += '    <thead align="center">';
-                    script += '    <tr>';
-                    script += '        <th>번호</th>';
-                    script += '       <th>레시피</th>';
-                    script += '        <th>등록일자</th>';
-                    script += '   </tr>';
+                    script += '<table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">';
+                    script += '    <thead class="text-center">';
+                    script += '        <tr>';
+                    script += '            <th style="width: 5%">번호</th>';
+                    script += '            <th>레시피</th>';
+                    script += '            <th style="width: 20%">등록일자</th>';
+                    script += '        </tr>';
                     script += '   </thead>';
 
                     script += '  <tbody>';
 
                     for (var i = 0; i < result.length; i++) {
                         script += '<tr>';
-                        script += '    <td align="center">' + (i+1) + '</td>';
-                        script += '   <td><a href="/recipe/' + result[i].no + '">' + result[i].name + '</a></td>';
-                        script += '   <td align="center">' + result[i].addDate + '</td>';
+                        script += '    <td class="text-center">' + (i+1) + '</td>';
+                        script += '   <td><a href="${pageContext.servletContext.contextPath}/recipe/' + result[i].no + '">' + result[i].name + '</a></td>';
+                        script += '   <td class="text-center">' + result[i].addDate + '</td>';
                         script += '</tr>';
                     }
                     script += '</tbody>';

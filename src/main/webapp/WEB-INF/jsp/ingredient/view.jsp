@@ -4,119 +4,83 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <title>RAP - System : 원재료 상세 조회</title>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
-    <link href="/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <title>원재료 조회</title>
 </head>
-<body data-layout="horizontal">
-    <div id="wrapper">
+
+<body data-layout="horizontal" style="font-family: 'Nanum Gothic',sans-serif">
+<!-- Begin page -->
+<div id="wrapper">
+    <!-- Navigation Bar-->
     <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
-        <div class="content-page">
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box">
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                    </ol>
-                                </div>
-                                <h4 class="page-title">원재료 상세 조회</h4>
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0"></ol>
                             </div>
+                            <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">원재료 상세 정보</h4>
                         </div>
                     </div>
-                    <!-- end page title -->
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead class="text-center">
+                                <tr>
+                                    <th>원재료 명</th>
+                                    <th>등록 일자</th>
+                                    <th>사용 여부</th>
+                                </tr>
+                                </thead>
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card-box table-responsive">
-                                <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                </div>
-                                <table id="datatable" class="table table-sm table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <colgroup>
-                                        <col width="40%"/>
-                                        <col width="30%"/>
-                                        <col width="30%"/>
-                                    </colgroup>
-                                    <thead align="center">
-                                    <tr>
-                                        <th>원재료 명</th>
-                                        <th>등록 일자</th>
-                                        <th>사용 여부</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody class="text-center">
-                                    <tr>
-                                        <td>${ingredient.name}</td>
-                                        <td>${ingredient.addDate}</td>
-                                        <c:if test="${ingredient.usedCount gt 0}">
-                                            <td>사용</td>
-                                        </c:if>
-                                        <c:if test="${ingredient.usedCount eq 0}">
-                                            <td>미사용</td>
-                                        </c:if>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="dataTables_filter">
-                                                <label>
-                                                    <c:choose>
-                                                        <c:when test="${ingredient.usedCount eq 0}">
-                                                            <form action="/ingredient/${ingredient.no}/form" method="get">
-                                                                <input class="btn btn-sm btn-secondary waves-effect width-xs" type="submit" value="수정">
-                                                            </form>
-                                                </label>
-                                                            <label>
-                                                            <form action="/ingredient" method="post">
-                                                                <input class="btn btn-sm btn-secondary waves-effect width-xs" type="submit" value="삭제">
-                                                                <input type="hidden" name="_method" value="delete">
-                                                                <input type="hidden" name="no" value="${ingredient.no}">
-                                                            </form>
-                                                            </label>
-                                                            <label>
-                                                            <form action="/ingredient" method="get">
-                                                                <input class="btn btn-sm btn-secondary waves-effect width-xs" type="submit" value="목록">
-                                                            </form>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <form action="/ingredient" method="get">
-                                                                <input class="btn btn-sm btn-secondary waves-effect width-xs" type="submit" value="목록">
-                                                            </form>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-6">
-                                            <div id="datatable_filter" class="dataTables_filter">
-                                                <label>
-                                                    <div class="btn-group mb-2">
-                                                        <button type="button" class="btn btn-secondary waves-effect"><</button>
-                                                        <button type="button" class="btn btn-secondary waves-effect">1</button>
-                                                        <button type="button" class="btn btn-secondary waves-effect">></button>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <tbody>
+                                <tr>
+                                    <td class="text-center">${ingredient.name}</td>
+                                    <td class="text-center">${ingredient.addDate}</td>
+                                    <td class="text-center">
+                                        <c:choose>
+                                            <c:when test="${ingredient.usedCount eq 0}">
+                                                미사용
+                                            </c:when>
+                                            <c:otherwise>
+                                                사용
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-sm-12 text-right">
+                                <form action="${pageContext.servletContext.contextPath}/ingredient" method="post">
+                                    <c:if test="${ingredient.usedCount eq 0}">
+                                        <a href="${pageContext.servletContext.contextPath}/ingredient/${ingredient.no}/form" class="btn btn-primary waves-effect">수정</a>
+                                        <button type="submit" class="btn btn-primary waves-effect">삭제</button>
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="hidden" name="no" value="${ingredient.no}">
+                                    </c:if>
+                                    <a href="${pageContext.servletContext.contextPath}/ingredient" class="btn btn-primary waves-effect">목록</a>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Recipe-based automatic formulation and production management System
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
+        <jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
 </body>
 </html>
