@@ -31,8 +31,8 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label class="col-sm-2 control-label">레시피</label>
-                                                <div class="col-sm-7">
+                                                <label class="col-sm-3 control-label">레시피</label>
+                                                <div class="col-sm-8">
                                                     <select class="form-control" name="recipeNo" id="selectBox">
                                                         <option value="0">선택..</option>
                                                         <c:forEach items="${recipeList}" var="recipe">
@@ -47,13 +47,13 @@
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label class="col-md-2 control-label">생산량</label>
-                                                <div class="col-md-7">
+                                                <label class="col-md-3 control-label">생산량</label>
+                                                <div class="col-md-8">
                                                     <input type="number" class="form-control" name="output" id="inputBox" value="0">
                                                     <div style="color: crimson; font-size:12px" id="outputError">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-1">
                                                     Kg
                                                 </div>
                                             </div>
@@ -61,8 +61,8 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-right">
-                                    <button type="button" id="submitButton" class="btn btn-purple waves-effect waves-light">등록</button>
-                                    <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="btn btn-purple waves-effect waves-light">
+                                    <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light">등록</button>
+                                    <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="btn btn-secondary waves-effect waves-light">
                                         목록</a>
                                 </div>
                             </div>

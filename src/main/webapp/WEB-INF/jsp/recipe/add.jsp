@@ -32,8 +32,8 @@
                                     <div class="row" id="selectIngredient">
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label class="col-md-2 control-label">레시피 명</label>
-                                                <div class="col-md-7">
+                                                <label class="col-md-3 control-label">레시피 명</label>
+                                                <div class="col-md-9">
                                                     <input type="text" name="name" id="recipe" class="form-control" >
                                                     <div id="recipeError" style="color: crimson;font-size:12px" >
                                                     </div>
@@ -43,8 +43,8 @@
                                     </div>
 
                                     <div class="col-lg-12 text-right">
-                                        <button type="button" id="addButton" class="btn btn-purple waves-effect waves-light">원재료 추가</button>
-                                        <button type="button" id="removeButton" class="btn btn-purple waves-effect waves-light">원재료 삭제</button>
+                                        <button type="button" id="addButton" class="btn btn-primary waves-effect waves-light">원재료 추가</button>
+                                        <button type="button" id="removeButton" class="btn btn-primary waves-effect waves-light">원재료 삭제</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-right" >
@@ -52,8 +52,9 @@
                                     </div>
                                     <div class="col-md-6 text-left" id="ratioMsg" style="color: crimson;font-size:16px" >
                                     </div>
-                                    <button type="button" id="submitButton" class="btn btn-purple waves-effect waves-light" >등록</button>
-                                    <a href="${pageContext.servletContext.contextPath}/recipe" class="btn btn-purple waves-effect waves-light">
+
+                                    <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" >등록</button>
+                                    <a href="${pageContext.servletContext.contextPath}/recipe" class="btn btn-secondary waves-effect waves-light">
                                         목록
                                     </a>
                                 </div>
@@ -145,8 +146,8 @@
             for (let i = 0; i < count; i++) {
                 selectIngredient = '<div class="col-lg-12" id="element1' + i + '">'
                                      + '<div class="form-group row">'
-                                     + '    <label class="col-md-2 control-label">' + (i + 1) + '번 원재료</label>'
-                                     + '    <div class="col-md-7">'
+                                     + '    <label class="col-md-3 control-label">' + (i + 1) + '번 원재료</label>'
+                                     + '    <div class="col-md-8">'
                                      + '        <select class="form-control" name="mixList[' + i + '].ingredientNo" id="ingredient' + i + '">'
                                      + '        <option value="0">선택..</option>'
                                      + '            <c:forEach items="${ingredientList}" var="ingredient" varStatus="index" >'
@@ -159,24 +160,24 @@
                                     + '</div>';
                 inputPump = '<div class="col-lg-12" id="element2' + i + '">'
                             + '<div class="form-group row">'
-                            + ' <label class="col-md-2  control-label">펌프</label>'
-                            + ' <div class="col-md-4">'
+                            + ' <label class="col-md-3  control-label">펌프</label>'
+                            + ' <div class="col-md-8">'
                             + '     <input type="number" class="form-control" id="pumpNo' + i + '" name="mixList[' + i + '].pumpNo" value="">'
                             + '     <div id="pumpError' + i + '" style="color: crimson;font-size:12px" ></div>'
                             + ' </div>'
-                            + ' <div class="col-md-2">'
-                            + '     번 펌프'
+                            + ' <div class="col-md-1">'
+                            + '     번'
                             + ' </div>'
                             + '</div>'
                             + '</div>';
                 inputRatio = '<div class="col-lg-12" id="element3' + i + '">'
                             + '<div class="form-group row">'
-                            + ' <label class="col-md-2 control-label">비율</label>'
-                            + ' <div class="col-md-4">'
+                            + ' <label class="col-md-3 control-label">비율</label>'
+                            + ' <div class="col-md-8">'
                             + '     <input type="number" class="form-control" id="ratio' + i + '" name=mixList[' + i + '].ratio value="">'
                             + '     <div id="ratioError' + i + '" style="color: crimson;font-size:12px" ></div>'
                             + ' </div>'
-                            + ' <div class="col-md-2">'
+                            + ' <div class="col-md-1">'
                             + '     %'
                             + ' </div>'
                             + '</div>'
@@ -195,8 +196,8 @@
         $("#addButton").click(function () {
             selectIngredient = '<div class="col-lg-12" id="element1' + count + '">'
                                 + '<div class="form-group row">'
-                                + '    <label class="col-md-2 control-label">' + (count + 1) + '번 원재료</label>'
-                                + '    <div class="col-md-7">'
+                                + '    <label class="col-md-3 control-label">' + (count + 1) + '번 원재료</label>'
+                                + '    <div class="col-md-8">'
                                 + '        <select class="form-control" name="mixList[' + count + '].ingredientNo" id="ingredient' + count + '">'
                                 + '        <option value="0">선택..</option>'
                                 + '            <c:forEach items="${ingredientList}" var="ingredient" varStatus="index" >'
@@ -210,25 +211,25 @@
 
             inputPump = '<div class="col-lg-12" id="element2' + count + '">'
                         + '<div class="form-group row">'
-                        + ' <label class="col-md-2  control-label">펌프</label>'
-                        + ' <div class="col-md-4">'
+                        + ' <label class="col-md-3  control-label">펌프</label>'
+                        + ' <div class="col-md-8">'
                         + '     <input type="number" class="form-control" id="pumpNo' + count + '" name="mixList[' + count + '].pumpNo" value="">'
                         + '     <div id="pumpError' + count + '" style="color: crimson;font-size:12px" ></div>'
                         + ' </div>'
-                        + ' <div class="col-md-2">'
-                        + '     번 펌프'
+                        + ' <div class="col-md-1">'
+                        + '     번'
                         + ' </div>'
                         + '</div>'
                         + '</div>';
 
             inputRatio = '<div class="col-lg-12" id="element3' + count + '">'
                         + '<div class="form-group row">'
-                        + ' <label class="col-md-2 control-label">비율</label>'
-                        + ' <div class="col-md-4">'
+                        + ' <label class="col-md-3 control-label">비율</label>'
+                        + ' <div class="col-md-8">'
                         + '     <input type="number" class="form-control" id="ratio' + count + '" name=mixList[' + count + '].ratio value="">'
                         + '     <div id="ratioError' + count + '" style="color: crimson;font-size:12px" ></div>'
                         + ' </div>'
-                        + ' <div class="col-md-2">'
+                        + ' <div class="col-md-1">'
                         + '     %'
                         + ' </div>'
                         + '</div>'

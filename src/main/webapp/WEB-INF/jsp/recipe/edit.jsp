@@ -41,8 +41,8 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-right">
-                                    <button type="button" id="addButton" class="btn btn-purple waves-effect waves-light">원재료 추가</button>
-                                    <button type="button" id="removeButton" class="btn btn-purple waves-effect waves-light">원재료 삭제</button>
+                                    <button type="button" id="addButton" class="btn btn-primary waves-effect waves-light">원재료 추가</button>
+                                    <button type="button" id="removeButton" class="btn btn-primary waves-effect waves-light">원재료 삭제</button>
                                 </div>
                             </div>
                             <div class="col-lg-12 text-right" >
@@ -50,8 +50,8 @@
                                 </div>
                                 <div class="col-md-6 text-left" id="ratioMsg" style="color: crimson;font-size:16px" >
                                 </div>
-                                <button type="button" id="submitButton" class="btn btn-purple waves-effect waves-light" >수정</button>
-                                <a href="${pageContext.servletContext.contextPath}/recipe" class="btn btn-purple waves-effect waves-light">
+                                <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" >수정</button>
+                                <a href="${pageContext.servletContext.contextPath}/recipe" class="btn btn-secondary waves-effect waves-light">
                                     목록
                                 </a>
                             </div>

@@ -70,8 +70,8 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-right">
-                                    <button type="submit" id="submitButton" class="btn btn-purple waves-effect waves-light">수정</button>
-                                    <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="btn btn-purple waves-effect waves-light">
+                                    <button type="submit" id="submitButton" class="btn btn-primary waves-effect waves-light">수정</button>
+                                    <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="btn btn-secondary waves-effect waves-light">
                                         목록</a>
                                 </div>
                             </div>

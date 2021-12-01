@@ -22,20 +22,20 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-sm-8">
+                            <form action="${pageContext.servletContext.contextPath}/ingredient" method="POST" id="putForm">
                             <div class="card-box">
                                 <h4 class="header-title"></h4>
 
                                 <p class="sub-header">
                                     레시피에 사용할 원재료를 수정합니다. <br/>* 원재료는 다른 원재료와 중복하여 수정할 수 없습니다.
                                 </p>
-                                <form action="${pageContext.servletContext.contextPath}/ingredient" method="POST" id="putForm">
                                     <input type="hidden" name="_method" value="PUT" />
                                     <input type="hidden" name="no" value="${ingredient.no}" />
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label class="col-md-2 control-label">원재료 명</label>
-                                                <div class="col-md-7">
+                                                <label class="col-md-3 control-label">원재료 명</label>
+                                                <div class="col-md-8">
                                                     <input type="text" id="inputText" name="name" class="form-control" value="${ingredient.name}" >
                                                     <div class="col-md-8" style="color:red; font-size:15px" id="errorName">
                                                         <c:if test="${param.msg eq '1'}">
@@ -46,12 +46,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 text-right">
-                                        <input type="button" id="button" class="btn btn-purple waves-effect waves-light" value="수정" />
-                                        <a href="${pageContext.servletContext.contextPath}/ingredient" class="btn btn-purple waves-effect waves-light">목록</a>
-                                    </div>
-                                </form>
+                                </div>
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="button" class="btn btn-primary waves-effect waves-light" value="수정" />
+                                <a href="${pageContext.servletContext.contextPath}/ingredient" class="btn btn-secondary waves-effect waves-light">목록</a>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
