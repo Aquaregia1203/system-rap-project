@@ -76,7 +76,7 @@
                                 </table>
                             </div>
                             <div class="col-sm-12 text-right">
-                                <button class="btn btn-primary waves-effect">등록</button>
+                                <a href="${pageContext.servletContext.contextPath}/manufacture-plan/form" class="btn btn-primary waves-effect">등록</a>
                             </div>
                         </div>
                     </div>
