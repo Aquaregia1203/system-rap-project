@@ -63,8 +63,10 @@ public class IngredientController {
         ingredient.setNo(no);
 
         ingredient = ingredientServiceImple.viewIngredient(ingredient);
+
         ModelAndView mav = new ModelAndView("ingredient/edit");
-        mav.addObject("ingredient", ingredient);
+         mav.addObject("ingredient", ingredient);
+
         return mav;
     }
 
@@ -74,6 +76,7 @@ public class IngredientController {
 
         if (result) {
             ModelAndView mav = new ModelAndView(new RedirectView("/ingredient"));
+
             return mav;
         }
 

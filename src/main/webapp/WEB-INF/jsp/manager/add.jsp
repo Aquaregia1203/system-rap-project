@@ -7,9 +7,9 @@
     <title>RAP - System : 관리자 등록</title>
 </head>
 
-<body data-layout="horizontal">
+<body style="font-family : 'Nanum Gothic', sans-serif" data-layout="horizontal">
 <div id="wrapper">
-    <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
+    <jsp:include page="top.jsp" />
     <div class="content-page">
         <div class="content">
             <div class="container-fluid">
@@ -22,48 +22,55 @@
                 </div>
                 <div class="row row justify-content-center">
                     <div class="col-sm-8">
-                        <form action="${pageContext.servletContext.contextPath}/admin" method="post" >
+                        <form action="${pageContext.servletContext.contextPath}/admin" method="post" id="formId">
                             <div class="card-box">
                                 <h4 class="header-title"></h4>
                                 <p class="sub-header">
-                                    생산관리자를 등록합니다. <br/> * 아이디는 중복될 수 없습니다.
+                                    생산관리자를 등록합니다. <br/> * 아이디는 중복하여 등록할 수 없습니다.
                                 </p>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group row">
-                                            <label class="col-md-2 control-label">아이디</label>
+                                            <label class="col-md-3 control-label">아이디</label>
                                             <div class="col-md-7">
-                                                <input type="text" id="id" name="id" class="form-control">
+                                                <input type="text" name="id" id="id" class="form-control" >
+                                                <div style="color: crimson; font-size:12px" id="idError">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-2 control-label">비밀번호</label>
+                                            <label class="col-md-3 control-label">비밀번호</label>
                                             <div class="col-md-7">
-                                                <input type="password" id="password" name="password" class="form-control" >
+                                                <input type="password" name="password" id="password" class="form-control" >
+                                                <div style="color: crimson; font-size:12px" id="passwordError">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-2 control-label" for="name">이름</label>
+                                            <label class="col-md-3 control-label">이름</label>
                                             <div class="col-md-7">
-                                                <input type="email" id="name" name="name" class="form-control" >
+                                                <input type="text" name="name" id="name" class="form-control" >
+                                                <div style="color: crimson; font-size:12px" id="nameError">
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-2 control-label">연락처</label>
+                                            <label class="col-md-3 control-label">연락처</label>
                                             <div class="col-md-7">
-                                                <input type="text" id="contact" name="contact" class="form-control" placeholder="000-0000-0000" >
+                                                <input type="text" name="contact" id="contact" class="form-control" placeholder="ex) 010-1234-5678" >
+                                                <div style="color: crimson; font-size:12px" id="contactError">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12 text-right">
-                                <button type="button" id="button" class="btn btn-primary waves-effect waves-light">
+                                <button class="btn btn-primary waves-effect waves-light" type="button" id="submitButton">
                                     등록
                                 </button>
-                                <a href="${pageContext.servletContext.contextPath}/admin" class="btn btn-secondary waves-effect ml-1">
-                                    목록</a>
+                                <a href="${pageContext.servletContext.contextPath}/admin" class="btn btn-secondary waves-effect ml-1">목록</a>
                             </div>
                         </form>
                     </div>
@@ -72,108 +79,60 @@
         </div>
     </div>
 </div>
+<script>
+    $("#submitButton").click(function () {
+        let result = 0;
+        let size = $("#contact").val().length;
 
-
-<h2>관리자 등록하기</h2>
-<hr>
-<form name="addForm" action="/admin" method="post">
-    <table>
-        <tr>
-            <td>아이디 :</td>
-            <td><input type="text" name="id"></td>
-        </tr>
-        <tr>
-            <th colspan="2">
-                <div id="errorId"></div>
-            </th>
-        </tr>
-        <tr>
-            <td>비밀번호 :</td>
-            <td><input type="text" name="password"></td>
-        </tr>
-        <tr>
-            <th colspan="2">
-                <div id="errorPwd"></div>
-            </th>
-        </tr>
-        <tr>
-            <td>이름 :</td>
-            <td><input type="text" name="name"></td>
-        </tr>
-        <tr>
-            <th colspan="2">
-                <div id="errorName"></div>
-            </th>
-        </tr>
-        <tr>
-            <td>연락처 :</td>
-            <td>
-                <select name="top">
-                    <option value="">선택..</option>
-                    <option value="010">010</option>
-                </select> -
-                <input type="text" name="middle"> -
-                <input type="text" name="bottom">
-            </td>
-        </tr>
-        <tr>
-            <th colspan="2">
-                <div id="errorContact">${message}</div>
-            </th>
-        </tr>
-    </table>
-    <input type="button" onclick="auth()" value="등록">
-</form>
-<form action="/admin" method="get">
-    <input type="submit" value="목록">
-</form>
-<div id="errorInfo"></div>
-
-<script type="text/javascript">
-    function auth() {
-        var addForm = document.addForm;
-        var id = addForm.id.value;
-        var password = addForm.password.value;
-        var name = addForm.name.value;
-        var top = addForm.top.value;
-        var middle = addForm.middle.value;
-        var bottom = addForm.bottom.value;
-        const errorId = document.getElementById("errorId");
-        const errorPwd = document.getElementById("errorPwd");
-        const errorName = document.getElementById("errorName");
-        const errorContact = document.getElementById("errorContact");
-
-        if (!id) {
-            errorId.innerHTML = '<div style="color:red; font-size: 8px">*아이디를 입력해 주세요.</div>';
+        if (size != 13) {
+            result++;
+            $("#contactError").text("* 연락처를 입력해 주세요.");
         } else {
-            errorId.innerHTML = '';
+            $("#contactError").text("");
         }
 
-        if (!password) {
-            errorPwd.innerHTML = '<div style="color:red; font-size: 8px">*비밀번호를 입력해 주세요.</div>';
+        if (!$("#id").val()) {
+            result++;
+            $("#idError").text("* 비밀번호를 입력해 주세요.");
         } else {
-            errorPwd.innerHTML = '';
+            $("#idError").text("");
         }
 
-        if (!name) {
-            errorName.innerHTML = '<div style="color:red; font-size: 8px">*이름을 입력해 주세요.</div>';
+        if (!$("#name").val()) {
+            result++;
+            $("#nameError").text("* 이름을 입력해 주세요.");
         } else {
-            errorName.innerHTML = '';
+            $("#nameError").text("");
         }
 
-        if (!top || !middle || !bottom) {
-            errorContact.innerHTML = '<div style="color:red; font-size: 8px">*연락처를 입력해 주세요.</div>';
+        if (!$("#password").val()) {
+            result++;
+            $("#passwordError").text("* 비밀번호를 입력해 주세요.");
         } else {
-            errorContact.innerHTML = '';
+            $("#passwordError").text("");
         }
 
-        if (!id || !password || !name || !top || !middle || !bottom) {
-        } else {
-            addForm.submit();
+        for (let i = 0; i < size; i++) {
+            let contact = $("#contact").val().charAt(i);
+
+            if (i == 3 || i == 8) {
+                if (!isNaN(contact)) {
+                    result++;
+                    $("#contactError").text("* 올바른 형식의 연락처가 아닙니다.")
+                }
+            } else {
+                if (isNaN(contact)) {
+                    result++;
+                    $("#contactError").text("* 올바른 형식의 연락처가 아닙니다.")
+                }
+            }
         }
 
-    }
+        if (result === 0) {
+            $("#formId").submit();
+        }
+    });
 </script>
-
+<jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
 </body>
 </html>

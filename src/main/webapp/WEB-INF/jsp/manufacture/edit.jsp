@@ -6,7 +6,7 @@
 <head>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
-<body data-layout="horizontal">
+<body style="font-family : 'Nanum Gothic', sans-serif" data-layout="horizontal">
     <div id="wrapper">
         <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
         <div class="content-page">
