@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Title</title>
-    <jsp:include page="../head.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
     <link rel="shortcut icon" href="#">
     <link href="/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -15,7 +15,7 @@
     <link href="/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
     <link href="/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="center-menu" data-layout="horizontal">
+<body data-layout="horizontal">
 <div id="wrapper">
     <jsp:include page="top.jsp" />
     <div class="content-page">

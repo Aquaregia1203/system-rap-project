@@ -16,7 +16,7 @@
 
 </head>
 
-<body class="center-menu" data-layout="horizontal">
+<body data-layout="horizontal">
 <div id="wrapper">
     <jsp:include page="top.jsp" />
     <div class="content-page">

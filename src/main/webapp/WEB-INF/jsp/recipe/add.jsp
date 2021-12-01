@@ -16,10 +16,10 @@
         <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
-<body class="center-menu" data-layout="horizontal">
+<body data-layout="horizontal">
 
     <div id="wrapper">
-        <jsp:include page="../top.jsp" />
+        <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
 
         <div class="content-page">
 

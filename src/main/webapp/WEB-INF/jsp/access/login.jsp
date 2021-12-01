@@ -4,7 +4,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <jsp:include page="../head.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
+    <title>RAP - System : 로그인</title>
 </head>
 
 <body>
@@ -22,11 +23,11 @@
                     </div>
 
                     <div class="card-body">
-                        <form name="loginForm"  action="/login" method="post" >
+                        <form name="loginForm" action="${pageContext.servletContext.contextPath}login" method="post" >
                             <c:choose>
                                 <c:when test="${! empty sessionScope.saveId}">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" id="username" name="id" required="" placeholder="아이디">
+                                        <input class="form-control" type="text" id="id" name="id" required="" placeholder="아이디">
                                     </div>
 
                                     <div class="form-group">
@@ -46,7 +47,7 @@
 
                                 <c:otherwise>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" id="username" name="id" required="" placeholder="아이디">
+                                        <input class="form-control" type="text" id="id" name="id" required="" placeholder="아이디">
                                     </div>
 
                                     <div class="form-group">
@@ -72,48 +73,26 @@
     </div>
 </div>
 
-<%--    <form name="loginForm"  action="/login" method="post">--%>
-<%--        <c:if test="${! empty sessionScope.saveId}">--%>
-<%--            아이디   :<input type="text" name="id" value="${sessionScope.saveId}">--%>
-<%--            <div id="errorId"></div>--%>
-<%--            비밀번호 :<input type="text" name="password">--%>
-<%--            <div id="errorPw"></div>--%>
-<%--            <input type="button" onclick="login()" value="로그인">--%>
-<%--            <div id="errorInfo"></div>--%>
-<%--            <input type="checkbox" name="remember" value="check" checked> 아이디 저장--%>
-<%--        </c:if>--%>
+<script src="assets/js/vendor.min.js"></script>
+<script src="assets/js/app.min.js"></script>
+<script type="text/javascript">
 
-<%--        <c:if test="${empty sessionScope.saveId}">--%>
-<%--            아이디   :<input type="text" name="id">--%>
-<%--            <div  id="errorId"></div>--%>
-<%--            비밀번호 :<input type="text" name="password">--%>
-<%--            <div id="errorPw"></div>--%>
-<%--            <input type="button" onclick="login()" value="로그인">--%>
-<%--            <div style="color:red" id="errorInfo">${result}</div>--%>
-<%--            <input type="checkbox" name="remember" value="check"> 아이디 저장--%>
-<%--        </c:if>--%>
-<%--    </form>--%>
+    function login(){
+        var loginForm = document.loginForm;
+        var id = loginForm.id.value;
+        var password = loginForm.password.value;
 
+        const errorId = document.getElementById("errorId");
+        const errorPw = document.getElementById("errorPw");
 
-    <script src="assets/js/vendor.min.js"></script>
-    <script src="assets/js/app.min.js"></script>
-    <script type="text/javascript">
-
-        function login(){
-            var loginForm = document.loginForm;
-            var id = loginForm.id.value;
-            var password = loginForm.password.value;
-            const errorId = document.getElementById("errorId");
-            const errorPw = document.getElementById("errorPw");
-
-            if(!id) {
-                errorId.innerHTML = '<div style="color:red">*아이디를 입력하세요</div>'
-            } else if (!password) {
-                errorPw.innerHTML = '<div style="color:red">*비밀번호를 입력하세요</div>'
-            } else {
-                loginForm.submit();
-            }
+        if(!id) {
+            errorId.innerHTML = '<div style="color:red">*아이디를 입력하세요</div>'
+        } else if (!password) {
+            errorPw.innerHTML = '<div style="color:red">*비밀번호를 입력하세요</div>'
+        } else {
+            loginForm.submit();
         }
-    </script>
+    }
+</script>
 </body>
 </html>

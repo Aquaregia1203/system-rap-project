@@ -4,12 +4,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <jsp:include page="../head.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
 
-<body class="center-menu" data-layout="horizontal">
+<body data-layout="horizontal">
 <div id="wrapper">
-    <jsp:include page="../top.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
     <div class="content-page">
         <div class="content">
             <!-- Start Content-->
@@ -25,6 +25,8 @@
                 </div>
                 <!-- end page title -->
                 <form action="/manufacture-plan" method="post" id="formId">
+                <input type="hidden" name="_method" value="PUT" />
+                <input type="hidden" name="no" value="${manufacture.no}" />
 
                     <div class="row justify-content-center">
                         <div class="col-sm-8">
@@ -40,13 +42,21 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 control-label">레시피</label>
                                             <div class="col-sm-7">
-                                                <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
+                                                <select class="form-control" name="recipeNo" id="selectBox">
+                                                    <option value="0">선택..</option>
+                                                    <c:forEach items="${recipeList}" var="recipe">
+                                                        <c:choose>
+                                                            <c:when test="${manufacture.recipeNo eq recipe.no}">
+                                                                <option value="${recipe.no}" selected>${recipe.name}</option>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <option value="${recipe.no}">${recipe.name}</option>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
                                                 </select>
+                                                <div style="color: crimson; font-size:8px" id="recipeError">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +65,9 @@
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">생산량</label>
                                             <div class="col-md-7">
-                                                <input type="number" class="form-control" value="0">
+                                                <input type="number" class="form-control" name="output" value="${manufacture.output}" />
+                                                <div style="color: crimson; font-size:8px" id="outputError">
+                                                </div>
                                             </div>
                                             <div class="col-md-2">
                                                 Kg
@@ -65,109 +77,54 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 text-right">
-                                <button type="submit" class="btn btn-purple waves-effect waves-light">수정</button>
-                                <button type="submit" class="btn btn-purple waves-effect waves-light">목록</button>
+                                <button type="submit" id="submitButton" class="btn btn-purple waves-effect waves-light">수정</button>
+                                <a href="/manufacture-plan" class="btn btn-purple waves-effect waves-light">목록</a>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
- <!-- 데이터 옮겨 붙일 것  -->
-
-
-        <input type="hidden" name="_method" value="PUT" />
-        <input type="hidden" name="no" value="${manufacture.no}" />
-        <table>
-            <tr>
-                <td>레시피 : </td>
-                <td>
-                    <select name="recipeNo" id="selectBox">
-                        <option value="0">선택..</option>
-                        <c:forEach items="${recipeList}" var="recipe">
-
-                            <c:choose>
-                                <c:when test="${manufacture.recipeNo eq recipe.no}">
-                                    <option value="${recipe.no}" selected>${recipe.name}</option>
-                                </c:when>
-                                <c:otherwise>
-                                    <option value="${recipe.no}">${recipe.name}</option>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th colspan="2">
-                    <div style="color: crimson; font-size:8px" id="recipeError">
-                    </div>
-                </th>
-            </tr>
-            <tr>
-                <td>생산량 : </td>
-                <td>
-                    <input type="number" name="output" value="${manufacture.output}" id="inputBox"/> kg
-                </td>
-            </tr>
-            <tr>
-                <th colspan="2">
-                    <div style="color: crimson; font-size:8px" id="outputError">
-                    </div>
-                </th>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>
-                    <input type="button" id="submitButton" value="수정" />
-                </td>
-                <td>
-                    <a href="/manufacture-plan">목록</a>
-                </td>
-            </tr>
-        </table>
-
-        <script type="text/javascript">
-            document.getElementById("submitButton").addEventListener("click", click, false);
-
-
-            function click() {
-                var selectValue = $("#selectBox option:selected").val();
-                var inputValue = Number($("#inputBox").val());
-                var execution;
-
-                if (selectValue == 0) {
-                    $("#recipeError").text("* 레시피를 선택해 주세요.");
-
-                    execution = false;
-                } else {
-                    $("#recipeError").text("");
-                    execution = true;
-                }
-
-                if (inputValue == "") {
-                    $("#outputError").text("* 생산량을 입력해 주세요.");
-
-                    execution = false;
-                } else if (inputValue < 0
-                    || inputValue > 120) {
-
-                    $("#outputError").text("* 0 ~ 120 사이에 값을 입력해 주세요");
-
-                    execution = false;
-                } else {
-                    $("#outputError").text("");
-                    execution = true;
-                }
-
-                if (execution) {
-                    $ ("#formId").submit();
-                }
-            }
-        </script>
     </div>
 </div>
+
+<script type="text/javascript">
+    document.getElementById("submitButton").addEventListener("click", click, false);
+
+
+    function click() {
+        var selectValue = $("#selectBox option:selected").val();
+        var inputValue = Number($("#inputBox").val());
+        var execution;
+
+        if (selectValue == 0) {
+            $("#recipeError").text("* 레시피를 선택해 주세요.");
+
+            execution = false;
+        } else {
+            $("#recipeError").text("");
+            execution = true;
+        }
+
+        if (inputValue == "") {
+            $("#outputError").text("* 생산량을 입력해 주세요.");
+
+            execution = false;
+        } else if (inputValue < 0
+            || inputValue > 120) {
+
+            $("#outputError").text("* 0 ~ 120 사이에 값을 입력해 주세요");
+
+            execution = false;
+        } else {
+            $("#outputError").text("");
+            execution = true;
+        }
+
+        if (execution) {
+            $ ("#formId").submit();
+        }
+    }
+</script>
 </body>
 </html>

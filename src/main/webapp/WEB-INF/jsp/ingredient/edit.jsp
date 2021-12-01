@@ -4,12 +4,12 @@
 
 <html>
 <head>
-    <jsp:include page="../head.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
     <title>레시피 기반 자동 배합 및 생산 관리 시스템 : 원재료 등록</title>
 </head>
-<body class="center-menu" data-layout="horizontal">
+<body data-layout="horizontal">
 <div id="wrapper">
-    <jsp:include page="../top.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
     <div class="content-page">
         <div class="content">
             <!-- Start Content-->

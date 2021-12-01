@@ -21,9 +21,9 @@
     <link href="/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <title>생산계획 목록 조회</title>
 </head>
-<body class="center-menu" data-layout="horizontal">
+<body data-layout="horizontal">
 <div id="wrapper">
-    <jsp:include page="../top.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
     <div class="content-page">
         <div class="content">
             <div class="container-fluid">
