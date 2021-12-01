@@ -112,7 +112,7 @@
                 dataType: 'json',
                 headers: { "Content-Type" : "application/json;charset=UTF-8"},
                 success:function (result){
-                    let manufactureDate = "";
+                    let date = "";
                     let status = "-";
 
                     console.log(result)
@@ -131,8 +131,8 @@
                     script +='  <tbody>';
 
                     for (var i = 0; i < result.length; i++) {
-                        if (!result[i].manufactureDate) {
-                            manufactureDate = "-";
+                        if (result[i].manufactureDate) {
+                            date = result[i].manufactureDate;
                         }
 
                         if (result[i].status === "Y") {
@@ -141,7 +141,7 @@
 
                         script +='<tr>';
                         script +='  <td class="text-center">' + (result.length - i) + '</td>';
-                        script +='  <td class="text-center">' + manufactureDate +'</td>';
+                        script +='  <td class="text-center">' + date +'</td>';
                         script +='  <td><a href="${pageContext.servletContext.contextPath}/manufacture-plan/' + result[i].no +'">' + result[i].recipeName + '</a></td>';
                         script +='  <td class="text-right">' + result[i].output + 'kg</td>';
                         script +='  <td class="text-center">' + status + '</td>';

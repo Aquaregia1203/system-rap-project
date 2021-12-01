@@ -23,11 +23,11 @@
                     </div>
 
                     <div class="card-body">
-                        <form name="loginForm" action="${pageContext.servletContext.contextPath}login" method="post" >
+                        <form name="loginForm" action="${pageContext.servletContext.contextPath}/login" method="post" >
                             <c:choose>
                                 <c:when test="${! empty sessionScope.saveId}">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" id="id" name="id" required="" placeholder="아이디">
+                                        <input class="form-control" type="text" id="id" name="id" required="" placeholder="아이디" value="${sessionScope.saveId}">
                                     </div>
 
                                     <div class="form-group">
@@ -36,7 +36,7 @@
 
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox checkbox-success">
-                                            <input type="checkbox" name="remember" class="custom-control-input" id="checkbox-signin">
+                                            <input type="checkbox" name="remember" class="custom-control-input" id="checkbox-signin" checked>
                                             <label class="custom-control-label" for="checkbox-signin">아이디 기억</label>
                                         </div>
                                     </div>
@@ -56,7 +56,7 @@
 
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox checkbox-success">
-                                            <input type="checkbox" name="remember" class="custom-control-input" id="checkbox-signin">
+                                            <input type="checkbox" name="remember" value="check" class="custom-control-input" id="checkbox-signin">
                                             <label class="custom-control-label" for="checkbox-signin">아이디 기억</label>
                                         </div>
                                     </div>
@@ -73,15 +73,13 @@
     </div>
 </div>
 
-<script src="assets/js/vendor.min.js"></script>
-<script src="assets/js/app.min.js"></script>
+<jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp"/>
 <script type="text/javascript">
 
     function login(){
         var loginForm = document.loginForm;
         var id = loginForm.id.value;
         var password = loginForm.password.value;
-
         const errorId = document.getElementById("errorId");
         const errorPw = document.getElementById("errorPw");
 
