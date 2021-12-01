@@ -128,7 +128,6 @@ public class RecipeServiceImple {
         Ingredient ingredient = new Ingredient();
 
         if (mixList.size() > oldMixList.size()) {
-
             for (int i = 0; i < oldMixList.size(); i++) {
                 ingredient.setNo(mixList.get(i).getIngredientNo());
                 ingredient.setUsedCount(1);
@@ -146,7 +145,6 @@ public class RecipeServiceImple {
                 mixMapper.insert(mixList.get(i));
             }
         } else if (mixList.size() < oldMixList.size()) {
-
             for (Mix mix : mixList) {
                 ingredient.setNo(mix.getIngredientNo());
                 ingredient.setUsedCount(1);
@@ -161,7 +159,6 @@ public class RecipeServiceImple {
                 mixMapper.delete(oldMixList.get(i));
             }
         } else {
-
             for (Mix mix : mixList) {
                 ingredient.setNo(mix.getIngredientNo());
                 ingredient.setUsedCount(1);
