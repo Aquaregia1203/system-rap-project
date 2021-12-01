@@ -13,8 +13,8 @@
                 </li>
 
                 <li class="dropdown d-none d-lg-block">
-                    <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="${pageContext.servletContext.contextPath}/logout" role="button" >
-                        <input type="button" class="btn btn-xs btn-primary waves-effect width-xs waves-light" value="로그아웃" id="logoutButton">
+                    <a class="nav-link dropdown-toggle mr-0"  href="${pageContext.servletContext.contextPath}/logout" role="button" >
+                        <input type="button" class="btn btn-xs btn-primary waves-effect width-xs waves-light" value="로그아웃">
                     </a>
                 </li>
             </ul>

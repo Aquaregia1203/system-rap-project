@@ -11,7 +11,7 @@
 
                 </li>
                 <li class="dropdown d-none d-lg-block">
-                    <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="/logout" role="button" >
+                    <a class="nav-link dropdown-toggle mr-0" href="/logout" role="button" >
                         <input type="button" class="btn btn-info waves-effect width-md waves-light btn-lg" value="로그아웃" id="logoutButton">
                         <%--                            <span class="align-middle"> 로그아웃 </span>--%>
                     </a>
