@@ -3,12 +3,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <jsp:include page="../head.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
-<body class="center-menu" data-layout="horizontal">
+<body data-layout="horizontal">
 
 <div id="wrapper">
-    <jsp:include page="../top.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
 
     <div class="content-page">
 

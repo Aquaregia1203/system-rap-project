@@ -22,8 +22,7 @@ public class IngredientController {
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<Ingredient> viewIngredientList(Ingredient ingredient) {
-       List<Ingredient> ingredientList = ingredientServiceImple.viewIngredientList(ingredient);
-       return ingredientList;
+       return ingredientServiceImple.viewIngredientList(ingredient);
     }
 
     @GetMapping("/{no}")
@@ -33,6 +32,7 @@ public class IngredientController {
 
         ModelAndView mav = new ModelAndView("ingredient/view");
         mav.addObject("ingredient", ingredient);
+
         return mav;
     }
 
@@ -44,12 +44,16 @@ public class IngredientController {
     @PostMapping
     public ModelAndView addIngredient(Ingredient ingredient) {
         boolean result = ingredientServiceImple.addIngredient(ingredient);
+
         if (result) {
             ModelAndView mav = new ModelAndView(new RedirectView("/ingredient"));
+
             return mav;
         }
+
         ModelAndView retry = new ModelAndView("ingredient/add");
-        retry.addObject("msg", "*중복되는 원재료 입니다.");
+        retry.addObject("msg", "1");
+
         return retry;
     }
 
@@ -67,12 +71,15 @@ public class IngredientController {
     @PutMapping
     public ModelAndView editIngredient(Ingredient ingredient) {
         boolean result = ingredientServiceImple.editIngredient(ingredient);
+
         if (result) {
             ModelAndView mav = new ModelAndView(new RedirectView("/ingredient"));
             return mav;
         }
+
         ModelAndView retry = new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo() + "/form"));
         retry.addObject("msg", "1");
+
         return retry;
     }
 

@@ -3,84 +3,69 @@
 
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>관리자 등록</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Responsive bootstrap 4 admin template" name="description" />
-    <meta content="Coderthemes" name="author" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
-    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
-
+    <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
+    <title>RAP - System : 관리자 등록</title>
 </head>
 
-<body class="center-menu" data-layout="horizontal">
+<body data-layout="horizontal">
 <div id="wrapper">
-    <jsp:include page="top.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
     <div class="content-page">
         <div class="content">
-
-            <!-- Start Content-->
             <div class="container-fluid">
-
-                <!-- start page title -->
                 <div class="row justify-content-center">
                     <div class="col-8">
                         <div class="page-title-box">
-
                             <h4 class="page-title">관리자 등록</h4>
                         </div>
                     </div>
                 </div>
-                <!-- end page title -->
-
                 <div class="row row justify-content-center">
                     <div class="col-sm-8">
-                        <div class="card-box">
-                            <h4 class="header-title"></h4>
-                            <p class="sub-header">
-                                생산관리자를 등록합니다. <br/> * 아이디는 중복될 수 없습니다.
-                            </p>
-                            <div class="row">
-                                <div class="col-lg-12">
+                        <form action="${pageContext.servletContext.contextPath}/admin" method="post" >
+                            <div class="card-box">
+                                <h4 class="header-title"></h4>
+                                <p class="sub-header">
+                                    생산관리자를 등록합니다. <br/> * 아이디는 중복될 수 없습니다.
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-12">
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">아이디</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control">
+                                                <input type="text" id="id" name="id" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">비밀번호</label>
                                             <div class="col-md-7">
-                                                <input type="password" class="form-control" >
+                                                <input type="password" id="password" name="password" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-2 control-label" for="example-email">이름</label>
+                                            <label class="col-md-2 control-label" for="name">이름</label>
                                             <div class="col-md-7">
-                                                <input type="email" id="example-email" name="example-email" class="form-control" >
+                                                <input type="email" id="name" name="name" class="form-control" >
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-2 control-label">연락처</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" placeholder="000-0000-0000" >
+                                                <input type="text" id="contact" name="contact" class="form-control" placeholder="000-0000-0000" >
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12 text-right">
-                            <button class="btn btn-primary waves-effect waves-light" type="submit">
-                                등록
-                            </button>
-                            <button type="reset" class="btn btn-secondary waves-effect ml-1">
-                                목록
-                            </button>
-                        </div>
+                            <div class="col-lg-12 text-right">
+                                <button type="button" id="button" class="btn btn-primary waves-effect waves-light">
+                                    등록
+                                </button>
+                                <a href="${pageContext.servletContext.contextPath}/admin" class="btn btn-secondary waves-effect ml-1">
+                                    목록</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
