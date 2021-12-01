@@ -13,22 +13,22 @@
                 </li>
 
                 <li class="dropdown d-none d-lg-block">
-                    <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="/logout" role="button" >
+                    <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="${pageContext.servletContext.contextPath}/logout" role="button" >
                         <input type="button" class="btn btn-xs btn-primary waves-effect width-xs waves-light" value="로그아웃" id="logoutButton">
                     </a>
                 </li>
             </ul>
             <!-- LOGO -->
             <div class="logo-box">
-                <a href="index.html" class="logo text-center">
-                                    <span class="logo-lg">
-                                        <!--img src="assets/images/logo.png" alt="" height="30">-->
-                                        <span class="logo-lg-text-light">RAP-SYSTEM</span>
-                                    </span>
+                <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="logo text-center">
+                    <span class="logo-lg">
+                        <!--img src="assets/images/logo.png" alt="" height="30">-->
+                        <span class="logo-lg-text-light">RAP-SYSTEM</span>
+                    </span>
                     <span class="logo-sm">
-                                        <!-- <span class="logo-sm-text-dark">Z</span> -->
-                                        <img src="${pageContext.servletContext.contextPath}/assets/images/logo-sm.png" alt="" height="22">
-                                    </span>
+                        <!-- <span class="logo-sm-text-dark">Z</span> -->
+<%--                        <img src="${pageContext.servletContext.contextPath}/assets/images/logo-sm.png" alt="" height="22">--%>
+                    </span>
                 </a>
             </div>
 
@@ -42,13 +42,16 @@
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
                     <li class="has-submenu">
-                        <a href="#"> <i class="mdi mdi-calendar-blank-multiple"></i>생산계획</a>
+                        <a href="${pageContext.servletContext.contextPath}/manufacture-plan">
+                            <i class="mdi mdi-calendar-blank-multiple"></i>생산계획</a>
                     </li>
                     <li class="has-submenu">
-                        <a href="#"> <i class="mdi mdi-book-multiple"></i>레시피</a>
+                        <a href="${pageContext.servletContext.contextPath}/recipe">
+                            <i class="mdi mdi-book-multiple"></i>레시피</a>
                     </li>
                     <li class="has-submenu">
-                        <a href="#"> <i class="mdi mdi-layers"></i>원재료</a>
+                        <a href="${pageContext.servletContext.contextPath}/ingredient">
+                            <i class="mdi mdi-layers"></i>원재료</a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>

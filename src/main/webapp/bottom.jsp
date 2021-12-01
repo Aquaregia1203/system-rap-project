@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!-- Vendor js -->
-<script src="${pageContext.servletContext.contextPath}/assets/js/vendor.min.js"></script>
+<!-- <script src="${pageContext.servletContext.contextPath}/assets/js/vendor.min.js"></script> -->
 <!-- Datatable plugin js -->
 <script src="${pageContext.servletContext.contextPath}/assets/libs/datatables/jquery.dataTables.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
@@ -21,4 +21,4 @@
 <!-- Datatables init -->
 <script src="${pageContext.servletContext.contextPath}/assets/js/pages/datatables.init.js"></script>
 <!-- App js -->
-<script src="${pageContext.servletContext.contextPath}/assets/js/app.min.js"></script>
+<!-- <script src="${pageContext.servletContext.contextPath}/assets/js/app.min.js"></script> -->
