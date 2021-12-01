@@ -30,6 +30,6 @@
 <script src="${pageContext.servletContext.contextPath}/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-<!-- Init js-->
+<!-- Init js -->
 <script src="${pageContext.servletContext.contextPath}/assets/js/pages/form-pickers.init.js"></script>
-<!-- <script src="${pageContext.servletContext.contextPath}/assets/js/app.min.js"></script> -->
+<script src="${pageContext.servletContext.contextPath}/assets/js/app.min.js" />
