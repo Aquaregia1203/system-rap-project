@@ -22,3 +22,13 @@
 <script src="${pageContext.servletContext.contextPath}/assets/js/pages/datatables.init.js"></script>
 <!-- App js -->
 <script src="${pageContext.servletContext.contextPath}/assets/js/app.min.js"></script>
+
+<script src="${pageContext.servletContext.contextPath}/assets/libs/moment/moment.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- Init js-->
+<script src="${pageContext.servletContext.contextPath}/assets/js/pages/form-pickers.init.js"></script>

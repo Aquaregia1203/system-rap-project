@@ -4,86 +4,77 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <jsp:include page="../head.jsp" />
-    <link href="/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <title>RAP - System : 원재료 목록</title>
+    <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
-<body class="center-menu" data-layout="horizontal">
-    <div id="wrapper">
-    <jsp:include page="../top.jsp" />
-        <div class="content-page">
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box">
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                    </ol>
-                                </div>
-                                <h4 class="page-title">원재료 목록 조회</h4>
+
+<body data-layout="horizontal" style="font-family: 'Nanum Gothic',sans-serif">
+<!-- Begin page -->
+<div id="wrapper">
+    <!-- Navigation Bar-->
+    <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0"></ol>
                             </div>
+                            <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">원재료</h4>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card-box table-responsive">
-                                <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="dataTables_filter">
-                                                <label>
-                                                    원재료 명:
-                                                    <input id="keywordName" class="form-control form-control-sm" type="text"
-                                                           placeholder="Search...">
-                                                    <input id="search" class="btn btn-sm btn-secondary waves-effect width-xs" type="button" value="검색">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="table"></div>
-                                <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="dataTables_filter">
-                                                <form action="/ingredient/form" method="get">
-                                                    <label>
-                                                        <input class="btn btn-sm btn-secondary waves-effect width-xs" type="submit" value="등록">
-                                                    </label>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-6">
-                                            <div class="dataTables_filter">
-                                                <label>
-                                                    <div class="btn-group mb-2">
-                                                        <button type="button" class="btn btn-secondary waves-effect"><</button>
-                                                        <button type="button" class="btn btn-secondary waves-effect">1</button>
-                                                        <button type="button" class="btn btn-secondary waves-effect">></button>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        <label>
+                            <div class="form-group form-inline">
+                                원재료 명:
+                                <input class="form-control" type="text" placeholder="Search...">
+                                <button class="btn btn-primary waves-effect">검색</button>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead class="text-center">
+                                <tr>
+                                    <th>번호</th>
+                                    <th>원재료</th>
+                                    <th>등록 일자</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>마요네즈</td>
+                                    <td class="text-center">2021-11-22</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-sm-12 text-right">
+                                <button class="btn btn-primary waves-effect">등록</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- end container-fluid -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Recipe-based automatic formulation and production management System
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
-            <!-- end content -->
         </div>
-    </div>
-
     <script type="text/javascript">
         $(document).ready(function (){
             drawTable();
@@ -103,13 +94,13 @@
                 success: function (result) {
                     console.log(result)
                     var script = "";
-                    script += '<table id="datatable" class="table table-sm table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'
+                    script += '<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'
                     script += '    <colgroup>';
                     script += '        <col width="10%"/>';
                     script += '        <col width="*"/>';
-                    script += '       <col width="20%"/>';
+                    script += '        <col width="20%"/>';
                     script += '    </colgroup>';
-                    script += '<thead align="center">';
+                    script += '<thead class="text-center">';
                     script += '<tr>';
                     script += '    <th>번호</th>';
                     script += '    <th>원재료</th>';
@@ -120,9 +111,9 @@
 
                     for (var i = 0; i < result.length; i++) {
                         script += '<tr>';
-                        script += '    <td align="center">' + (i + 1) + '</td>';
+                        script += '    <td class="text-center">' + (i + 1) + '</td>';
                         script += '    <td><a href="/ingredient/' + result[i].no +'">' + result[i].name + '</a></td>';
-                        script += '    <td align="center">' + result[i].addDate + '</td>';
+                        script += '    <td class="text-center">' + result[i].addDate + '</td>';
                         script += '</tr>';
                     }
                     script += "</tbody>";
@@ -132,5 +123,6 @@
             });
         }
     </script>
+    <jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
 </body>
 </html>

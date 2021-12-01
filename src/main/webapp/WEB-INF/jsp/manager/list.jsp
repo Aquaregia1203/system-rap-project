@@ -4,16 +4,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Title</title>
+    <title>관리자 목록</title>
     <jsp:include page="../head.jsp" />
-    <link rel="shortcut icon" href="#">
-    <link href="/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="center-menu" data-layout="horizontal">
 <div id="wrapper">
@@ -28,7 +20,7 @@
                                 <ol class="breadcrumb m-0">
                                 </ol>
                             </div>
-                            <h4 class="page-title">관리자 목록</h4>
+                            <h4 class="page-title" style="font-family:'나눔스퀘어 Bold'">관리자 목록</h4>
                         </div>
                     </div>
                 </div>
@@ -49,7 +41,49 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="table"></div>
+                            <div id="table">
+                                <table class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <colgroup>
+                                        <col width="10%"/>
+                                        <col width="*"/>
+                                        <col width="*"/>
+                                        <col width="10%"/>
+                                        <col width="*"/>
+                                        <col width="*"/>
+                                    </colgroup>
+                                    <thead class="text-center" style="font-family:'나눔스퀘어_ac'">
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>구분</th>
+                                            <th>아이디</th>
+                                            <th>이름</th>
+                                            <th>연락처</th>
+                                            <th>등록 일자</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-family:'나눔스퀘어_ac'">
+                                        <c:forEach items="${managerList}" var="manager" varStatus="index">
+                                            <tr>
+                                                <c:if test="${page < }}">
+                                                    <td class="text-center">${index.count}</td>
+                                                </c:if>
+                                                <c:choose>
+                                                    <c:when test="${manager.division eq 'S'}">
+                                                        <td>시스템 관리자</td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td>생산 관리자</td>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <td><a href="/admin/${manager.id}">${manager.id}</a></td>
+                                                <td class="text-center">${manager.name}</td>
+                                                <td class="text-center">${manager.contact}</td>
+                                                <td class="text-center">${manager.addDate}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
@@ -63,13 +97,23 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_filter">
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="dataTables_filter text-center">
                                             <label>
                                                 <div class="btn-group mb-2">
-                                                    <button type="button" class="btn btn-secondary waves-effect"><</button>
-                                                    <button type="button" class="btn btn-secondary waves-effect">1</button>
-                                                    <button type="button" class="btn btn-secondary waves-effect">></button>
+                                                    <ul>
+                                                        <li>
+                                                            <a href='<c:url value="/admin?page=${page-1 }"/>'><i class="fa fa-chevron-left"></i></a>
+                                                        </li>
+                                                        <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+                                                            <li>
+                                                                <a href='<c:url value="/admin?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+                                                            </li>
+                                                        </c:forEach>
+                                                        <li>
+                                                            <a href='<c:url value="/admin?page=${page+1 }"/>'><i class="fa fa-chevron-right"></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </label>
                                         </div>
@@ -85,7 +129,6 @@
 </div>
     <script type="text/javascript">
         $(document).ready(function (){
-            drawTable();
             $("#search").click(function (){
                 $("#table").html("");
                 drawTable();
@@ -105,7 +148,7 @@
 
                     console.log(result)
                     var script = "";
-                    script += '<table class="table table-sm table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed" style="border-collapse: collapse; border-spacing: 0; width: 100%;" role="grid" aria-describedby="datatable_Info">';
+                    script += '<table class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed" style="border-collapse: collapse; border-spacing: 0; width: 100%;" role="grid" aria-describedby="datatable_Info">';
                     script += '<colgroup>';
                     script += '    <col width="10%"/>';
                     script += '    <col width="*"/>';
@@ -114,7 +157,7 @@
                     script += '    <col width="*"/>';
                     script += '    <col width="*"/>';
                     script += '</colgroup>';
-                    script += '<thead align="center" >';
+                    script += '<thead class="text-center" style="font-family: 나눔명조,sans-serif">';
                     script += '<tr>';
                     script += '    <th>번호</th>';
                     script += '    <th>구분</th>';
@@ -124,7 +167,7 @@
                     script += '    <th>등록 일자</th>';
                     script += '</tr>';
                     script += '</thead>';
-                    script += '<tbody>';
+                    script += '<tbody style="font-family: 나눔명조, sans-serif">';
 
                     for (var i = 0; i < result.length; i++) {
                         if (result[i].division === "S") {
@@ -140,12 +183,12 @@
                         }
 
                         script += '<tr>';
-                        script += '    <td align="center">' + (i + 1) + '</td>';
+                        script += '    <td class="text-center">' + (i + 1) + '</td>';
                         script += '    <td>' + divisions + '</td>';
                         script += '    <td><a href="/admin/' + result[i].id +'">' + result[i].id + '</a></td>';
-                        script += '    <td align="center">' + result[i].name + '</td>';
-                        script += '    <td align="center">' + result[i].contact + '</td>';
-                        script += '    <td align="center">' + result[i].addDate + '</td>';
+                        script += '    <td class="text-center">' + result[i].name + '</td>';
+                        script += '    <td class="text-center">' + result[i].contact + '</td>';
+                        script += '    <td class="text-center">' + result[i].addDate + '</td>';
                         script += '</tr>';
                     }
                     script += '</tbody>';
