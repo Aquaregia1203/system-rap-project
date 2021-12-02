@@ -20,33 +20,50 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
+                            <ol class="breadcrumb m-0">
+                            </ol>
                             <div class="page-title-right">
-                                <ol class="breadcrumb m-0"></ol>
+                                <label>
+                                    <div class="form-group form-inline">
+                                        생산 일자:
+                                        <div>
+                                            <div class="input-daterange input-group">
+                                                <input type="date" class="form-control" name="start" id="start"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text bg-primary text-white b-0">to</span>
+                                                </div>
+
+                                                <input type="date" class="form-control" name="end" id="end"/>
+                                            </div>
+                                        </div>
+                                        <button id="search" class="btn btn-primary waves-effect">검색</button>
+                                    </div>
+                                </label>
                             </div>
                             <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">생산계획</h4>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 text-right">
-                        <label>
-                            <div class="form-group form-inline">
-                                생산 일자:
-                                <div>
-                                    <div class="input-daterange input-group" id="date-range">
-                                        <input type="text" class="form-control" name="start" />
-                                        <div class="input-group-append">
-                                            <span class="input-group-text bg-primary text-white b-0">to</span>
-                                        </div>
+<%--                <div class="row">--%>
+<%--                    <div class="col-sm-12 text-right">--%>
+<%--                        <label>--%>
+<%--                            <div class="form-group form-inline">--%>
+<%--                                생산 일자:--%>
+<%--                                <div>--%>
+<%--                                    <div class="input-daterange input-group">--%>
+<%--                                        <input type="date" class="form-control" name="start" id="start"/>--%>
+<%--                                        <div class="input-group-append">--%>
+<%--                                            <span class="input-group-text bg-primary text-white b-0">to</span>--%>
+<%--                                        </div>--%>
 
-                                        <input type="text" class="form-control" name="end" />
-                                    </div>
-                                </div>
-                                <button id="search" class="btn btn-primary waves-effect">검색</button>
-                            </div>
-                        </label>
-                    </div>
-                </div>
+<%--                                        <input type="date" class="form-control" name="end" id="end"/>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <button id="search" class="btn btn-primary waves-effect">검색</button>--%>
+<%--                            </div>--%>
+<%--                        </label>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">

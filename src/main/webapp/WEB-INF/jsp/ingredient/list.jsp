@@ -20,24 +20,31 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
+                            <ol class="breadcrumb m-0"></ol>
                             <div class="page-title-right">
-                                <ol class="breadcrumb m-0"></ol>
+                                <label>
+                                    <div class="form-group form-inline">
+                                        원재료 명:
+                                        <input id="keywordName" class="form-control" type="text" placeholder="Search...">
+                                        <button id="search" class="btn btn-primary waves-effect">검색</button>
+                                    </div>
+                                </label>
                             </div>
                             <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">원재료</h4>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 text-right">
-                        <label>
-                            <div class="form-group form-inline">
-                                원재료 명:
-                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">
-                                <button id="search" class="btn btn-primary waves-effect">검색</button>
-                            </div>
-                        </label>
-                    </div>
-                </div>
+<%--                <div class="row">--%>
+<%--                    <div class="col-sm-12 text-right">--%>
+<%--                        <label>--%>
+<%--                            <div class="form-group form-inline">--%>
+<%--                                원재료 명:--%>
+<%--                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">--%>
+<%--                                <button id="search" class="btn btn-primary waves-effect">검색</button>--%>
+<%--                            </div>--%>
+<%--                        </label>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
