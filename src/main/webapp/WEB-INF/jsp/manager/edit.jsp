@@ -23,6 +23,7 @@
                     <div class="row row justify-content-center">
                         <div class="col-sm-8">
                             <form action="${pageContext.servletContext.contextPath}/admin" method="post" id="formId">
+                            <input type="hidden" name="id" value="${manager.id}" />
                             <div class="card-box">
                                 <h4 class="header-title"></h4>
                                 <p class="sub-header">

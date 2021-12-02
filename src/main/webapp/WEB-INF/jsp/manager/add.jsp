@@ -33,15 +33,16 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 control-label">아이디</label>
                                             <div class="col-md-7">
-                                                <input type="text" name="id" id="id" class="form-control" >
+                                                <input type="text" name="id" id="id" class="form-control" value="${manager.id}">
                                                 <div style="color: crimson; font-size:12px" id="idError">
+                                                    ${message}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 control-label">비밀번호</label>
                                             <div class="col-md-7">
-                                                <input type="password" name="password" id="password" class="form-control" >
+                                                <input type="password" name="password" id="password" class="form-control" value="${manager.password}">
                                                 <div style="color: crimson; font-size:12px" id="passwordError">
                                                 </div>
                                             </div>
@@ -49,7 +50,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 control-label">이름</label>
                                             <div class="col-md-7">
-                                                <input type="text" name="name" id="name" class="form-control" >
+                                                <input type="text" name="name" id="name" class="form-control" value="${manager.name}">
                                                 <div style="color: crimson; font-size:12px" id="nameError">
                                                 </div>
                                             </div>
@@ -58,7 +59,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 control-label">연락처</label>
                                             <div class="col-md-7">
-                                                <input type="text" name="contact" id="contact" class="form-control" placeholder="ex) 010-1234-5678" >
+                                                <input type="text" name="contact" id="contact" class="form-control" placeholder="ex) 010-1234-5678" value="${manager.contact}" >
                                                 <div style="color: crimson; font-size:12px" id="contactError">
                                                 </div>
                                             </div>

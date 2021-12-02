@@ -12,20 +12,25 @@ public class ManagerServiceImple{
 
     public List<Manager> viewManagerList(Manager manager) {
         List<Manager> rows = managerMapper.selectAll(manager);
+
         return rows;
     }
 
     public Manager viewManager(Manager manager) {
         Manager row = managerMapper.select(manager);
+
         return row;
     }
 
     public boolean addManager(Manager manager) {
         Manager checkDuplicate = managerMapper.select(manager);
+
         if (checkDuplicate != null) {
             return false;
         }
+
         managerMapper.insert(manager);
+
         return true;
     }
 
@@ -38,6 +43,7 @@ public class ManagerServiceImple{
         } else {
             managerMapper.update(manager);
         }
+
         return true;
     }
 }

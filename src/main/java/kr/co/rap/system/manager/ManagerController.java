@@ -44,17 +44,16 @@ public class ManagerController {
     }
 
     @PostMapping
-    public ModelAndView addManager(Manager manager, @RequestParam Map<String, String> contact) {
-        String number = contact.get("top") + "-" + contact.get("middle") + "-" + contact.get("bottom");
-        manager.setContact(number);
-        boolean result = managerServiceImple.addManager(manager);
-        if (result) {
-            ModelAndView mav = new ModelAndView(new RedirectView("/admin/" + manager.getId()));
-            return mav;
+    public ModelAndView addManager(Manager manager) {
+        if (managerServiceImple.addManager(manager)) {
+            return new ModelAndView(new RedirectView("/admin/" + manager.getId()));
         }
-        ModelAndView retry = new ModelAndView("mamger/add");
-        retry.addObject("message", "정보를 올바르게 입력해 주세요.");
-        return new ModelAndView("manager/add");
+
+        ModelAndView retry = new ModelAndView("manager/add");
+        retry.addObject("message", "* 아이디의 중복이 존재합니다.");
+        retry.addObject("manager", manager);
+
+        return retry;
     }
 
     @GetMapping("/{id}/form")
@@ -62,25 +61,17 @@ public class ManagerController {
         Manager manager = new Manager();
         manager.setId(id);
         manager = managerServiceImple.viewManager(manager);
-        String contact = manager.getContact();
-        String[] number =  contact.split("-");
-        Map<String, String> contactNumber = new HashMap<String, String>();
-        contactNumber.put("top", number[0]);
-        contactNumber.put("middle", number[1]);
-        contactNumber.put("bottom", number[2]);
 
         ModelAndView mav = new ModelAndView("manager/edit");
         mav.addObject("manager", manager);
-        mav.addObject("contact", contactNumber);
 
         return mav;
     }
 
     @PutMapping
-    public ModelAndView editManager(Manager manager, @RequestParam Map<String, String>contact) {
-        String number = contact.get("top") + "-" + contact.get("middle") + "-" + contact.get("bottom");
-        manager.setContact(number);
+    public ModelAndView editManager(Manager manager) {
         managerServiceImple.editManager(manager);
+
         return new ModelAndView(new RedirectView("/admin/" + manager.getId()));
     }
 }
