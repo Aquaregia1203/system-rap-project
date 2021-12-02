@@ -20,24 +20,31 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
+                            <ol class="breadcrumb m-0"></ol>
                             <div class="page-title-right">
-                                <ol class="breadcrumb m-0"></ol>
+                                <label>
+                                    <div class="form-group form-inline">
+                                        관리자 명:
+                                        <input id="keywordName" class="form-control" type="text" placeholder="Search...">
+                                        <button id="search" class="btn btn-primary waves-effect">검색</button>
+                                    </div>
+                                </label>
                             </div>
                             <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">관리자</h4>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 text-right">
-                        <label>
-                            <div class="form-group form-inline">
-                                관리자 명:
-                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">
-                                <button id="search" class="btn btn-primary waves-effect">검색</button>
-                            </div>
-                        </label>
-                    </div>
-                </div>
+<%--                <div class="row">--%>
+<%--                    <div class="col-sm-12 text-right">--%>
+<%--                        <label>--%>
+<%--                            <div class="form-group form-inline">--%>
+<%--                                관리자 명:--%>
+<%--                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">--%>
+<%--                                <button id="search" class="btn btn-primary waves-effect">검색</button>--%>
+<%--                            </div>--%>
+<%--                        </label>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
@@ -46,19 +53,46 @@
                                     <thead class="text-center">
                                     <tr>
                                         <th>번호</th>
-                                        <th>레시피</th>
-                                        <th>등록 일자</th>
+                                        <th>구분</th>
+                                        <th>아이디</th>
+                                        <th>이름</th>
+                                        <th>연락처</th>
+                                        <th>등록일자</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>오리엔탈 소스</td>
-                                        <td class="text-center">2021-11-22</td>
-                                    </tr>
+                                    <c:forEach items="${managerList}" var="manager" varStatus="index">
+                                        <tr>
+                                            <td>${index.count}</td>
+                                            <c:choose>
+                                                <c:when test="${manager.division eq 'S'}">
+                                                    <td>시스템 관리자</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td>생산 관리자</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <td><a href="${pageContext.servletContext.contextPath}/admin/${manager.id}">${manager.id}</a></td>
+                                            <td>${manager.name}</td>
+                                            <td>${manager.contact}</td>
+                                            <td>${manager.addDate}</td>
+                                        </tr>
+                                    </c:forEach>
+<%--                                    <tr>--%>
+<%--                                        <td class="text-center">1</td>--%>
+<%--                                        <td>오리엔탈 소스</td>--%>
+<%--                                        <td class="text-center">2021-11-22</td>--%>
+<%--                                    </tr>--%>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6"></div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-sm-12 text-right">
                                 <a href="${pageContext.servletContext.contextPath}/admin/form"><button class="btn btn-primary waves-effect">등록</button></a>
@@ -104,7 +138,7 @@
                         script += '<tr>';
                         script += '    <th>번호</th>';
                         script += '    <th>구분</th>';
-                        script += '     <th>아이디</th>';
+                        script += '    <th>아이디</th>';
                         script += '    <th>이름</th>';
                         script += '    <th>연락처</th>';
                         script += '    <th>등록 일자</th>';

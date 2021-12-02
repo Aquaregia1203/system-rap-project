@@ -92,7 +92,7 @@
                                         <input type="hidden" name="_method" value="delete">
                                         <input type="hidden" name="no" value="${manufacture.no}">
                                     </c:if>
-                                    <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="btn btn-primary waves-effect">목록</a>
+                                    <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="btn btn-secondary waves-effect">목록</a>
                                 </form>
                             </div>
                         </div>

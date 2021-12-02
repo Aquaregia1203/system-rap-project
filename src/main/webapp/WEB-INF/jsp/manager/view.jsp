@@ -69,7 +69,7 @@
                             </table>
                             <div class="col-sm-12 text-right">
                                 <a href="${pageContext.servletContext.contextPath}/admin/${manager.id}/form" class="btn btn-primary waves-effect">수정</a>
-                                <a href="${pageContext.servletContext.contextPath}/admin" class="btn btn-primary waves-effect">목록</a>
+                                <a href="${pageContext.servletContext.contextPath}/admin" class="btn btn-secondary waves-effect">목록</a>
                             </div>
                         </div>
                     </div>
