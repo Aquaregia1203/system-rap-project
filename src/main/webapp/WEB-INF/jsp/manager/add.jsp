@@ -22,7 +22,7 @@
                 </div>
                 <div class="row row justify-content-center">
                     <div class="col-sm-8">
-                        <form action="${pageContext.servletContext.contextPath}/admin" method="post" id="formId">
+                        <form action="${pageContext.servletContext.contextPath}/manager" method="post" id="formId">
                             <div class="card-box">
                                 <h4 class="header-title"></h4>
                                 <p class="sub-header">
@@ -71,7 +71,7 @@
                                 <button class="btn btn-primary waves-effect waves-light" type="button" id="submitButton">
                                     등록
                                 </button>
-                                <a href="${pageContext.servletContext.contextPath}/admin" class="btn btn-secondary waves-effect ml-1">목록</a>
+                                <a href="${pageContext.servletContext.contextPath}/manager" class="btn btn-secondary waves-effect ml-1">목록</a>
                             </div>
                         </form>
                     </div>

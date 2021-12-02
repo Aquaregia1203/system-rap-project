@@ -14,7 +14,7 @@ public class ManufactureManagerCheckInterceptor extends HandlerInterceptorAdapte
         if ("M".equals(division)) {
             return true;
         }
-        response.sendRedirect("/admin");
+        response.sendRedirect("/manager");
         return false;
     }
 }
