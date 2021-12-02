@@ -13,7 +13,8 @@
                            >
 	   <context:annotation-config />
 	   <context:component-scan base-package="kr.co.rap.system" />
-	   
+	   <context:property-placeholder location="classpath:accessproperties.properties" />
+
 	   <mvc:annotation-driven />
 	   <mvc:default-servlet-handler />
 

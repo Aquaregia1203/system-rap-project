@@ -16,4 +16,6 @@ public interface ManufactureMapper {
     public int update(Manufacture manufacture);
 
     public int delete(Manufacture manufacture);
+
+    public int count();
 }

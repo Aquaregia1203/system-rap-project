@@ -30,13 +30,20 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
-                            <div class="row text-right">
-                                <div class="col-sm-12 col-md-12">
-                                    <c:if test="${manufacture.status eq 'N'}">
-                                        <a href="${pageContext.servletContext.contextPath}/manufacture-plan/execution" class="btn btn-primary waves-effect">생산 시작</a>
-                                    </c:if>
+                            <form action="${pageContext.servletContext.contextPath}/manufacture-plan/execution" method="get" >
+                                <input type="hidden" name="recipeNo" value="${manufacture.recipeNo}" />
+                                <input type="hidden" name="output" value="${manufacture.output}" />
+                                <input type="hidden" name="no" value="${manufacture.no}" />
+                                <input type="hidden" name="status" value="${manufacture.status}" />
+                                <div class="row text-right">
+                                    <div class="col-sm-12 col-md-12">
+                                        <c:if test="${(applicationScope.status eq 'OFF' || applicationScope.status eq null)
+                                                            && manufacture.status eq 'N'}">
+                                            <button type="submit" class="btn btn-primary waves-effect">생산 시작</button>
+                                        </c:if>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12"><br></div>
                             </div>

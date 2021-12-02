@@ -44,26 +44,6 @@
                         </div>
                     </div>
                 </div>
-<%--                <div class="row">--%>
-<%--                    <div class="col-sm-12 text-right">--%>
-<%--                        <label>--%>
-<%--                            <div class="form-group form-inline">--%>
-<%--                                생산 일자:--%>
-<%--                                <div>--%>
-<%--                                    <div class="input-daterange input-group">--%>
-<%--                                        <input type="date" class="form-control" name="start" id="start"/>--%>
-<%--                                        <div class="input-group-append">--%>
-<%--                                            <span class="input-group-text bg-primary text-white b-0">to</span>--%>
-<%--                                        </div>--%>
-
-<%--                                        <input type="date" class="form-control" name="end" id="end"/>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <button id="search" class="btn btn-primary waves-effect">검색</button>--%>
-<%--                            </div>--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
@@ -129,8 +109,7 @@
                 dataType: 'json',
                 headers: { "Content-Type" : "application/json;charset=UTF-8"},
                 success:function (result){
-                    let date = "";
-                    let status = "-";
+                    let date, status;
 
                     console.log(result)
                     var script = "";
@@ -150,10 +129,14 @@
                     for (var i = 0; i < result.length; i++) {
                         if (result[i].manufactureDate) {
                             date = result[i].manufactureDate;
+                        } else {
+                            date = "-";
                         }
 
                         if (result[i].status === "Y") {
                             status = "완료";
+                        } else {
+                            status = "-";
                         }
 
                         script +='<tr>';

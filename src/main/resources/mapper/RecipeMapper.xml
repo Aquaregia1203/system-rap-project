@@ -21,6 +21,10 @@
         WHERE NO = #{no}
     </select>
 
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM RECIPE
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" parameterType="Recipe"
                         keyColumn="NO" keyProperty="no">
         INSERT INTO RECIPE (NAME, ADD_DATE)

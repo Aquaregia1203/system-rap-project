@@ -102,6 +102,7 @@ public class ManufactureServiceImple {
             pumpAndInput = new HashMap<String, String>();
             pumpAndInput.put("input", input + "");
             pumpAndInput.put("pumpNo", mix.getPumpNo() + "");
+
             pumpInfo.add(pumpAndInput);
         }
 

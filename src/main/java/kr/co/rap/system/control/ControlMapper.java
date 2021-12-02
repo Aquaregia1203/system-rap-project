@@ -4,6 +4,7 @@ import kr.co.rap.system.manufacture.InputInfo;
 import okhttp3.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.Map;
 public class ControlMapper {
     private static Logger logger
             = LogManager.getLogger(ControlMapper.class);
-    private final static String url = "http://192.168.0.92/servertest/manufacture-execute-info";
+    @Value("${agent.url}")
+    private String url;
 
     public boolean sendInputInfo(InputInfo inputInfo) throws Exception {
         List<Map<String, String>> pumpInfo = inputInfo.getPumpInfo();
@@ -54,7 +56,9 @@ public class ControlMapper {
                 if (responseBody != null) {
                     String result = responseBody.string();
 
+                    System.out.println(result);
                     responseBody.close();
+
                     return true;
                 }
             }

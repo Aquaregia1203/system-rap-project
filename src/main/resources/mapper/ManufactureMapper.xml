@@ -15,7 +15,7 @@
                         and end != null and end != ''">
         WHERE MANUFACTURE_DATE BETWEEN #{start} AND CONCAT(#{end}, ' 23:59:59')
         </if>
-        ORDER BY MANUFACTURE_DATE ASC
+        ORDER BY MANUFACTURE_DATE IS NULL DESC, MANUFACTURE_DATE DESC
     </select>
 
     <select id="select" parameterType="Manufacture"
@@ -26,6 +26,10 @@
         FROM manufacture_plan as PLAN INNER JOIN MANAGER as MGR INNER JOIN RECIPE as RP
         ON PLAN.ID = MGR.ID AND RP.NO = PLAN.RECIPE_NO
         WHERE PLAN.NO = #{no}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM MANUFACTURE_PLAN
     </select>
 
     <insert id="insert" useGeneratedKeys="true" parameterType="Manufacture"

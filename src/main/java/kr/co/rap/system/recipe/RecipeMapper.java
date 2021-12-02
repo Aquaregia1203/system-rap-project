@@ -15,4 +15,6 @@ public interface RecipeMapper {
     public int update(Recipe recipe);
 
     public int delete(Recipe recipe);
+
+    public int count();
 }
