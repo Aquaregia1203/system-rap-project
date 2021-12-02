@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/manager")
 public class ManagerController {
     @Autowired
     private ManagerServiceImple managerServiceImple;
@@ -59,7 +59,7 @@ public class ManagerController {
     @PostMapping
     public ModelAndView addManager(Manager manager) {
         if (managerServiceImple.addManager(manager)) {
-            return new ModelAndView(new RedirectView("/admin/" + manager.getId()));
+            return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
         }
 
         ModelAndView retry = new ModelAndView("manager/add");
@@ -85,6 +85,6 @@ public class ManagerController {
     public ModelAndView editManager(Manager manager) {
         managerServiceImple.editManager(manager);
 
-        return new ModelAndView(new RedirectView("/admin/" + manager.getId()));
+        return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
     }
 }

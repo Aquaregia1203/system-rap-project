@@ -26,9 +26,4 @@ public class ControlController {
 
         return responseInfo;
     }
-
-    @GetMapping("/jsptest")
-    public ModelAndView test() {
-        return new ModelAndView("access/Top");
-    }
 }

@@ -21,7 +21,7 @@ public class AccessController {
             String division = httpSession.getAttribute("division") + "";
 
             if ("S".equals(division)) {
-                return new ModelAndView(new RedirectView("/admin"));
+                return new ModelAndView(new RedirectView("/manager"));
             } else {
                 return new ModelAndView(new RedirectView("/manufacture-plan"));
             }
@@ -42,7 +42,7 @@ public class AccessController {
 
         if (result) {
             if ("S".equals( manager.getDivision())) {
-                ModelAndView toManager = new ModelAndView(new RedirectView("/admin"));
+                ModelAndView toManager = new ModelAndView(new RedirectView("/manager"));
 
                 httpSession.setAttribute("id", manager.getId());
                 httpSession.setAttribute("name", manager.getName());

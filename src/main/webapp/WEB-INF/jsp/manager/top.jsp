@@ -42,7 +42,7 @@
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
                     <li class="has-submenu">
-                        <a href="${pageContext.servletContext.contextPath}/admin">
+                        <a href="${pageContext.servletContext.contextPath}/manager">
                             <i class="mdi mdi-key-star"></i>관리자</a>
                     </li>
 <%--                    <li class="has-submenu">--%>
