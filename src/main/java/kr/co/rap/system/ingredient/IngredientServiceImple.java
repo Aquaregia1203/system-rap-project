@@ -3,7 +3,9 @@ package kr.co.rap.system.ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class IngredientServiceImple {
@@ -11,20 +13,22 @@ public class IngredientServiceImple {
     private IngredientMapper ingredientMapper;
 
 
-    public List<Ingredient> viewIngredientList(Ingredient ingredient) {
-        List<Ingredient> rows = ingredientMapper.selectAll(ingredient);
-        return rows;
+    public List<Ingredient> viewIngredientList(Map<String, String> ingredient) {
+        return ingredientMapper.selectAll(ingredient);
     }
 
 
     public Ingredient viewIngredient(Ingredient ingredient) {
-        Ingredient row = ingredientMapper.select(ingredient);
-        return row;
+        return ingredientMapper.select(ingredient);
     }
 
 
     public boolean addIngredient(Ingredient ingredient) {
-        List<Ingredient> duplicateIngredient = ingredientMapper.selectAll(ingredient);
+        Map<String, String> duplicate = new HashMap<String, String>();
+        duplicate.put("name", ingredient.getName());
+
+        List<Ingredient> duplicateIngredient = ingredientMapper.selectAll(duplicate);
+
         if (duplicateIngredient.size() == 1) {
             return false;
         }
@@ -36,8 +40,11 @@ public class IngredientServiceImple {
     public boolean editIngredient(Ingredient ingredient) {
         Ingredient oldIngredient = ingredientMapper.select(ingredient);
 
+        Map<String, String> duplicate = new HashMap<String, String>();
+        duplicate.put("name", ingredient.getName());
+
         if ((!oldIngredient.getName().equals(ingredient.getName())
-                    && ingredientMapper.selectAll(ingredient).size() != 0)
+                    && ingredientMapper.selectAll(duplicate).size() != 0)
                         || oldIngredient.getUsedCount() != 0) {
             return false;
         }

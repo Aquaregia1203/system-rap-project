@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/ingredient")
@@ -21,7 +22,7 @@ public class IngredientController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Ingredient> viewIngredientList(Ingredient ingredient) {
+    public List<Ingredient> viewIngredientList(Map<String, String> ingredient) {
        return ingredientServiceImple.viewIngredientList(ingredient);
     }
 
@@ -65,7 +66,7 @@ public class IngredientController {
         ingredient = ingredientServiceImple.viewIngredient(ingredient);
 
         ModelAndView mav = new ModelAndView("ingredient/edit");
-         mav.addObject("ingredient", ingredient);
+        mav.addObject("ingredient", ingredient);
 
         return mav;
     }
@@ -81,7 +82,6 @@ public class IngredientController {
         }
 
         ModelAndView retry = new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo() + "/form"));
-//        retry.addObject("msg", "1");
 
         return retry;
     }

@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Mapper
 public interface ManagerMapper {
-    public List<Manager> selectAll(Manager manager);
+    public List<Manager> selectAll(Map<String, String> manager);
     public Manager select(Manager manager);
     public int insert(Manager manager);
     public int update(Manager manager);

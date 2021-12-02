@@ -11,7 +11,7 @@ public class ManagerServiceImple{
     @Autowired
     private ManagerMapper managerMapper;
 
-    public List<Manager> viewManagerList(Manager manager) {
+    public List<Manager> viewManagerList(Map<String, String> manager) {
         List<Manager> rows = managerMapper.selectAll(manager);
 
         return rows;
