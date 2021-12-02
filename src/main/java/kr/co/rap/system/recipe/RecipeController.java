@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class RecipeController {
         ModelAndView mav = new ModelAndView("recipe/add");
 
         List<Ingredient> ingredientList =
-                ingredientService.viewIngredientList(new Ingredient());
+                ingredientService.viewIngredientList(new HashMap<String, String>());
         mav.addObject("ingredientList", ingredientList);
 
         return mav;
@@ -82,7 +83,7 @@ public class RecipeController {
         if (!recipeService.addRecipe(recipe)) {
             ModelAndView mav = new ModelAndView("recipe/add");
             List<Ingredient> ingredientList =
-                    ingredientService.viewIngredientList(new Ingredient());
+                    ingredientService.viewIngredientList(new HashMap<String, String>());
             mav.addObject("ingredientList", ingredientList);
             mav.addObject("recipeDuplication", "* 레시피명이 중복됩니다.");
 
@@ -102,7 +103,7 @@ public class RecipeController {
 
         mav.addObject("recipe", recipe);
         mav.addObject("ingredientList",
-                ingredientService.viewIngredientList(new Ingredient()));
+                ingredientService.viewIngredientList(new HashMap<String, String>()));
 
         if (recipe == null) {
             return new ModelAndView(new RedirectView("/recipe"));
