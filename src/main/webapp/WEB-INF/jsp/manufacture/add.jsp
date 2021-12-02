@@ -75,6 +75,7 @@
 
     <script type="text/javascript">
         document.getElementById("submitButton").addEventListener("click", click, false);
+        document.getElementById("submitButton")
 
 
         function click() {
@@ -95,7 +96,7 @@
                 $("#outputError").text("* 생산량을 입력해 주세요.");
 
                 execution = false;
-            } else if (inputValue < 0
+            } else if (inputValue < 1
                            || inputValue > 120) {
 
                 $("#outputError").text("* 0 ~ 120 사이에 값을 입력해 주세요");

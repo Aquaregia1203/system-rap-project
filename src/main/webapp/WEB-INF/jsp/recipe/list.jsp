@@ -34,17 +34,6 @@
                         </div>
                     </div>
                 </div>
-<%--                <div class="row">--%>
-<%--                    <div class="col-sm-12 text-right">--%>
-<%--                        <label>--%>
-<%--                            <div class="form-group form-inline">--%>
-<%--                                레시피 명:--%>
-<%--                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">--%>
-<%--                                <button id="search" class="btn btn-primary waves-effect">검색</button>--%>
-<%--                            </div>--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">

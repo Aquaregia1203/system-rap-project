@@ -8,7 +8,7 @@
             <ul class="list-unstyled topnav-menu float-right mb-0">
                 <li class="dropdown d-none d-lg-block">
                     <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <span class="align-middle"> ${sessionScope.id} | ${sessionScope.name}</span>
+                        <span class="align-middle">${sessionScope.name}</span>
                     </a>
                 </li>
 
@@ -22,12 +22,9 @@
             <div class="logo-box">
                 <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="logo text-center">
                     <span class="logo-lg">
-                        <!--img src="assets/images/logo.png" alt="" height="30">-->
                         <span class="logo-lg-text-light">레시피 기반 자동 배합 및 생산 관리 시스템</span>
                     </span>
                     <span class="logo-sm">
-                        <!-- <span class="logo-sm-text-dark">Z</span> -->
-<%--                        <img src="${pageContext.servletContext.contextPath}/assets/images/logo-sm.png" alt="" height="22">--%>
                     </span>
                 </a>
             </div>
