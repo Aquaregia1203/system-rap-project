@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.rap.system.recipe.RecipeMapper">
-    <select id="selectAll" parameterType="Recipe"
+    <select id="selectAll" parameterType="Map"
                            resultType="Recipe">
         SELECT NO, NAME, USED_COUNT, ADD_DATE FROM RECIPE
         <where>
@@ -13,6 +13,7 @@
             </if>
         </where>
         ORDER BY NAME ASC
+        LIMIT #{page}, 10
     </select>
 
     <select id="select" parameterType="Recipe"

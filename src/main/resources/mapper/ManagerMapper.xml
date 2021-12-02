@@ -5,7 +5,7 @@
 
 <mapper namespace="kr.co.rap.system.manager.ManagerMapper">
     <select id="selectAll"
-            parameterType="Manager"
+            parameterType="Map"
             resultType="Manager">
         SELECT ID, PASSWORD, NAME, CONTACT, DIVISION, ADD_DATE, STATUS FROM MANAGER
         <where>
@@ -20,14 +20,6 @@
     <select id="count"
             resultType="Integer">
         SELECT count(*) FROM MANAGER
-    </select>
-
-    <select id="paging"
-            parameterType="Map"
-            resultType="Manager">
-        SELECT ID, PASSWORD, NAME, CONTACT, DIVISION, ADD_DATE, STATUS FROM MANAGER
-        ORDER BY DIVISION DESC, STATUS DESC, NAME ASC
-        LIMIT ${page}, 10
     </select>
 
     <select id="select"

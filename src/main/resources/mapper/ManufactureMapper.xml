@@ -16,6 +16,7 @@
         WHERE MANUFACTURE_DATE BETWEEN #{start} AND CONCAT(#{end}, ' 23:59:59')
         </if>
         ORDER BY MANUFACTURE_DATE ASC
+        LIMIT #{page}, 10
     </select>
 
     <select id="select" parameterType="Manufacture"
