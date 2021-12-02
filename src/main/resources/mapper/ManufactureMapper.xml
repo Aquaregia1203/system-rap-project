@@ -16,7 +16,9 @@
         WHERE MANUFACTURE_DATE BETWEEN #{start} AND CONCAT(#{end}, ' 23:59:59')
         </if>
         ORDER BY MANUFACTURE_DATE IS NULL DESC, MANUFACTURE_DATE DESC
-        LIMIT #{page}, 10
+        <if test="page != null and start != ''">
+            LIMIT #{page}, 10
+        </if>
     </select>
 
     <select id="select" parameterType="Manufacture"

@@ -14,7 +14,9 @@
             </if>
         </where>
         ORDER BY DIVISION DESC, STATUS DESC, NAME ASC
-        LIMIT ${page}, 10
+        <if test="page != null and page != ''">
+            LIMIT ${page}, 10
+        </if>
     </select>
 
     <select id="count"

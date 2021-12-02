@@ -13,7 +13,9 @@
             </if>
         </where>
         ORDER BY NAME ASC
-        LIMIT #{page}, 10
+        <if test="page != null and name != ''">
+            LIMIT #{page}, 10
+        </if>
     </select>
 
     <select id="select" parameterType="Recipe"
