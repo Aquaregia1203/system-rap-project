@@ -73,7 +73,7 @@
                                                     <td>생산 관리자</td>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <td><a href="${pageContext.servletContext.contextPath}/admin/${manager.id}">${manager.id}</a></td>
+                                            <td><a href="${pageContext.servletContext.contextPath}/manager/${manager.id}">${manager.id}</a></td>
                                             <td>${manager.name}</td>
                                             <td>${manager.contact}</td>
                                             <td>${manager.addDate}</td>
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-12 text-right">
-                                <a href="${pageContext.servletContext.contextPath}/admin/form"><button class="btn btn-primary waves-effect">등록</button></a>
+                                <a href="${pageContext.servletContext.contextPath}/manager/form"><button class="btn btn-primary waves-effect">등록</button></a>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
 
             function drawTable() {
                 $.ajax({
-                    url:'${pageContext.servletContext.contextPath}/admin',
+                    url:'${pageContext.servletContext.contextPath}/manager',
                     data:'name=' + $('#keywordName').val(),
                     type:'GET',
                     dataType:'json',
@@ -162,7 +162,7 @@
                             script += '<tr>';
                             script += '    <td class="text-center">' + (i + 1) + '</td>';
                             script += '    <td>' + divisions + '</td>';
-                            script += '    <td><a href="${pageContext.servletContext.contextPath}/admin/' + result[i].id +'">' + result[i].id + '</a></td>';
+                            script += '    <td><a href="${pageContext.servletContext.contextPath}/manager/' + result[i].id +'">' + result[i].id + '</a></td>';
                             script += '    <td class="text-center">' + result[i].name + '</td>';
                             script += '    <td class="text-center">' + result[i].contact + '</td>';
                             script += '    <td class="text-center">' + result[i].addDate + '</td>';

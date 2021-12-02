@@ -117,11 +117,11 @@
                     script +='  <thead class="text-center">';
                     script +='      <tr>';
                     script +='          <th style="width: 5%">번호</th>';
-                    script +='          <th>생산 일자</th>';
+                    script +='          <th style="width: 20%">등록 일자</th>';
+                    script +='          <th style="width: 20%">생산 일자</th>';
                     script +='          <th>레시피</th>';
                     script +='          <th style="width: 10%">생산량</th>';
                     script +='          <th style="width: 10%">상태</th>';
-                    script +='          <th style="width: 20%">등록 일자</th>';
                     script +='      </tr>';
                     script +='  </thead>';
                     script +='  <tbody>';
@@ -134,18 +134,18 @@
                         }
 
                         if (result[i].status === "Y") {
-                            status = "완료";
+                            status = "<i class='fas fa-check-circle'></i>";
                         } else {
                             status = "-";
                         }
 
                         script +='<tr>';
-                        script +='  <td class="text-center">' + (result.length - i) + '</td>';
+                        script +='  <td class="text-center">' + (i + 1) + '</td>';
+                        script +='  <td class="text-center">' + result[i].addDate + '</td>';
                         script +='  <td class="text-center">' + date +'</td>';
                         script +='  <td><a href="${pageContext.servletContext.contextPath}/manufacture-plan/' + result[i].no +'">' + result[i].recipeName + '</a></td>';
                         script +='  <td class="text-right">' + result[i].output + 'kg</td>';
                         script +='  <td class="text-center">' + status + '</td>';
-                        script +='  <td class="text-center">' + result[i].addDate + '</td>';
                         script +='</tr>';
                     }
                     script +=' </tbody>';

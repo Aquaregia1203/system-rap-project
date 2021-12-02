@@ -22,7 +22,7 @@ public class IngredientController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Ingredient> viewIngredientList(Map<String, String> ingredient) {
+    public List<Ingredient> viewIngredientList(@RequestParam Map<String, String> ingredient) {
        return ingredientServiceImple.viewIngredientList(ingredient);
     }
 
