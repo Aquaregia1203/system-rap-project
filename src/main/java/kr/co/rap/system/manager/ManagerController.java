@@ -19,12 +19,7 @@ public class ManagerController {
 
     @GetMapping
     public ModelAndView viewManagerList() {
-        ModelAndView mav = new ModelAndView("manager/list");
-
-        int count = managerServiceImple.count();
-        mav.addObject("count", count);
-
-        return mav;
+        return new ModelAndView("manager/list");
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

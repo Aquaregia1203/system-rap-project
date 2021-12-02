@@ -53,7 +53,4 @@ public class ManagerServiceImple{
         return true;
     }
 
-    public int count() {
-        return managerMapper.count();
-    }
 }
