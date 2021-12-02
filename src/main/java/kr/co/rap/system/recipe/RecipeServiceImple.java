@@ -7,7 +7,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RecipeServiceImple {
@@ -20,7 +22,8 @@ public class RecipeServiceImple {
     @Autowired
     private IngredientMapper ingredientMapper;
 
-    public List<Recipe> viewRecipeList(Recipe recipe) {
+    public List<Recipe> viewRecipeList(Map<String, String> recipe) {
+
         return recipeMapper.selectAll(recipe);
     }
 
@@ -68,8 +71,11 @@ public class RecipeServiceImple {
             ratio = ratio + mixList.get(i).getRatio();
         }
 
+        Map<String, String> authorRecipe = new HashMap<String, String>();
+        authorRecipe.put("name", recipe.getName());
+
         if (ratio != 100
-                || recipeMapper.selectAll(recipe).size() != 0) {
+                || recipeMapper.selectAll(authorRecipe).size() != 0) {
             return false;
         }
 
@@ -114,10 +120,13 @@ public class RecipeServiceImple {
             return false;
         }
 
+        Map<String, String> authorRecipe = new HashMap<String, String>();
+        authorRecipe.put("name", recipe.getName());
+
         Recipe oldRecipe = recipeMapper.select(recipe);
 
         if ((!oldRecipe.getName().equals(recipe.getName())
-                  && recipeMapper.selectAll(recipe).size() != 0)
+                  && recipeMapper.selectAll(authorRecipe).size() != 0)
                         || oldRecipe.getUsedCount() != 0) {
             return false;
         }

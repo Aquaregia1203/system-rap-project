@@ -1,12 +1,14 @@
 package kr.co.rap.system.recipe;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface RecipeMapper {
-    public List<Recipe> selectAll(Recipe recipe);
+    public List<Recipe> selectAll(Map<String, String> recipe);
 
     public Recipe select(Recipe recipe);
 

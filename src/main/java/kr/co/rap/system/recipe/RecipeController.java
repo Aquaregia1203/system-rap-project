@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/recipe")
@@ -27,21 +29,12 @@ public class RecipeController {
     private IngredientServiceImple ingredientService;
 
     @GetMapping
-    public ModelAndView viewRecipeList(
-                @RequestParam(required = false) Recipe recipe,
-                    @RequestParam(defaultValue = "1") int page) {
-        ModelAndView mav = new ModelAndView("recipe/list");
-
-        List<Recipe> recipeList = recipeService.viewRecipeList(recipe);
-        mav.addObject("recipeList", recipeList);
-        mav.addObject("start", page * 10 - 10);
-        mav.addObject("end", page * 10 - 1);
-
-        return mav;
+    public ModelAndView viewRecipeList() {
+        return new ModelAndView("recipe/list");
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Recipe> search(Recipe recipe) {
+    public List<Recipe> search(Map<String, String> recipe) {
         return recipeService.viewRecipeList(recipe);
     }
 

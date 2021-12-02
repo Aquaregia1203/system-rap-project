@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +65,7 @@ public class ManufactureController {
     public ModelAndView addManufacture() {
         ModelAndView mav = new ModelAndView("manufacture/add");
 
-        List<Recipe> recipeList = recipeService.viewRecipeList(new Recipe());
+        List<Recipe> recipeList = recipeService.viewRecipeList(new HashMap<String, String>());
         mav.addObject("recipeList", recipeList);
 
         return mav;
@@ -96,7 +97,7 @@ public class ManufactureController {
             return new ModelAndView(new RedirectView("/manufacture-plan"));
         }
 
-        List<Recipe> recipeList = recipeService.viewRecipeList(new Recipe());
+        List<Recipe> recipeList = recipeService.viewRecipeList(new HashMap<String, String>());
         mav.addObject("recipeList", recipeList);
         mav.addObject("manufacture", manufacture);
 
