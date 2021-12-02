@@ -34,15 +34,14 @@ public class IngredientServiceImple {
 
 
     public boolean editIngredient(Ingredient ingredient) {
-        Ingredient checkIngredient = ingredientMapper.select(ingredient);
+        Ingredient oldIngredient = ingredientMapper.select(ingredient);
 
-        if (checkIngredient != null
-                && checkIngredient.getUsedCount() == 0) {
-            List<Ingredient> duplicateIngredient = ingredientMapper.selectAll(ingredient);
-            if (duplicateIngredient.size() == 1) {
-                return false;
-            }
+        if ((!oldIngredient.getName().equals(ingredient.getName())
+                    && ingredientMapper.selectAll(ingredient).size() != 0)
+                        || oldIngredient.getUsedCount() != 0) {
+            return false;
         }
+
         ingredientMapper.update(ingredient);
         return true;
     }

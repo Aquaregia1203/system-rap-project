@@ -19,7 +19,10 @@ public class ManagerController {
 
     @GetMapping
     public ModelAndView viewManagerList() {
-        return new ModelAndView("manager/list");
+        ModelAndView mav = new ModelAndView("manager/list");
+        int count = managerServiceImple.count();
+        mav.addObject("count", count);
+        return mav;
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -27,6 +30,16 @@ public class ManagerController {
         List<Manager> managerList = managerServiceImple.viewManagerList(manager);
         return managerList;
     }
+
+//    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Manager> viewManagerList(Map<String, String> manager) {
+//        String page = manager.get("page");
+//        int pageNo = Integer.parseInt(page) * 10 - 10;
+//        page = String.valueOf(pageNo);
+//        manager.put("page", page);
+//        List<Manager> managerList = managerServiceImple.pagingManager(manager);
+//        return managerList;
+//    }
 
     @GetMapping("/{id}")
     public ModelAndView viewManager(Manager manager) {

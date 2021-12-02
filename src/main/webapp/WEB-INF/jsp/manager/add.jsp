@@ -94,7 +94,7 @@
 
         if (!$("#id").val()) {
             result++;
-            $("#idError").text("* 비밀번호를 입력해 주세요.");
+            $("#idError").text("* 아이디를 입력해 주세요.");
         } else {
             $("#idError").text("");
         }

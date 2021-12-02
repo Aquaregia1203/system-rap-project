@@ -32,7 +32,9 @@
                         <div class="card-box table-responsive">
                             <div class="row text-right">
                                 <div class="col-sm-12 col-md-12">
-                                    <a href="#" class="btn btn-primary waves-effect">생산 시작</a>
+                                    <c:if test="${manufacture.status eq 'N'}">
+                                        <a href="${pageContext.servletContext.contextPath}/manufacture-plan/execution" class="btn btn-primary waves-effect">생산 시작</a>
+                                    </c:if>
                                 </div>
                             </div>
                             <div class="row">

@@ -36,6 +36,7 @@
                                                 <div class="col-md-9">
                                                     <input type="text" name="name" id="recipe" class="form-control" >
                                                     <div id="recipeError" style="color: crimson;font-size:12px" >
+                                                        ${recipeDuplication}
                                                     </div>
                                                 </div>
                                             </div>
@@ -162,7 +163,7 @@
                             + '<div class="form-group row">'
                             + ' <label class="col-md-3  control-label">펌프</label>'
                             + ' <div class="col-md-8">'
-                            + '     <input type="number" class="form-control" id="pumpNo' + i + '" name="mixList[' + i + '].pumpNo" value="">'
+                            + '     <input type="number" class="form-control" id="pumpNo' + i + '" name="mixList[' + i + '].pumpNo" value="" min="1">'
                             + '     <div id="pumpError' + i + '" style="color: crimson;font-size:12px" ></div>'
                             + ' </div>'
                             + ' <div class="col-md-1">'

@@ -23,7 +23,7 @@
                 <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="logo text-center">
                     <span class="logo-lg">
                         <!--img src="assets/images/logo.png" alt="" height="30">-->
-                        <span class="logo-lg-text-light">RAP-SYSTEM</span>
+                        <span class="logo-lg-text-light">레시피 기반 자동 배합 및 생산 관리 시스템</span>
                     </span>
                     <span class="logo-sm">
                         <!-- <span class="logo-sm-text-dark">Z</span> -->

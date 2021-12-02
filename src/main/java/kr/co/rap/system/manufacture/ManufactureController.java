@@ -44,7 +44,8 @@ public class ManufactureController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Manufacture> search(Map<String, String> period) {
+    public List<Manufacture> search(@RequestParam(required = false) Map<String, String> period) {
+        System.out.println(period.get("start"));
         return manufactureService.viewManufactureList(period);
     }
 

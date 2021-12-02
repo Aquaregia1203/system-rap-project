@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ManagerServiceImple{
@@ -13,6 +14,11 @@ public class ManagerServiceImple{
     public List<Manager> viewManagerList(Manager manager) {
         List<Manager> rows = managerMapper.selectAll(manager);
 
+        return rows;
+    }
+
+    public List<Manager> pagingManager(Map<String, String> manager) {
+        List<Manager> rows = managerMapper.paging(manager);
         return rows;
     }
 
@@ -45,5 +51,9 @@ public class ManagerServiceImple{
         }
 
         return true;
+    }
+
+    public int count() {
+        return managerMapper.count();
     }
 }

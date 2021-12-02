@@ -8,17 +8,16 @@
     <title>RAP - System : 로그인</title>
 </head>
 
-<body>
+<body style="font-family: 'Nanum Gothic',sans-serif;">
 
 <div class="account-pages mt-5 mb-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-xl-5">
                 <div class="card">
-
                     <div class="text-center account-logo-box">
                         <div class="mt-2 mb-2">
-                            <span style="color:white; font-family:Felix Titling, Helvetica,sans-serif; font-size:25pt">RAP-SYSTEM</span>
+                            <span style="color:white; font-size:20pt">레시피 기반 자동 배합 및 생산 관리</span>
                         </div>
                     </div>
 
@@ -36,7 +35,7 @@
 
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox checkbox-success">
-                                            <input type="checkbox" name="remember" class="custom-control-input" id="checkbox-signin" checked>
+                                            <input type="checkbox" name="remember" value="check" class="custom-control-input" id="checkbox-signin" checked>
                                             <label class="custom-control-label" for="checkbox-signin">아이디 기억</label>
                                         </div>
                                     </div>

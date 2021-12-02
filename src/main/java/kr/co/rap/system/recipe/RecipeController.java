@@ -88,6 +88,9 @@ public class RecipeController {
 
         if (!recipeService.addRecipe(recipe)) {
             ModelAndView mav = new ModelAndView("recipe/add");
+            List<Ingredient> ingredientList =
+                    ingredientService.viewIngredientList(new Ingredient());
+            mav.addObject("ingredientList", ingredientList);
             mav.addObject("recipeDuplication", "* 레시피명이 중복됩니다.");
 
             return mav;

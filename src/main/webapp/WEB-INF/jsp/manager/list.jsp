@@ -5,14 +5,14 @@
 <html>
 <head>
     <title>RAP - System : 관리자 목록</title>
-    <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp"/>
 </head>
 
 <body data-layout="horizontal" style="font-family: 'Nanum Gothic',sans-serif">
 <!-- Begin page -->
 <div id="wrapper">
     <!-- Navigation Bar-->
-    <jsp:include page="${pageContext.servletContext.contextPath}/WEB-INF/jsp/manager/top.jsp" />
+    <jsp:include page="${pageContext.servletContext.contextPath}/WEB-INF/jsp/manager/top.jsp"/>
 
     <div class="content-page">
         <div class="content">
@@ -25,7 +25,8 @@
                                 <label>
                                     <div class="form-group form-inline">
                                         관리자 명:
-                                        <input id="keywordName" class="form-control" type="text" placeholder="Search...">
+                                        <input id="keywordName" class="form-control" type="text"
+                                               placeholder="Search...">
                                         <button id="search" class="btn btn-primary waves-effect">검색</button>
                                     </div>
                                 </label>
@@ -34,22 +35,23 @@
                         </div>
                     </div>
                 </div>
-<%--                <div class="row">--%>
-<%--                    <div class="col-sm-12 text-right">--%>
-<%--                        <label>--%>
-<%--                            <div class="form-group form-inline">--%>
-<%--                                관리자 명:--%>
-<%--                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">--%>
-<%--                                <button id="search" class="btn btn-primary waves-effect">검색</button>--%>
-<%--                            </div>--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+                <%--                <div class="row">--%>
+                <%--                    <div class="col-sm-12 text-right">--%>
+                <%--                        <label>--%>
+                <%--                            <div class="form-group form-inline">--%>
+                <%--                                관리자 명:--%>
+                <%--                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">--%>
+                <%--                                <button id="search" class="btn btn-primary waves-effect">검색</button>--%>
+                <%--                            </div>--%>
+                <%--                        </label>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
                             <div id="table">
-                                <table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table class="table table-striped table-bordered dt-responsive"
+                                       style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead class="text-center">
                                     <tr>
                                         <th>번호</th>
@@ -73,29 +75,52 @@
                                                     <td>생산 관리자</td>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <td><a href="${pageContext.servletContext.contextPath}/admin/${manager.id}">${manager.id}</a></td>
+                                            <td>
+                                                <a href="${pageContext.servletContext.contextPath}/admin/${manager.id}">${manager.id}</a>
+                                            </td>
                                             <td>${manager.name}</td>
                                             <td>${manager.contact}</td>
                                             <td>${manager.addDate}</td>
                                         </tr>
                                     </c:forEach>
-<%--                                    <tr>--%>
-<%--                                        <td class="text-center">1</td>--%>
-<%--                                        <td>오리엔탈 소스</td>--%>
-<%--                                        <td class="text-center">2021-11-22</td>--%>
-<%--                                    </tr>--%>
+                                    <%--                                    <tr>--%>
+                                    <%--                                        <td class="text-center">1</td>--%>
+                                    <%--                                        <td>오리엔탈 소스</td>--%>
+                                    <%--                                        <td class="text-center">2021-11-22</td>--%>
+                                    <%--                                    </tr>--%>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-6"></div>
+                                    <div class="row text-right">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dataTables_paginate" id="datatable_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button page-item previous"
+                                                        id="datatable_previous">
+                                                        <a href="#" aria-controls="datatable" data-dt-idx="0"
+                                                           tabindex="0" class="page-link">이전</a>
+                                                    </li>
+                                                    <li class="paginate_button page-item">
+                                                        <a href="#" class="page-link">1</a>
+                                                    </li>
+                                                    <li class="paginate_button page-item">
+                                                        <a href="#" class="page-link">2</a>
+                                                    </li>
+                                                    <li class="paginate_button page-item next" id="datatable_next">
+                                                        <a href="#" class="page-link">다음</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <a href="${pageContext.servletContext.contextPath}/admin/form">
+                                                <button class="btn btn-primary waves-effect">등록</button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-12 text-right">
-                                <a href="${pageContext.servletContext.contextPath}/admin/form"><button class="btn btn-primary waves-effect">등록</button></a>
                             </div>
                         </div>
                     </div>
@@ -112,22 +137,42 @@
             </div>
         </div>
         <script type="text/javascript">
-            $(document).ready(function (){
+            var pageNo = 1;
+            $(document).ready(function () {
                 drawTable();
-                $("#search").click(function (){
+                $("#search").click(function () {
                     $("#table").html("");
                     drawTable();
                 });
             });
 
+            function drawPage() {
+                $.ajax({
+                    url: '${pageContext.servletContext.contextPath}/admin',
+                    data: {
+                        'page': pageNo
+                    },
+                    type: 'GET',
+                    dataType: 'json',
+                    headers: {"Content-Type": "application/json;charset=UTF-8"},
+                    success: function (result) {
+                        var page = "";
+
+                    }
+                });
+            }
+
             function drawTable() {
                 $.ajax({
-                    url:'${pageContext.servletContext.contextPath}/admin',
-                    data:'name=' + $('#keywordName').val(),
-                    type:'GET',
-                    dataType:'json',
-                    headers: { "Content-Type" : "application/json;charset=UTF-8" },
-                    success:function (result){
+                    url: '${pageContext.servletContext.contextPath}/admin',
+                    data: {
+                        'name': $('#keywordName').val(),
+                        'page': pageNo
+                    },
+                    type: 'GET',
+                    dataType: 'json',
+                    headers: {"Content-Type": "application/json;charset=UTF-8"},
+                    success: function (result) {
                         let divisions = "";
                         let status = "";
 
@@ -149,20 +194,20 @@
                         for (var i = 0; i < result.length; i++) {
                             if (result[i].division === "S") {
                                 divisions = "시스템 관리자";
-                            } else  {
+                            } else {
                                 divisions = "생산 관리자";
                             }
 
                             if (result[i].status === "Y") {
                                 status = "활성";
-                            } else  {
+                            } else {
                                 status = "비활성";
                             }
 
                             script += '<tr>';
                             script += '    <td class="text-center">' + (i + 1) + '</td>';
                             script += '    <td>' + divisions + '</td>';
-                            script += '    <td><a href="${pageContext.servletContext.contextPath}/admin/' + result[i].id +'">' + result[i].id + '</a></td>';
+                            script += '    <td><a href="${pageContext.servletContext.contextPath}/admin/' + result[i].id + '">' + result[i].id + '</a></td>';
                             script += '    <td class="text-center">' + result[i].name + '</td>';
                             script += '    <td class="text-center">' + result[i].contact + '</td>';
                             script += '    <td class="text-center">' + result[i].addDate + '</td>';
@@ -171,11 +216,10 @@
                         script += '</tbody>';
                         script += "</table>";
                         $("#table").html(script);
-                        $("#allTable").remove();
                     }
                 });
             }
         </script>
-        <jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
+        <jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp"/>
 </body>
 </html>

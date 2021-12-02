@@ -81,7 +81,7 @@ public class IngredientController {
         }
 
         ModelAndView retry = new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo() + "/form"));
-        retry.addObject("msg", "1");
+//        retry.addObject("msg", "1");
 
         return retry;
     }
