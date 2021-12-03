@@ -28,7 +28,6 @@ public class IngredientController {
 
     @GetMapping("/{no}")
     public ModelAndView viewIngredient(Ingredient ingredient) {
-
         ingredient = ingredientServiceImple.viewIngredient(ingredient);
 
         ModelAndView mav = new ModelAndView("ingredient/view");
@@ -73,22 +72,19 @@ public class IngredientController {
 
     @PutMapping
     public ModelAndView editIngredient(Ingredient ingredient) {
-        boolean result = ingredientServiceImple.editIngredient(ingredient);
-
-        if (result) {
+        if (ingredientServiceImple.editIngredient(ingredient)) {
             ModelAndView mav = new ModelAndView(new RedirectView("/ingredient"));
 
             return mav;
         }
 
-        ModelAndView retry = new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo() + "/form"));
-
-        return retry;
+        return new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo() + "/form"));
     }
 
     @DeleteMapping
     public ModelAndView removeIngredient(Ingredient ingredient) {
         ingredientServiceImple.removeIngredient(ingredient);
+
         return new ModelAndView(new RedirectView("/ingredient"));
     }
 }

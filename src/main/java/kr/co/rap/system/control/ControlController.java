@@ -20,10 +20,6 @@ public class ControlController {
     @PostMapping("/product")
     public Map<String, String> reciveProductWeight(
                             @RequestBody Map<String, Integer> productInfo) {
-        Map<String, String> responseInfo =
-                controlService.receiveProductInfo(productInfo);
-        responseInfo.put("code", "200");
-
-        return responseInfo;
+        return controlService.receiveProductInfo(productInfo);
     }
 }

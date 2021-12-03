@@ -1,5 +1,6 @@
 package kr.co.rap.system.manager;
 
+import kr.co.rap.system.page.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import java.util.Map;
 public class ManagerController {
     @Autowired
     private ManagerServiceImple managerServiceImple;
+    @Autowired
+    private PageUtil pageUtil;
 
     @GetMapping
     public ModelAndView viewManagerList() {
@@ -23,21 +26,17 @@ public class ManagerController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Manager> viewManagerList(Map<String, String> manager) {
+    public Map<String, Object> viewManagerList(@RequestParam Map<String, String> manager) {
+        Map<String, Object> result = new HashMap<String, Object>();
+
         List<Manager> managerList = managerServiceImple.viewManagerList(manager);
+        String tag = pageUtil.getNavigator(manager.get("url"), Integer.parseInt(manager.get("page")));
 
-        return managerList;
+        result.put("managerList", managerList);
+        result.put("tag", tag);
+
+        return result;
     }
-
-//    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public List<Manager> viewManagerList(Map<String, String> manager) {
-//        String page = manager.get("page");
-//        int pageNo = Integer.parseInt(page) * 10 - 10;
-//        page = String.valueOf(pageNo);
-//        manager.put("page", page);
-//        List<Manager> managerList = managerServiceImple.pagingManager(manager);
-//        return managerList;
-//    }
 
     @GetMapping("/{id}")
     public ModelAndView viewManager(Manager manager) {

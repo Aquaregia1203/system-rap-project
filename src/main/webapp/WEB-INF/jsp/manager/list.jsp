@@ -32,7 +32,7 @@
                             </div>
                             <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">관리자</h4>
                         </div>
-                    </div>
+                    </div`
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
@@ -70,6 +70,8 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                                <div class="col-sm-12 col-md-7" id="pageBox">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
@@ -107,13 +109,19 @@
             function drawTable() {
                 $.ajax({
                     url:'${pageContext.servletContext.contextPath}/manager',
-                    data:'name=' + $('#keywordName').val(),
+                    data:{
+                        'name' : $('#keywordName').val(),
+                        'page' : '1',
+                        'url' : '/manager'
+                    },
                     type:'GET',
                     dataType:'json',
                     headers: { "Content-Type" : "application/json;charset=UTF-8" },
                     success:function (result){
                         let divisions = "";
                         let status = "";
+                        let managerList = result["managerList"];
+                        let pageTag = result["tag"];
 
                         console.log(result)
                         var script = "";
@@ -130,14 +138,14 @@
                         script += '</thead>';
                         script += '<tbody>';
 
-                        for (var i = 0; i < result.length; i++) {
-                            if (result[i].division === "S") {
+                        for (var i = 0; i < managerList.length; i++) {
+                            if (managerList[i].division === "S") {
                                 divisions = "시스템 관리자";
                             } else  {
                                 divisions = "생산 관리자";
                             }
 
-                            if (result[i].status === "Y") {
+                            if (managerList[i].status === "Y") {
                                 status = "활성";
                             } else  {
                                 status = "비활성";
@@ -146,16 +154,18 @@
                             script += '<tr>';
                             script += '    <td class="text-center">' + (i + 1) + '</td>';
                             script += '    <td>' + divisions + '</td>';
-                            script += '    <td><a href="${pageContext.servletContext.contextPath}/manager/' + result[i].id +'">' + result[i].id + '</a></td>';
-                            script += '    <td class="text-center">' + result[i].name + '</td>';
-                            script += '    <td class="text-center">' + result[i].contact + '</td>';
-                            script += '    <td class="text-center">' + result[i].addDate + '</td>';
+                            script += '    <td><a href="${pageContext.servletContext.contextPath}/manager/' + managerList[i].id +'">' + managerList[i].id + '</a></td>';
+                            script += '    <td class="text-center">' + managerList[i].name + '</td>';
+                            script += '    <td class="text-center">' + managerList[i].contact + '</td>';
+                            script += '    <td class="text-center">' + managerList[i].addDate + '</td>';
                             script += '</tr>';
                         }
                         script += '</tbody>';
                         script += "</table>";
                         $("#table").html(script);
                         $("#allTable").remove();
+
+                        $("#pageBox").html(pageTag);
                     }
                 });
             }

@@ -32,7 +32,9 @@ public class IngredientServiceImple {
         if (duplicateIngredient.size() == 1) {
             return false;
         }
+
         ingredientMapper.insert(ingredient);
+
         return true;
     }
 
@@ -50,16 +52,19 @@ public class IngredientServiceImple {
         }
 
         ingredientMapper.update(ingredient);
+
         return true;
     }
 
     public boolean removeIngredient(Ingredient ingredient) {
         Ingredient checkIngredient = ingredientMapper.select(ingredient);
+
         if (checkIngredient.getUsedCount() == 0) {
             ingredientMapper.delete(ingredient);
+
             return true;
         }
+
         return false;
     }
-
 }

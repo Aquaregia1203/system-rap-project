@@ -2,7 +2,6 @@
 <!DOCTYPE HTML>
 
 <header id="topnav">
-    <!-- Topbar Start -->
     <div class="navbar-custom">
         <div class="container-fluid">
             <ul class="list-unstyled topnav-menu float-right mb-0">
@@ -18,7 +17,6 @@
                     </a>
                 </li>
             </ul>
-            <!-- LOGO -->
             <div class="logo-box">
                 <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="logo text-center">
                     <span class="logo-lg">

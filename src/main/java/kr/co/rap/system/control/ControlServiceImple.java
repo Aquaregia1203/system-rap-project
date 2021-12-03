@@ -54,11 +54,11 @@ public class ControlServiceImple {
 
         if (result != 1) {
             responseInfo.put("code", "300");
-            responseInfo.put("message", "생산계획 수정을 실패하였습니다. 수치가 부적합할 수 있습니다.");
+            responseInfo.put("message", "송신 후 서비스 처리에 실패했습니다.");
 
             return responseInfo;
         } else {
-            responseInfo.put("code", "200");
+            responseInfo.put("code", "300");
             responseInfo.put("message", "생산이 정상적으로 반영되었습니다.");
 
             return responseInfo;
