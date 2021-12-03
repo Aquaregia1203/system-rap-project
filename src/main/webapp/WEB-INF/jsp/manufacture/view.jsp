@@ -50,20 +50,19 @@
                             <table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="text-center">
                                 <tr>
+                                    <th>등록 일자</th>
+                                    <th>생산 일자</th>
                                     <th>레시피</th>
                                     <th>생산량</th>
-                                    <th>생산 일자</th>
                                     <th>오차량</th>
                                     <th>생산자</th>
                                     <th>상태</th>
-                                    <th>등록 일자</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr>
-                                        <td>${manufacture.recipeName}</td>
-                                        <td class="text-right">${manufacture.output}kg</td>
+                                        <td class="text-center">${manufacture.addDate}</td>
                                         <c:choose>
                                             <c:when test="${empty manufacture.manufactureDate}">
                                                 <td class="text-center">-</td>
@@ -72,6 +71,8 @@
                                                 <td class="text-center">${manufacture.manufactureDate}</td>
                                             </c:otherwise>
                                         </c:choose>
+                                        <td>${manufacture.recipeName}</td>
+                                        <td class="text-right">${manufacture.output}kg</td>
                                         <c:choose>
                                             <c:when test="${manufacture.errorAmount eq 0}">
                                                 <td class="text-right">-</td>
@@ -92,7 +93,6 @@
                                                 <td class="text-center">완료</td>
                                             </c:otherwise>
                                         </c:choose>
-                                        <td class="text-center">${manufacture.addDate}</td>
                                     </tr>
                                 </tbody>
                             </table>
