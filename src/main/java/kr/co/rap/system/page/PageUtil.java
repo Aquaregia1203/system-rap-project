@@ -7,6 +7,7 @@ import kr.co.rap.system.recipe.RecipeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class PageUtil {
     @Autowired
@@ -46,10 +47,10 @@ public class PageUtil {
 
         if (page > 1) {
             tag.append("    <li class='paginate_button page-item previous'>")
-                    .append("        <button type='button' id='pageButton0' class='page-link'>이전</button");
+                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton0' class='page-link'>이전</button>");
         } else {
             tag.append("    <li class='paginate_button page-item previous disabled'>")
-                    .append("        <button type='button' id='pageButton0' class='page-link'>이전</button");
+                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton0' class='page-link'>이전</button>");
         }
 
         tag.append("    </li>");
@@ -57,11 +58,11 @@ public class PageUtil {
         for (int i = printStart, id = 1; i <= printEnd; i++, id++) {
             if (i == page) {
                 tag.append("    <li class='paginate_button page-item active'>")
-                        .append("        <button type='button' id='pageButton" + id + "' class='page-link'>" + i + "</button")
+                        .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton" + id + "' class='page-link' value='" + i + "'>" + i + "</button>")
                         .append("    </li>");
             } else {
                 tag.append("    <li class='paginate_button page-item'>")
-                        .append("        <button type='button' id='pageButton" + id + "' classclass='page-link'>" + i + "</button")
+                        .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton" + id + "' class='page-link' value='" + i + "'>" + i + "</button>")
                         .append("    </li>");
             }
 
@@ -72,13 +73,13 @@ public class PageUtil {
 
         if (page == totalPage) {
             tag.append("    <li class='paginate_button page-item next disabled' id='c'>")
-                    .append("        <button type='button' id='pageButton6' class='page-link'>다음</button>")
+                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton6' class='page-link'>다음</button>")
                     .append("    </li>")
                     .append("    </ul>")
                     .append("</div>");
         } else {
             tag.append("    <li class='paginate_button page-item next' id='c'>")
-                    .append("        <button type='button' id='pageButton6' class='page-link'>다음</button>")
+                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton6' class='page-link'>다음</button>")
                     .append("    </li>")
                     .append("    </ul>")
                     .append("</div>");

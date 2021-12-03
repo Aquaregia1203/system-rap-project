@@ -1,5 +1,6 @@
 package kr.co.rap.system.manager;
 
+import kr.co.rap.system.page.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -28,8 +29,11 @@ public class ManagerController {
     public Map<String, Object> viewManagerList(@RequestParam Map<String, String> manager) {
         Map<String, Object> result = new HashMap<String, Object>();
 
-        List<Manager> managerList = managerServiceImple.viewManagerList(manager);
         String tag = pageUtil.getNavigator(manager.get("url"), Integer.parseInt(manager.get("page")));
+
+        int limitNo = Integer.parseInt(manager.get("page"));
+        manager.put("page", (limitNo * 10 - 10) + "");
+        List<Manager> managerList = managerServiceImple.viewManagerList(manager);
 
         result.put("managerList", managerList);
         result.put("tag", tag);

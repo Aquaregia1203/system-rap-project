@@ -36,7 +36,7 @@
                             </div>
                             <h4 style="font-family: 'Nanum Gothic',sans-serif">관리자</h4>
                         </div>
-                    </div`
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
@@ -74,16 +74,21 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-12 col-md-7" id="pageBox">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-6"></div>
-                                    </div>
-                                </div>
-                            </div>
+<%--                            <div class="row">--%>
+<%--                                <div class="col-sm-12">--%>
+<%--                                    <div class="row">--%>
+<%--                                        <div class="col-sm-12 col-md-6">--%>
+<%--                                            --%>
+<%--                                            --%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <div class="col-sm-12 text-right">
                                 <a href="${pageContext.servletContext.contextPath}/manager/form"><button class="btn btn-primary waves-effect">등록</button></a>
                             </div>
@@ -102,6 +107,23 @@
             </div>
         </div>
         <script type="text/javascript">
+            var page = 1;
+            var url = "/manager";
+
+            function navigatePage(id) {
+                let buttonNo = $("#" + id).val();
+
+                if (id == "pageButton0") {
+                    page = Number(page) - 1;
+                } else if (id == "pageButton6") {
+                    page = Number(page) + 1;
+                } else {
+                    page = buttonNo;
+                }
+
+                drawTable();
+            }
+
             $(document).ready(function (){
                 drawTable();
                 $("#search").click(function (){
@@ -115,8 +137,8 @@
                     url:'${pageContext.servletContext.contextPath}/manager',
                     data:{
                         'name' : $('#keywordName').val(),
-                        'page' : '1',
-                        'url' : '/manager'
+                        'page' : page,
+                        'url' : url
                     },
                     type:'GET',
                     dataType:'json',
@@ -127,7 +149,6 @@
                         let managerList = result["managerList"];
                         let pageTag = result["tag"];
 
-                        console.log(result)
                         var script = "";
                         script += '<table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">';
                         script += '<thead class="text-center">';
@@ -168,8 +189,8 @@
                         script += "</table>";
                         $("#table").html(script);
                         $("#allTable").remove();
-
                         $("#pageBox").html(pageTag);
+
                     }
                 });
             }
