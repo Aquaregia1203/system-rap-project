@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>RAP - System : 관리자 수정</title>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
 
