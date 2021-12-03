@@ -4,7 +4,6 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>RAP - System : 생산계획 목록</title>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
 
@@ -24,23 +23,26 @@
                             </ol>
                             <div class="page-title-right">
                                 <label>
-                                    <div class="form-group form-inline">
-                                        생산 일자:
-                                        <div>
-                                            <div class="input-daterange input-group">
-                                                <input type="date" class="form-control" name="start" id="start"/>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text bg-primary text-white b-0">to</span>
-                                                </div>
+                                    생산 일자 :
+                                </label>
 
-                                                <input type="date" class="form-control" name="end" id="end"/>
-                                            </div>
-                                        </div>
-                                        <button id="search" class="btn btn-primary waves-effect">검색</button>
-                                    </div>
+                                <label>
+                                    <input class="form-control form-control-sm" type="date" name="start" id="start">
+                                </label>
+
+                                <label>
+                                    ~
+                                </label>
+
+                                <label>
+                                    <input class="form-control form-control-sm" type="date" name="end" id="end">
+                                </label>
+
+                                <label>
+                                    <button id="search" class="btn btn-sm btn-secondary waves-effect">검색</button>
                                 </label>
                             </div>
-                            <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">생산계획</h4>
+                            <h4 style="font-family: 'Nanum Gothic',sans-serif">생산계획</h4>
                         </div>
                     </div>
                 </div>
@@ -134,9 +136,9 @@
                         }
 
                         if (result[i].status === "Y") {
-                            status = "<i class='fas fa-check-circle'></i>";
+                            status = "<i class='mdi mdi-check-circle' style='color: limegreen'></i>";
                         } else {
-                            status = "-";
+                            status = "<i class='mdi mdi-minus'></i>";
                         }
 
                         script +='<tr>';

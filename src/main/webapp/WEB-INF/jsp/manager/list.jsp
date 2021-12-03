@@ -4,7 +4,6 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>RAP - System : 관리자 목록</title>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp"/>
 </head>
 
@@ -20,17 +19,22 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
-                            <ol class="breadcrumb m-0"></ol>
+                            <ol class="breadcrumb m-0">
+                            </ol>
                             <div class="page-title-right">
                                 <label>
-                                    <div class="form-group form-inline">
-                                        관리자 명:
-                                        <input id="keywordName" class="form-control" type="text" placeholder="Search...">
-                                        <button id="search" class="btn btn-primary waves-effect">검색</button>
-                                    </div>
+                                    관리자 명 :
+                                </label>
+
+                                <label>
+                                    <input class="form-control form-control-sm" type="text" placeholder="Search..." id="keywordName">
+                                </label>
+
+                                <label>
+                                    <button id="search" class="btn btn-sm btn-secondary waves-effect">검색</button>
                                 </label>
                             </div>
-                            <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">관리자</h4>
+                            <h4 style="font-family: 'Nanum Gothic',sans-serif">관리자</h4>
                         </div>
                     </div`
                 </div>

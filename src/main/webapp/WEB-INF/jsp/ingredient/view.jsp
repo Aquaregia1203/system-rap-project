@@ -4,7 +4,6 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>RAP - System : 원재료 상세 조회</title>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
 

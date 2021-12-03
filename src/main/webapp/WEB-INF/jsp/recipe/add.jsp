@@ -5,7 +5,6 @@
 <html>
 <head>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
-    <title>레시피 기반 자동 배합 및 생산 관리 시스템</title>
 </head>
 <body style="font-family : 'Nanum Gothic', sans-serif" data-layout="horizontal">
     <div id="wrapper">

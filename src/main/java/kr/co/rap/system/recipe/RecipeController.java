@@ -35,7 +35,7 @@ public class RecipeController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Recipe> search(Map<String, String> recipe) {
+    public List<Recipe> search(@RequestParam Map<String, String> recipe) {
         return recipeService.viewRecipeList(recipe);
     }
 

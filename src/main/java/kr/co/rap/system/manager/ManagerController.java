@@ -1,6 +1,5 @@
 package kr.co.rap.system.manager;
 
-import kr.co.rap.system.page.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

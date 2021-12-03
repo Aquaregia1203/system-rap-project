@@ -5,7 +5,6 @@
 <html>
 <head>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
-    <title>RAP - System : 로그인</title>
 </head>
 
 <body style="font-family: 'Nanum Gothic',sans-serif;">

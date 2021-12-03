@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>RAP - System : 생산계획 상세 조회</title>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
 
@@ -77,7 +77,10 @@
                                                 <td class="text-right">-</td>
                                             </c:when>
                                             <c:otherwise>
-                                                <td class="text-right">${manufacture.errorAmount}g</td>
+                                                <td class="text-right">
+                                                    <fmt:formatNumber type="number" maxIntegerDigits="3" value="${manufacture.errorAmount}"/>
+                                                    g
+                                                </td>
                                             </c:otherwise>
                                         </c:choose>
                                         <td class="text-center">${manufacture.managerName}</td>
@@ -86,7 +89,7 @@
                                                 <td class="text-center">-</td>
                                             </c:when>
                                             <c:otherwise>
-                                                <td class="text-center">${manufacture.status}</td>
+                                                <td class="text-center">완료</td>
                                             </c:otherwise>
                                         </c:choose>
                                         <td class="text-center">${manufacture.addDate}</td>
