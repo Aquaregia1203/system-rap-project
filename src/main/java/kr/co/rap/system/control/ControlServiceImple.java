@@ -31,7 +31,7 @@ public class ControlServiceImple {
         int output = servletContext.getAttribute("output") != null
                             ? (int) servletContext.getAttribute("output")
                             : 0;
-        int errorAmount = (output * 1000) - productInfo.get("productWeight");
+        int errorAmount = productInfo.get("productWeight") - (output * 1000);
 
         String currentTime = LocalDateTime.now()
                                           .format(

@@ -11,10 +11,13 @@ public class SystemManagerCheckInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession httpSession = request.getSession();
         String division = httpSession.getAttribute("division") + "";
+
         if ("S".equals(division)) {
             return true;
         }
-        response.sendRedirect("/manufacture-plan");
+
+        response.sendRedirect("/manufactre-plan");
+
         return false;
     }
 }

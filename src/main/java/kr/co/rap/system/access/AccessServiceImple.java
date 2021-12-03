@@ -33,10 +33,11 @@ public class AccessServiceImple{
             manager.setDivision(checkManager.getDivision());
             return true;
         }
+
         return false;
     }
 
     public void logout() {
-
+        //TODO : 로그아웃 업무 생길 시 구현
     }
 }
