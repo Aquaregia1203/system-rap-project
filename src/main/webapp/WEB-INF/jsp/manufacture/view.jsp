@@ -78,7 +78,7 @@
                                             </c:when>
                                             <c:otherwise>
                                                 <td class="text-right">
-                                                    <fmt:formatNumber type="number" maxIntegerDigits="3" value="${manufacture.errorAmount}"/>
+                                                    <fmt:formatNumber type="number" value="${manufacture.errorAmount}"/>
                                                     g
                                                 </td>
                                             </c:otherwise>

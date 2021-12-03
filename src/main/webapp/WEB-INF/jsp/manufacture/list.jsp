@@ -166,7 +166,7 @@
                         }
 
                         script +='<tr>';
-                        script +='  <td class="text-center">' + (i + 1) + '</td>';
+                        script +='  <td class="text-center">' + ((i + 1) + (10 * (page - 1))) + '</td>';
                         script +='  <td class="text-center">' + manufactureList[i].addDate + '</td>';
                         script +='  <td class="text-center">' + date +'</td>';
                         script +='  <td><a href="${pageContext.servletContext.contextPath}/manufacture-plan/' + manufactureList[i].no +'">' + manufactureList[i].recipeName + '</a></td>';

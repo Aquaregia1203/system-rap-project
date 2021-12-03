@@ -11,10 +11,13 @@ public class ManufactureManagerCheckInterceptor extends HandlerInterceptorAdapte
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession httpSession = request.getSession();
         String division = httpSession.getAttribute("division") + "";
+
         if ("M".equals(division)) {
             return true;
         }
+
         response.sendRedirect("/manager");
+
         return false;
     }
 }

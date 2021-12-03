@@ -135,7 +135,7 @@
 
                     for (var i = 0; i < ingredientList.length; i++) {
                         script += '<tr>';
-                        script += '    <td class="text-center">' + (i + 1) + '</td>';
+                        script += '    <td class="text-center">' + ((i + 1) + (10 * (page - 1))) + '</td>';
                         script += '    <td><a href="${pageContext.servletContext.contextPath}/ingredient/' + ingredientList[i].no +'">' + ingredientList[i].name + '</a></td>';
                         script += '    <td class="text-center">' + ingredientList[i].addDate + '</td>';
                         script += '</tr>';

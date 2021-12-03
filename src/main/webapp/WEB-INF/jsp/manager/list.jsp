@@ -167,7 +167,7 @@
                             }
 
                             script += '<tr>';
-                            script += '    <td class="text-center">' + (i + 1) + '</td>';
+                            script += '    <td class="text-center">' + ((i + 1) + (10 * (page - 1))) + '</td>';
                             script += '    <td>' + divisions + '</td>';
                             script += '    <td><a href="${pageContext.servletContext.contextPath}/manager/' + managerList[i].id +'">' + managerList[i].id + '</a></td>';
                             script += '    <td class="text-center">' + managerList[i].name + '</td>';
