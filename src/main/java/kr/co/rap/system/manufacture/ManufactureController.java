@@ -30,23 +30,12 @@ public class ManufactureController {
     private ServletContext servletContext;
 
     @GetMapping
-    public ModelAndView viewManufactureList(@RequestParam(required = false) Map<String, String> period,
-                                               @RequestParam(defaultValue = "1") int page) {
-        ModelAndView mav = new ModelAndView("manufacture/list");
-
-        List<Manufacture> manufactureList =
-                    manufactureService.viewManufactureList(period);
-
-        mav.addObject("manufactureList", manufactureList);
-        mav.addObject("start", page * 10 - 10);
-        mav.addObject("end", page * 10 - 1);
-
-        return mav;
+    public ModelAndView viewManufactureList() {
+        return new ModelAndView("manufacture/list");
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<Manufacture> search(@RequestParam(required = false) Map<String, String> period) {
-        System.out.println(period.get("start"));
         return manufactureService.viewManufactureList(period);
     }
 

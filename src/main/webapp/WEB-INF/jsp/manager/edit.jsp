@@ -47,7 +47,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 control-label">이름</label>
                                                 <div class="col-md-7">
-                                                    <input type="text" name="name" id="name" class="form-control" value="${manager.id}" >
+                                                    <input type="text" name="name" id="name" class="form-control" value="${manager.name}" >
                                                     <div style="color: crimson; font-size:12px" id="nameError">
                                                     </div>
                                                 </div>
@@ -62,20 +62,8 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
+                                            <div class="form-group row" id="status">
                                                 <label class="col-md-3 control-label">상태</label>
-                                                <div class="radio radio-info col-md-3">
-                                                    <input type="radio" name="status" id="radio1" value="Y" checked />
-                                                    <label for="radio1">
-                                                        활성
-                                                    </label>
-                                                </div>
-                                                <div class="radio radio-info col-md-3">
-                                                    <input type="radio" name="status" id="radio2" value="N" />
-                                                    <label for="radio2">
-                                                        비활성
-                                                    </label>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -94,6 +82,40 @@
         </div>
     </div>
 <script>
+    $(document).ready(function () {
+       let statusY = '<div class="radio radio-info col-md-3">'
+                       + '<input type="radio" name="status" id="radio1" value="Y" checked />'
+                       + '<label for="radio1">'
+                       + '        활성'
+                       + '</label>'
+                       + '</div>'
+                       + '<div class="radio radio-info col-md-3">'
+                       + '<input type="radio" name="status" id="radio2" value="N" />'
+                       + '<label for="radio2">'
+                       + '       비활성'
+                       + '</label>'
+                       + '</div> ';
+
+        let statusN = '<div class="radio radio-info col-md-3">'
+                        + '<input type="radio" name="status" id="radio1" value="Y"  />'
+                        + '<label for="radio1">'
+                        + '        활성'
+                        + '</label>'
+                        + '</div>'
+                        + '<div class="radio radio-info col-md-3">'
+                        + '<input type="radio" name="status" id="radio2" value="N" checked />'
+                        + '<label for="radio2">'
+                        + '       비활성'
+                        + '</label>'
+                        + '</div> ';
+
+        if (${manager.status eq 'Y'}) {
+            $("#status").append(statusY);
+        } else {
+            $("#status").append(statusN);
+        }
+    });
+
     $("#submitButton").click(function () {
         let result = 0;
         let size = $("#contact").val().length;

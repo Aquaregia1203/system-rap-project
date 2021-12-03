@@ -58,7 +58,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-2 control-label">생산량</label>
                                                 <div class="col-md-7">
-                                                    <input type="number" class="form-control" name="output" value="${manufacture.output}" />
+                                                    <input type="number" class="form-control" name="output" id="inputBox" value="${manufacture.output}" />
                                                     <div style="color: crimson; font-size:8px" id="outputError">
                                                     </div>
                                                 </div>
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-right">
-                                    <button type="submit" id="submitButton" class="btn btn-primary waves-effect waves-light">수정</button>
+                                    <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light">수정</button>
                                     <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="btn btn-secondary waves-effect waves-light">
                                         목록</a>
                                 </div>
@@ -89,33 +89,31 @@
         function click() {
             var selectValue = $("#selectBox option:selected").val();
             var inputValue = Number($("#inputBox").val());
-            var execution;
+            var execution = 0;
 
             if (selectValue == 0) {
                 $("#recipeError").text("* 레시피를 선택해 주세요.");
 
-                execution = false;
+                execution++;
             } else {
                 $("#recipeError").text("");
-                execution = true;
             }
 
-            if (inputValue == "") {
+            if (inputValue == 0) {
                 $("#outputError").text("* 생산량을 입력해 주세요.");
 
-                execution = false;
-            } else if (inputValue < 0
+                execution++;
+            } else if (inputValue < 1
                 || inputValue > 120) {
 
                 $("#outputError").text("* 0 ~ 120 사이에 값을 입력해 주세요");
 
-                execution = false;
+                execution++;
             } else {
                 $("#outputError").text("");
-                execution = true;
             }
 
-            if (execution) {
+            if (execution === 0) {
                 $ ("#formId").submit();
             }
         }

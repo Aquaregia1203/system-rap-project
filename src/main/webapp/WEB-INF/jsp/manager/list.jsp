@@ -72,11 +72,6 @@
                                             <td>${manager.addDate}</td>
                                         </tr>
                                     </c:forEach>
-<%--                                    <tr>--%>
-<%--                                        <td class="text-center">1</td>--%>
-<%--                                        <td>오리엔탈 소스</td>--%>
-<%--                                        <td class="text-center">2021-11-22</td>--%>
-<%--                                    </tr>--%>
                                     </tbody>
                                 </table>
                             </div>
