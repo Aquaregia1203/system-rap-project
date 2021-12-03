@@ -5,7 +5,7 @@
 
 <mapper namespace="kr.co.rap.system.ingredient.IngredientMapper">
     <select id="selectAll"
-            parameterType="Ingredient"
+            parameterType="Map"
             resultType="Ingredient">
         SELECT NO, NAME, USED_COUNT, ADD_DATE FROM INGREDIENT
         <where>
@@ -15,7 +15,7 @@
         </where>
         ORDER BY NAME ASC
         <if test="page != null and page != ''">
-            LIMIT #{page}, 10
+            LIMIT ${page}, 10
         </if>
     </select>
 

@@ -38,17 +38,6 @@
                         </div>
                     </div>
                 </div>
-<%--                <div class="row">--%>
-<%--                    <div class="col-sm-12 text-right">--%>
-<%--                        <label>--%>
-<%--                            <div class="form-group form-inline">--%>
-<%--                                원재료 명:--%>
-<%--                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">--%>
-<%--                                <button id="search" class="btn btn-primary waves-effect">검색</button>--%>
-<%--                            </div>--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
@@ -71,6 +60,10 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-7" id="pageBox">
+                                </div>
+                            </div>
                             <div class="col-sm-12 text-right">
                                 <a href="${pageContext.servletContext.contextPath}/ingredient/form"><button class="btn btn-primary waves-effect">등록</button></a>
                             </div>
@@ -89,6 +82,23 @@
             </div>
         </div>
     <script type="text/javascript">
+        var page = 1;
+        var url = "/ingredient";
+
+        function navigatePage(id) {
+            let buttonNo = $("#" + id).val();
+
+            if (id == "pageButton0") {
+                page = Number(page) - 1;
+            } else if (id == "pageButton6") {
+                page = Number(page) + 1;
+            } else {
+                page = buttonNo;
+            }
+
+            drawTable();
+        }
+
         $(document).ready(function (){
             drawTable();
             $("#search").click(function (){
@@ -100,12 +110,18 @@
         function drawTable() {
             $.ajax({
                 url: '${pageContext.servletContext.contextPath}/ingredient',
-                data: 'name=' + $('#keywordName').val(),
+                data: {
+                    'name' : $('#keywordName').val(),
+                    'page' : page,
+                    'url' : url
+                },
                 type: 'GET',
                 dataType: 'json',
                 headers: {"Content-Type": "application/json;charset=UTF-8"},
                 success: function (result) {
-                    console.log(result)
+                    let ingredientList = result["ingredientList"];
+                    let pageTag = result["tag"];
+
                     var script = "";
                     script += '<table id="table" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'
                     script += '<thead class="text-center">';
@@ -117,16 +133,17 @@
                     script += '</thead>';
                     script += '<tbody>';
 
-                    for (var i = 0; i < result.length; i++) {
+                    for (var i = 0; i < ingredientList.length; i++) {
                         script += '<tr>';
                         script += '    <td class="text-center">' + (i + 1) + '</td>';
-                        script += '    <td><a href="${pageContext.servletContext.contextPath}/ingredient/' + result[i].no +'">' + result[i].name + '</a></td>';
-                        script += '    <td class="text-center">' + result[i].addDate + '</td>';
+                        script += '    <td><a href="${pageContext.servletContext.contextPath}/ingredient/' + ingredientList[i].no +'">' + ingredientList[i].name + '</a></td>';
+                        script += '    <td class="text-center">' + ingredientList[i].addDate + '</td>';
                         script += '</tr>';
                     }
                     script += "</tbody>";
                     script += "</table>";
                     $("#table").html(script);
+                    $("#pageBox").html(pageTag);
                 }
             });
         }

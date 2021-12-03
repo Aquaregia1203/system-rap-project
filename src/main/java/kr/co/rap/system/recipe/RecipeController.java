@@ -3,6 +3,7 @@ package kr.co.rap.system.recipe;
 import kr.co.rap.system.ingredient.Ingredient;
 import kr.co.rap.system.ingredient.IngredientMapper;
 import kr.co.rap.system.ingredient.IngredientServiceImple;
+import kr.co.rap.system.page.PageUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class RecipeController {
     private RecipeServiceImple recipeService;
     @Autowired
     private IngredientServiceImple ingredientService;
+    @Autowired
+    private PageUtil pageUtil;
 
     @GetMapping
     public ModelAndView viewRecipeList() {
@@ -35,8 +38,19 @@ public class RecipeController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Recipe> search(@RequestParam Map<String, String> recipe) {
-        return recipeService.viewRecipeList(recipe);
+    public Map<String, Object> search(@RequestParam Map<String, String> recipe) {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        String tag = pageUtil.getNavigator(recipe.get("url"), Integer.parseInt(recipe.get("page")));
+
+        int limitNo = Integer.parseInt(recipe.get("page"));
+        recipe.put("page", (limitNo * 10 -10) + "");
+        List<Recipe> recipeList = recipeService.viewRecipeList(recipe);
+
+        result.put("recipeList", recipeList);
+        result.put("tag", tag);
+
+        return result;
     }
 
     @GetMapping("/{no}")
