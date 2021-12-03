@@ -79,16 +79,6 @@
                                 <div class="col-sm-12 col-md-7" id="pageBox">
                                 </div>
                             </div>
-<%--                            <div class="row">--%>
-<%--                                <div class="col-sm-12">--%>
-<%--                                    <div class="row">--%>
-<%--                                        <div class="col-sm-12 col-md-6">--%>
-<%--                                            --%>
-<%--                                            --%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                             <div class="col-sm-12 text-right">
                                 <a href="${pageContext.servletContext.contextPath}/manager/form"><button class="btn btn-primary waves-effect">등록</button></a>
                             </div>

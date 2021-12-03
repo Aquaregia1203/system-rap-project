@@ -13,11 +13,11 @@
         ON RP.NO = PLAN.RECIPE_NO
         <if test="start != null and start != ''
                         and end != null and end != ''">
-        WHERE MANUFACTURE_DATE BETWEEN #{start} AND CONCAT(#{end}, ' 23:59:59')
+            WHERE MANUFACTURE_DATE BETWEEN #{start} AND CONCAT(#{end}, ' 23:59:59')
         </if>
-        ORDER BY MANUFACTURE_DATE IS NULL DESC, MANUFACTURE_DATE DESC
-        <if test="page != null and start != ''">
-            LIMIT #{page}, 10
+            ORDER BY MANUFACTURE_DATE IS NULL DESC, MANUFACTURE_DATE DESC
+        <if test="page != null and page != ''">
+            LIMIT ${page}, 10
         </if>
     </select>
 

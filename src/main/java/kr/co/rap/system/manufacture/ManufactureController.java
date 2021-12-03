@@ -1,5 +1,6 @@
 package kr.co.rap.system.manufacture;
 
+import kr.co.rap.system.page.PageUtil;
 import kr.co.rap.system.recipe.Recipe;
 import kr.co.rap.system.recipe.RecipeServiceImple;
 import org.apache.logging.log4j.LogManager;
@@ -28,6 +29,8 @@ public class ManufactureController {
     private RecipeServiceImple recipeService;
     @Autowired
     private ServletContext servletContext;
+    @Autowired
+    private PageUtil pageUtil;
 
     @GetMapping
     public ModelAndView viewManufactureList() {
@@ -35,8 +38,19 @@ public class ManufactureController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Manufacture> search(@RequestParam(required = false) Map<String, String> period) {
-        return manufactureService.viewManufactureList(period);
+    public Map<String, Object> search(@RequestParam(required = false) Map<String, String> period) {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        String tag = pageUtil.getNavigator(period.get("url"), Integer.parseInt(period.get("page")));
+
+        int limitNo = Integer.parseInt(period.get("page"));
+        period.put("page", (limitNo * 10 - 10) + "");
+        List<Manufacture> manufactureList = manufactureService.viewManufactureList(period);
+
+        result.put("tag", tag);
+        result.put("manufactureList", manufactureList);
+
+        return result;
     }
 
 
