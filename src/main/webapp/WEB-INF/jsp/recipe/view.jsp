@@ -20,10 +20,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
+                            <ol class="breadcrumb m-0"></ol>
                             <div class="page-title-right">
-                                <ol class="breadcrumb m-0"></ol>
                             </div>
-                            <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">레시피 상세 정보</h4>
+                            <h4 style="font-family: 'Nanum Gothic',sans-serif">레시피 상세 정보</h4>
                         </div>
                     </div>
                 </div>
