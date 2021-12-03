@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>RAP - System : 레시피 상세 조회</title>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
 
@@ -54,7 +54,9 @@
                                 <c:forEach items="${recipe.mixList}" var="mix">
                                     <tr>
                                         <td>${mix.ingredientName}</td>
-                                        <td class="text-right">${mix.ratio}%</td>
+                                        <td class="text-right">
+                                            <fmt:formatNumber type="percent" minIntegerDigits="0" value="${mix.ratio * 0.01}"/>
+                                        </td>
                                         <td class="text-center">${mix.pumpNo}</td>
                                     </tr>
                                 </c:forEach>

@@ -23,7 +23,7 @@ public class ManagerController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Manager> viewManagerList(Map<String, String> manager) {
+    public List<Manager> viewManagerList(@RequestParam Map<String, String> manager) {
         List<Manager> managerList = managerServiceImple.viewManagerList(manager);
 
         return managerList;

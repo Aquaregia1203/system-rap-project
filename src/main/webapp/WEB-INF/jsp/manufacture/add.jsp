@@ -5,7 +5,6 @@
 <html>
 <head>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
-    <title>RAP - System : 생산계획 등록</title>
 </head>
 <body style="font-family : 'Nanum Gothic', sans-serif" data-layout="horizontal">
     <div id="wrapper">

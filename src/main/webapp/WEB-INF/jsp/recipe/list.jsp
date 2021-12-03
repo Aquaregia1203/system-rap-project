@@ -4,7 +4,6 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>RAP - System : 레시피 목록</title>
     <jsp:include page="${pageContext.servletContext.contextPath}/head.jsp" />
 </head>
 
@@ -23,28 +22,21 @@
                             <ol class="breadcrumb m-0"></ol>
                             <div class="page-title-right">
                                 <label>
-                                    <div class="form-group form-inline">
-                                        레시피 명:
-                                        <input id="keywordName" class="form-control" type="text" placeholder="Search...">
-                                        <button id="search" class="btn btn-primary waves-effect">검색</button>
-                                    </div>
+                                    레시피 명 :
+                                </label>
+
+                                <label>
+                                    <input class="form-control form-control-sm" type="text" placeholder="Search..." id="keywordName">
+                                </label>
+
+                                <label>
+                                    <button id="search" class="btn btn-sm btn-secondary waves-effect">검색</button>
                                 </label>
                             </div>
-                            <h4 class="page-title" style="font-family: 'Nanum Gothic',sans-serif">레시피</h4>
+                            <h4 style="font-family: 'Nanum Gothic',sans-serif">레시피</h4>
                         </div>
                     </div>
                 </div>
-<%--                <div class="row">--%>
-<%--                    <div class="col-sm-12 text-right">--%>
-<%--                        <label>--%>
-<%--                            <div class="form-group form-inline">--%>
-<%--                                레시피 명:--%>
-<%--                                <input id="keywordName" class="form-control" type="text" placeholder="Search...">--%>
-<%--                                <button id="search" class="btn btn-primary waves-effect">검색</button>--%>
-<%--                            </div>--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
