@@ -24,6 +24,25 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-8">
                             <div class="card-box">
+
+                                <div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title mt-0">오류!</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                생산계획 정보를 모두 입력해 주세요.
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+
                                 <h4 class="header-title"></h4>
                                 <p class="sub-header">
                                     레시피를 선택해 생산계획을 등록합니다. <br/>* 생산량은 0 ~ 120 사이의 숫자만 입력 가능합니다.
@@ -61,7 +80,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 text-right">
-                                <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light">등록</button>
+<%--                                <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light">등록</button>--%>
+                                <input type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-sm" value="등록" />
                                 <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="btn btn-secondary waves-effect waves-light">
                                     목록</a>
                             </div>

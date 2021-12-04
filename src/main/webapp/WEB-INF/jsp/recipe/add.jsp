@@ -24,6 +24,25 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-8">
                             <div class="card-box">
+
+                                <div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title mt-0">오류!</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                레시피 정보를 모두 입력해 주세요.
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+
                                 <h4 class="header-title"></h4>
                                 <p class="sub-header">
                                     레시피를 등록합니다. <br/>* 원재료와 펌프 번호는 중복될 수 없으며, 비율은 합이 100이여야 합니다.
@@ -52,8 +71,8 @@
                                 </div>
                                 <div class="col-md-6 text-left" id="ratioMsg" style="color: crimson;font-size:16px" >
                                 </div>
-
-                                <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" >등록</button>
+<%--                                <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" >등록</button>--%>
+                                <input type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-sm" value="등록" />
                                 <a href="${pageContext.servletContext.contextPath}/recipe" class="btn btn-secondary waves-effect waves-light">
                                     목록
                                 </a>
@@ -255,5 +274,7 @@
         }
     })
 </script>
+
+<jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
 </body>
 </html>
