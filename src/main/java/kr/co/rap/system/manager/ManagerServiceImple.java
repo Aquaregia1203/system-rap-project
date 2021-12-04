@@ -7,18 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ManagerServiceImple{
+public class ManagerServiceImple implements ManagerService {
     @Autowired
     private ManagerMapper managerMapper;
 
     public List<Manager> viewManagerList(Map<String, String> manager) {
         List<Manager> rows = managerMapper.selectAll(manager);
 
-        return rows;
-    }
-
-    public List<Manager> pagingManager(Map<String, String> manager) {
-        List<Manager> rows = managerMapper.paging(manager);
         return rows;
     }
 
@@ -52,5 +47,4 @@ public class ManagerServiceImple{
 
         return true;
     }
-
 }

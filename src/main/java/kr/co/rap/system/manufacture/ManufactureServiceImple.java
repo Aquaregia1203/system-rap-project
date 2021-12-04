@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ManufactureServiceImple {
+public class ManufactureServiceImple implements ManufactureService {
     private static Logger logger
             = LogManager.getLogger(ManufactureServiceImple.class);
     @Autowired

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class RecipeServiceImple {
+public class RecipeServiceImple implements RecipeService{
     private static Logger logger
             = LogManager.getLogger(RecipeServiceImple.class);
     @Autowired

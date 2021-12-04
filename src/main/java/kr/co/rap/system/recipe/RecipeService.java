@@ -1,9 +1,10 @@
 package kr.co.rap.system.recipe;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RecipeService {
-    public List<Recipe> viewRecipeList(Recipe recipe);
+    public List<Recipe> viewRecipeList(Map<String, String> recipe);
 
     public Recipe viewRecipe(Recipe recipe);
 
