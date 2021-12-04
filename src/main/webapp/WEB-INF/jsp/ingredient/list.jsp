@@ -22,14 +22,10 @@
                             <ol class="breadcrumb m-0">
                             </ol>
                             <div class="page-title-right">
-                                <label>
-                                    레시피 명 :
-                                </label>
-
+                                <label>원재료 명 :</label>
                                 <label>
                                     <input class="form-control form-control-sm" type="text" placeholder="Search..." id="keywordName">
                                 </label>
-
                                 <label>
                                     <button id="search" class="btn btn-sm btn-secondary waves-effect">검색</button>
                                 </label>
@@ -61,7 +57,11 @@
                                 </table>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 col-md-7" id="pageBox">
+                                <div class="col-sm-12 col-md-5">
+                                </div>
+                                <div class="col-sm-12 col-md-7">
+                                    <div id="pageBox">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-12 text-right">
@@ -121,23 +121,32 @@
                 success: function (result) {
                     let ingredientList = result["ingredientList"];
                     let pageTag = result["tag"];
+                    let used;
 
                     var script = "";
                     script += '<table id="table" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'
                     script += '<thead class="text-center">';
                     script += '<tr>';
                     script += '    <th style="width: 5%">번호</th>';
-                    script += '    <th>원재료</th>';
                     script += '    <th style="width: 20%">등록 일자</th>';
+                    script += '    <th>원재료</th>';
+                    script += '    <th style="width: 10%">사용 여부</th>';
                     script += '</tr>';
                     script += '</thead>';
                     script += '<tbody>';
 
                     for (var i = 0; i < ingredientList.length; i++) {
+                        if (ingredientList[i].usedCount === 0) {
+                            used = "미사용";
+                        } else {
+                            used = "사용";
+                        }
+
                         script += '<tr>';
                         script += '    <td class="text-center">' + ((i + 1) + (10 * (page - 1))) + '</td>';
-                        script += '    <td><a href="${pageContext.servletContext.contextPath}/ingredient/' + ingredientList[i].no +'">' + ingredientList[i].name + '</a></td>';
                         script += '    <td class="text-center">' + ingredientList[i].addDate + '</td>';
+                        script += '    <td><a href="${pageContext.servletContext.contextPath}/ingredient/' + ingredientList[i].no +'">' + ingredientList[i].name + '</a></td>';
+                        script += '    <td class="text-right">' + used + '</td>'
                         script += '</tr>';
                     }
                     script += "</tbody>";

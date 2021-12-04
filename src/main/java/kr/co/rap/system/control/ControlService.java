@@ -10,5 +10,5 @@ import java.util.Map;
 public interface ControlService {
     public Map<String, String> receiveProductInfo(Map<String, Integer> productInfo);
 
-    public boolean sendManufactureInfo(InputInfo inputInfo, Manufacture manufacture);
+    public boolean sendInputInfo(InputInfo inputInfo, Manufacture manufacture);
 }

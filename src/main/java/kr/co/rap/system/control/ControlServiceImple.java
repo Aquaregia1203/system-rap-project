@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
-public class ControlServiceImple {
+public class ControlServiceImple implements ControlService{
     private static Logger logger
             = LogManager.getLogger(ControlServiceImple.class);
     @Autowired
@@ -65,8 +65,7 @@ public class ControlServiceImple {
         }
     }
 
-    public boolean sendInputInfo(InputInfo inputInfo,
-                                       Manufacture manufacture) {
+    public boolean sendInputInfo(InputInfo inputInfo, Manufacture manufacture) {
         try {
             if (controlUtil.sendInputInfo(inputInfo)) {
                 servletContext.setAttribute("status", "ON");

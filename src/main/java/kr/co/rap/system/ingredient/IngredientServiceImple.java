@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class IngredientServiceImple {
+public class IngredientServiceImple implements IngredientService{
     @Autowired
     private IngredientMapper ingredientMapper;
 
