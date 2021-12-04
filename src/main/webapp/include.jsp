@@ -13,7 +13,7 @@
 
                 <li class="dropdown d-none d-lg-block">
                     <a class="nav-link dropdown-toggle mr-0 waves-effect waves-light " style="color: white" href="${pageContext.servletContext.contextPath}/logout" role="button">
-                        <i class="mdi mdi-logout-variant">   </i>
+                        <i class="mdi mdi-logout-variant"></i>
                         로그아웃
                     </a>
                 </li>

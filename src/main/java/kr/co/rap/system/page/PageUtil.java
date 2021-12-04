@@ -50,7 +50,7 @@ public class PageUtil {
         StringBuffer tag = new StringBuffer();
 
         tag.append("<div class='dataTables_paginate paging_simple_numbers '>")
-           .append("    <ul class='pagination' >");
+           .append("    <ul class='pagination justify-content-center' >");
 
         if (page > 1) {
             tag.append("    <li class='paginate_button page-item previous'>")

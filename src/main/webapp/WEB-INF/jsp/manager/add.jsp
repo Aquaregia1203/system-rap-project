@@ -79,12 +79,13 @@
         </div>
     </div>
 </div>
+
 <script>
     $("#submitButton").click(function () {
         let result = 0;
         let size = $("#contact").val().length;
 
-        if (size != 13) {
+        if (size !== 13) {
             result++;
             $("#contactError").text("* 연락처를 입력해 주세요.");
         } else {
@@ -115,7 +116,7 @@
         for (let i = 0; i < size; i++) {
             let contact = $("#contact").val().charAt(i);
 
-            if (i == 3 || i == 8) {
+            if (i === 3 || i === 8) {
                 if (!isNaN(contact)) {
                     result++;
                     $("#contactError").text("* 올바른 형식의 연락처가 아닙니다.")
@@ -133,6 +134,7 @@
         }
     });
 </script>
+
 <jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
 </body>
 </html>

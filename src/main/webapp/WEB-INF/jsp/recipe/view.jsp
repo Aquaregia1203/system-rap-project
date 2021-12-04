@@ -34,7 +34,7 @@
                                 <div class="col-sm-12 col-md-9">
                                     <div style="font-size: 20pt; font-weight: bold">${recipe.name}</div>
                                 </div>
-                                <div class="col-sm-12 col-md-3">
+                                <div class="col-sm-12 col-md-3 text-right">
                                     <div style="font-size: 20pt; font-weight: bold">등록일자:${recipe.addDate}</div>
                                 </div>
                             </div>
@@ -87,6 +87,9 @@
                 </footer>
             </div>
         </div>
-        <jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
+    </div>
+</div>
+
+<jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
 </body>
 </html>

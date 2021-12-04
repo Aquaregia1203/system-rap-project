@@ -71,7 +71,6 @@
     </div>
 </div>
 
-<jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp"/>
 <script type="text/javascript">
 
     function login(){
@@ -90,5 +89,7 @@
         }
     }
 </script>
+
+<jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp"/>
 </body>
 </html>

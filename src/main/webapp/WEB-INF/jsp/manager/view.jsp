@@ -32,20 +32,17 @@
                             <table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="text-center">
                                 <tr>
-                                    <th>아이디</th>
-                                    <th>이름</th>
-                                    <th>연락처</th>
                                     <th>구분</th>
-                                    <th>등록 일자</th>
-                                    <th>상태</th>
+                                    <th>아이디</th>
+                                    <th style="width: 10%">이름</th>
+                                    <th style="width: 20%">연락처</th>
+                                    <th style="width: 20%">등록 일자</th>
+                                    <th style="width: 10%">상태</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <tr>
-                                    <td>${manager.id}</td>
-                                    <td class="text-center">${manager.name}</td>
-                                    <td class="text-center">${manager.contact}</td>
                                     <c:choose>
                                         <c:when test="${manager.division eq 'S'}">
                                             <td class="text-center">시스템 관리자</td>
@@ -54,6 +51,9 @@
                                             <td class="text-center">생산 관리자</td>
                                         </c:otherwise>
                                     </c:choose>
+                                    <td>${manager.id}</td>
+                                    <td class="text-center">${manager.name}</td>
+                                    <td class="text-center">${manager.contact}</td>
                                     <td class="text-center">${manager.addDate}</td>
                                     <c:choose>
                                         <c:when test="${manager.status eq 'Y'}">
@@ -84,6 +84,9 @@
                 </footer>
             </div>
         </div>
-        <jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
+    </div>
+</div>
+
+<jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
 </body>
 </html>
