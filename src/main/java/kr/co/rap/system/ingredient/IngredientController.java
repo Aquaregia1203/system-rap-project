@@ -3,7 +3,6 @@ package kr.co.rap.system.ingredient;
 import kr.co.rap.system.page.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -16,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/ingredient")
 public class IngredientController {
     @Autowired
-    private IngredientServiceImple ingredientServiceImple;
+    private IngredientService ingredientService;
     @Autowired
     private PageUtil pageUtil;
 
@@ -33,7 +32,7 @@ public class IngredientController {
 
         int limitNo = Integer.parseInt(ingredient.get("page"));
         ingredient.put("page",(limitNo * 10 - 10) + "");
-        List<Ingredient> ingredientList = ingredientServiceImple.viewIngredientList(ingredient);
+        List<Ingredient> ingredientList = ingredientService.viewIngredientList(ingredient);
 
         result.put("ingredientList", ingredientList);
         result.put("tag", tag);
@@ -43,7 +42,7 @@ public class IngredientController {
 
     @GetMapping("/{no}")
     public ModelAndView viewIngredient(Ingredient ingredient) {
-        ingredient = ingredientServiceImple.viewIngredient(ingredient);
+        ingredient = ingredientService.viewIngredient(ingredient);
 
         ModelAndView mav = new ModelAndView("ingredient/view");
         mav.addObject("ingredient", ingredient);
@@ -58,7 +57,7 @@ public class IngredientController {
 
     @PostMapping
     public ModelAndView addIngredient(Ingredient ingredient) {
-        boolean result = ingredientServiceImple.addIngredient(ingredient);
+        boolean result = ingredientService.addIngredient(ingredient);
 
         if (result) {
             ModelAndView mav = new ModelAndView(new RedirectView("/ingredient"));
@@ -77,7 +76,7 @@ public class IngredientController {
         Ingredient ingredient = new Ingredient();
         ingredient.setNo(no);
 
-        ingredient = ingredientServiceImple.viewIngredient(ingredient);
+        ingredient = ingredientService.viewIngredient(ingredient);
 
         ModelAndView mav = new ModelAndView("ingredient/edit");
         mav.addObject("ingredient", ingredient);
@@ -87,7 +86,7 @@ public class IngredientController {
 
     @PutMapping
     public ModelAndView editIngredient(Ingredient ingredient) {
-        if (ingredientServiceImple.editIngredient(ingredient)) {
+        if (ingredientService.editIngredient(ingredient)) {
             ModelAndView mav = new ModelAndView(new RedirectView("/ingredient"));
 
             return mav;
@@ -98,7 +97,7 @@ public class IngredientController {
 
     @DeleteMapping
     public ModelAndView removeIngredient(Ingredient ingredient) {
-        ingredientServiceImple.removeIngredient(ingredient);
+        ingredientService.removeIngredient(ingredient);
 
         return new ModelAndView(new RedirectView("/ingredient"));
     }

@@ -102,9 +102,9 @@
             }
 
             if (pump == ""
-                || pump < 1) {
+                || pump < 1 || pump > 3) {
                 result++;
-                $("#pumpError" + i).text("* 1 이상의 번호를 선택해 주세요.")
+                $("#pumpError" + i).text("* 1 ~ 3 사이의 번호를 선택해 주세요.")
             } else {
                 $("#pumpError" + i).text("");
             }

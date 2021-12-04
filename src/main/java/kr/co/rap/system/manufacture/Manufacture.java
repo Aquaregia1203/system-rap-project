@@ -10,7 +10,7 @@ public class Manufacture implements Serializable {
     private int output;
     private String id;
     private String managerName;
-    private int errorAmount;
+    private double errorAmount;
     private String addDate;
     private String status;
 
@@ -57,11 +57,11 @@ public class Manufacture implements Serializable {
         this.id = id;
     }
 
-    public int getErrorAmount() {
+    public double getErrorAmount() {
         return errorAmount;
     }
 
-    public void setErrorAmount(int errorAmount) {
+    public void setErrorAmount(double errorAmount) {
         this.errorAmount = errorAmount;
     }
 

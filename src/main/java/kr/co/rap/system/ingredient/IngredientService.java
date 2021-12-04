@@ -1,8 +1,11 @@
 package kr.co.rap.system.ingredient;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Map;
 
+@Service
 public interface IngredientService {
     public List<Ingredient> viewIngredientList(Map<String, String> ingredient);
 

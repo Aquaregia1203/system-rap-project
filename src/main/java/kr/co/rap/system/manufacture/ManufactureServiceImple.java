@@ -31,7 +31,12 @@ public class ManufactureServiceImple {
     }
 
     public Manufacture viewManufacture(Manufacture manufacture) {
-        return manufactureMapper.select(manufacture);
+        manufacture = manufactureMapper.select(manufacture);
+
+        double errorAmount = manufacture.getErrorAmount() / 1000.0;
+        manufacture.setErrorAmount(errorAmount);
+
+        return manufacture;
     }
 
     public boolean addManufacture(Manufacture manufacture) {
@@ -49,7 +54,7 @@ public class ManufactureServiceImple {
     public boolean editManufacture(Manufacture newManufacture) {
         Manufacture beforeManufacture =
                 manufactureMapper.select(newManufacture);
-        //TODO:: 말이 안됨
+
         if (beforeManufacture == null
                 || "Y".equals(beforeManufacture.getStatus())) {
             return false;

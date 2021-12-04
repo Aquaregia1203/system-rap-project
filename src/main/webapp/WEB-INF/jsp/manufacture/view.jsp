@@ -80,7 +80,7 @@
                                             <c:otherwise>
                                                 <td class="text-right">
                                                     <fmt:formatNumber type="number" value="${manufacture.errorAmount}"/>
-                                                    g
+                                                    kg
                                                 </td>
                                             </c:otherwise>
                                         </c:choose>

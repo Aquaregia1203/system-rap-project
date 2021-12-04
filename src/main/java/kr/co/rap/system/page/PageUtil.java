@@ -32,9 +32,16 @@ public class PageUtil {
             count = ingredientMapper.count();
         }
 
-        int totalPage = (count / 10) + 1;
-        int printStart = (page / 5) + 1;
-        int printEnd = (page / 5) + 5;
+        int totalPage = count % 10 != 0
+                        ? (count / 10) + 1
+                        : count / 10;
+
+        int temp = page % 5 != 0
+                   ? (page / 5) + 1
+                   : (page / 5);
+
+        int printEnd = temp * 5;
+        int printStart = printEnd - 4;
 
         return buildString(totalPage, printStart, printEnd, page);
     }
@@ -42,15 +49,15 @@ public class PageUtil {
     private String buildString(int totalPage, int printStart, int printEnd, int page) {
         StringBuffer tag = new StringBuffer();
 
-        tag.append("<div class='dataTables_paginate paging_simple_numbers'>")
-                .append("    <ul class='pagination'>");
+        tag.append("<div class='dataTables_paginate paging_simple_numbers '>")
+           .append("    <ul class='pagination' >");
 
         if (page > 1) {
             tag.append("    <li class='paginate_button page-item previous'>")
-                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton0' class='page-link'>이전</button>");
+               .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton0' class='page-link'>이전</button>");
         } else {
             tag.append("    <li class='paginate_button page-item previous disabled'>")
-                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton0' class='page-link'>이전</button>");
+               .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton0' class='page-link'>이전</button>");
         }
 
         tag.append("    </li>");
@@ -58,12 +65,12 @@ public class PageUtil {
         for (int i = printStart, id = 1; i <= printEnd; i++, id++) {
             if (i == page) {
                 tag.append("    <li class='paginate_button page-item active'>")
-                        .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton" + id + "' class='page-link' value='" + i + "'>" + i + "</button>")
-                        .append("    </li>");
+                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton" + id + "' class='page-link' value='" + i + "'>" + i + "</button>")
+                 .append("    </li>");
             } else {
                 tag.append("    <li class='paginate_button page-item'>")
-                        .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton" + id + "' class='page-link' value='" + i + "'>" + i + "</button>")
-                        .append("    </li>");
+                   .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton" + id + "' class='page-link' value='" + i + "'>" + i + "</button>")
+                   .append("    </li>");
             }
 
             if (i == totalPage) {

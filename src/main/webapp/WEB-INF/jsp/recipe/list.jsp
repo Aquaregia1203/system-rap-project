@@ -60,11 +60,13 @@
                                 </table>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 col-md-7" id="pageBox">
+                                <div class="col-sm-12 col-md-3">
                                 </div>
-                            </div>
-                            <div class="col-sm-12 text-right">
-                                <a href="${pageContext.servletContext.contextPath}/recipe/form"><button class="btn btn-primary waves-effect">등록</button></a>
+                                <div class="col-sm-12 col-md-6" id="pageBox">
+                                </div>
+                                <div class="col-sm-12 col-md-3 text-right">
+                                    <a href="${pageContext.servletContext.contextPath}/recipe/form"><button class="btn btn-primary waves-effect">등록</button></a>
+                                </div>
                             </div>
                         </div>
                     </div>

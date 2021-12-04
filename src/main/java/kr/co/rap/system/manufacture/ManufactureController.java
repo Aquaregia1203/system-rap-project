@@ -24,7 +24,7 @@ public class ManufactureController {
     private static Logger logger
             = LogManager.getLogger(ManufactureController.class);
     @Autowired
-    private ManufactureServiceImple manufactureService;
+    private ManufactureService manufactureService;
     @Autowired
     private RecipeServiceImple recipeService;
     @Autowired

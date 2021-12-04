@@ -15,7 +15,7 @@ public class ControlController {
     private static Logger logger
             = LogManager.getLogger(ControlController.class);
     @Autowired
-    private ControlServiceImple controlService;
+    private ControlService controlService;
 
     @PostMapping("/product")
     public Map<String, String> reciveProductWeight(

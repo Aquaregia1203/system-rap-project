@@ -3,7 +3,6 @@ package kr.co.rap.system.manager;
 import kr.co.rap.system.page.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -16,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/manager")
 public class ManagerController {
     @Autowired
-    private ManagerServiceImple managerServiceImple;
+    private ManagerService managerService;
     @Autowired
     private PageUtil pageUtil;
 
@@ -33,7 +32,7 @@ public class ManagerController {
 
         int limitNo = Integer.parseInt(manager.get("page"));
         manager.put("page", (limitNo * 10 - 10) + "");
-        List<Manager> managerList = managerServiceImple.viewManagerList(manager);
+        List<Manager> managerList = managerService.viewManagerList(manager);
 
         result.put("managerList", managerList);
         result.put("tag", tag);
@@ -45,7 +44,7 @@ public class ManagerController {
     public ModelAndView viewManager(Manager manager) {
         ModelAndView mav = new ModelAndView("manager/view");
 
-        manager = managerServiceImple.viewManager(manager);
+        manager = managerService.viewManager(manager);
 
         mav.addObject("manager", manager);
         return mav;
@@ -58,7 +57,7 @@ public class ManagerController {
 
     @PostMapping
     public ModelAndView addManager(Manager manager) {
-        if (managerServiceImple.addManager(manager)) {
+        if (managerService.addManager(manager)) {
             return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
         }
 
@@ -73,7 +72,7 @@ public class ManagerController {
     public ModelAndView editManager(@PathVariable String id) {
         Manager manager = new Manager();
         manager.setId(id);
-        manager = managerServiceImple.viewManager(manager);
+        manager = managerService.viewManager(manager);
 
         ModelAndView mav = new ModelAndView("manager/edit");
         mav.addObject("manager", manager);
@@ -83,7 +82,7 @@ public class ManagerController {
 
     @PutMapping
     public ModelAndView editManager(Manager manager) {
-        managerServiceImple.editManager(manager);
+        managerService.editManager(manager);
 
         return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
     }

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class AccessController {
     @Autowired
-    private AccessServiceImple accessServiceImple;
+    private AccessService accessService;
 
     @GetMapping("/login")
     public ModelAndView login(HttpSession httpSession) {
@@ -32,7 +32,7 @@ public class AccessController {
 
     @PostMapping("/login")
     public ModelAndView login(Manager manager, HttpSession httpSession, String remember) {
-        boolean result = accessServiceImple.login(manager);
+        boolean result = accessService.login(manager);
 
         if ("check".equals(remember)) {
             httpSession.setAttribute("saveId", manager.getId());

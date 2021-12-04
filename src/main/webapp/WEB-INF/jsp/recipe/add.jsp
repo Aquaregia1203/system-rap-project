@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-12 text-right">
+                                    <div class="col-lg-12 text-right" >
                                         <button type="button" id="addButton" class="btn btn-primary waves-effect waves-light">원재료 추가</button>
                                         <button type="button" id="removeButton" class="btn btn-primary waves-effect waves-light">원재료 삭제</button>
                                     </div>
@@ -105,9 +105,9 @@
                 }
 
                 if (pump == ""
-                    || pump < 1) {
+                    || pump < 1 || pump > 3) {
                     result++;
-                    $("#pumpError" + i).text("* 1 이상의 번호를 선택해 주세요.")
+                    $("#pumpError" + i).text("* 1 ~ 3 사이의 번호를 선택해 주세요.")
                 } else {
                     $("#pumpError" + i).text("");
                 }
@@ -162,7 +162,7 @@
                             + '<div class="form-group row">'
                             + ' <label class="col-md-3  control-label">펌프</label>'
                             + ' <div class="col-md-8">'
-                            + '     <input type="number" class="form-control" id="pumpNo' + i + '" name="mixList[' + i + '].pumpNo" value="" min="1">'
+                            + '     <input type="number" class="form-control" id="pumpNo' + i + '" name="mixList[' + i + '].pumpNo" value="">'
                             + '     <div id="pumpError' + i + '" style="color: crimson;font-size:12px" ></div>'
                             + ' </div>'
                             + ' <div class="col-md-1">'

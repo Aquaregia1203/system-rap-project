@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Controller
 public interface ControlService {
-    public Map<String, String> receiveProductInfo(Map<String, String> responseInfo);
+    public Map<String, String> receiveProductInfo(Map<String, Integer> productInfo);
 
     public boolean sendManufactureInfo(InputInfo inputInfo, Manufacture manufacture);
 }

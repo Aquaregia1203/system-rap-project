@@ -13,7 +13,7 @@
             </if>
         </where>
         ORDER BY NAME ASC
-        <if test="page != null and name != ''">
+        <if test="page != null and page != ''">
             LIMIT ${page}, 10
         </if>
     </select>
