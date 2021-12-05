@@ -36,6 +36,10 @@ public class PageUtil {
                         ? (count / 10) + 1
                         : count / 10;
 
+        if (totalPage == 0) {
+            return "";
+        }
+
         int temp = page % 5 != 0
                    ? (page / 5) + 1
                    : (page / 5);
