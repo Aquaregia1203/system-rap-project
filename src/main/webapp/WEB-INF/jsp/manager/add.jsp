@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 
 <html>
@@ -53,7 +55,9 @@
                                             <div class="col-md-7">
                                                 <input type="text" name="id" id="id" class="form-control" value="${manager.id}">
                                                 <div style="color: crimson; font-size:12px" id="idError">
-                                                    ${message}
+                                                    <c:if test="${!empty errorid}">
+                                                       * ${errorid}
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>
@@ -62,6 +66,9 @@
                                             <div class="col-md-7">
                                                 <input type="password" name="password" id="password" class="form-control" value="${manager.password}">
                                                 <div style="color: crimson; font-size:12px" id="passwordError">
+                                                    <c:if test="${!empty errorpassword}">
+                                                        * ${errorpassword}
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>
@@ -70,6 +77,9 @@
                                             <div class="col-md-7">
                                                 <input type="text" name="name" id="name" class="form-control" value="${manager.name}">
                                                 <div style="color: crimson; font-size:12px" id="nameError">
+                                                    <c:if test="${!empty errorname}">
+                                                        * ${errorname}
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,6 +89,9 @@
                                             <div class="col-md-7">
                                                 <input type="text" name="contact" id="contact" class="form-control" placeholder="ex) 010-1234-5678" value="${manager.contact}" >
                                                 <div style="color: crimson; font-size:12px" id="contactError">
+                                                    <c:if test="${!empty errorcontact}">
+                                                        * ${errorcontact}
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,12 +118,12 @@
         let result = 0;
         let size = $("#contact").val().length;
 
-        if (size !== 13) {
-            result++;
-            $("#contactError").text("* 연락처를 입력해 주세요.");
-        } else {
-            $("#contactError").text("");
-        }
+        // if (size !== 13) {
+        //     result++;
+        //     $("#contactError").text("* 연락처를 입력해 주세요.");
+        // } else {
+        //     $("#contactError").text("");
+        // }
 
         if (!$("#id").val()) {
             result++;
@@ -133,21 +146,21 @@
             $("#passwordError").text("");
         }
 
-        for (let i = 0; i < size; i++) {
-            let contact = $("#contact").val().charAt(i);
-
-            if (i === 3 || i === 8) {
-                if (!isNaN(contact)) {
-                    result++;
-                    $("#contactError").text("* 올바른 형식의 연락처가 아닙니다.")
-                }
-            } else {
-                if (isNaN(contact)) {
-                    result++;
-                    $("#contactError").text("* 올바른 형식의 연락처가 아닙니다.")
-                }
-            }
-        }
+        // for (let i = 0; i < size; i++) {
+        //     let contact = $("#contact").val().charAt(i);
+        //
+        //     if (i === 3 || i === 8) {
+        //         if (!isNaN(contact)) {
+        //             result++;
+        //             $("#contactError").text("* 올바른 형식의 연락처가 아닙니다.")
+        //         }
+        //     } else {
+        //         if (isNaN(contact)) {
+        //             result++;
+        //             $("#contactError").text("* 올바른 형식의 연락처가 아닙니다.")
+        //         }
+        //     }
+        // }
 
         if (result === 0) {
             $("#formId").submit();

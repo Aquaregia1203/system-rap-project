@@ -88,6 +88,7 @@
             var ingredient = $("#ingredient" + i).val();
             var pump = $("#pumpNo" + i).val();
             ratio = ratio + Number($("#ratio" + i).val());
+            let thisRatio = Number($("#ratio" + i).val());
 
             if (ingredient == 0) {
                 $("#ingredientError" + i).text("* 원재료를 선택해 주세요.")
@@ -96,8 +97,8 @@
                 $("#ingredientError" + i).text("");
             }
 
-            if (ratio == ""
-                || (ratio > 99 && ratio < 1)) {
+            if (thisRatio == ""
+                || (thisRatio > 99 || thisRatio < 1)) {
                 $("#ratioError" + i).text("* 1 ~ 99 사이의 숫자를 입력해 주세요.")
                 result++;
             } else {

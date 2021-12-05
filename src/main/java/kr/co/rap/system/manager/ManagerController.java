@@ -3,6 +3,8 @@ package kr.co.rap.system.manager;
 import kr.co.rap.system.page.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -56,15 +58,27 @@ public class ManagerController {
     }
 
     @PostMapping
-    public ModelAndView addManager(Manager manager) {
+    public ModelAndView addManager(Manager manager, Errors errors) {
+        new RegisterRequestValidator().validate(manager, errors);
+
+        if (errors.hasErrors()) {
+            ModelAndView mav = new ModelAndView("/manager/add");
+
+            List<FieldError> errorsList = errors.getFieldErrors();
+
+            for (FieldError error : errorsList) {
+                mav.addObject("error" + error.getField(), error.getCode());
+                System.out.println(error.getField());
+                System.out.println(error.getCode());
+            }
+            return mav;
+        }
+
         if (managerService.addManager(manager)) {
             return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
         }
 
         ModelAndView retry = new ModelAndView("manager/add");
-        retry.addObject("message", "* 아이디의 중복이 존재합니다.");
-        retry.addObject("manager", manager);
-
         return retry;
     }
 
@@ -81,7 +95,8 @@ public class ManagerController {
     }
 
     @PutMapping
-    public ModelAndView editManager(Manager manager) {
+    public ModelAndView editManager(Manager manager, Errors errors) {
+
         managerService.editManager(manager);
 
         return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
