@@ -119,4 +119,6 @@
         }
     </script>
 </body>
+
+<jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
 </html>

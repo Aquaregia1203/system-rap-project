@@ -13,6 +13,7 @@
 <link href="${pageContext.servletContext.contextPath}/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.servletContext.contextPath}/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.servletContext.contextPath}/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.servletContext.contextPath}/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.servletContext.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
 <link href="${pageContext.servletContext.contextPath}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.servletContext.contextPath}/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />

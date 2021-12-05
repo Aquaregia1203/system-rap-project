@@ -148,7 +148,10 @@ public class RecipeController {
 
         if (!recipeService.editRecipe(recipe)) {
 
-            return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo() + "/form"));
+            ModelAndView retry = new ModelAndView(new RedirectView("/recipe/" + recipe.getNo() + "/form"));
+            retry.addObject("error", "1");
+
+            return retry;
         }
 
         return new ModelAndView(new RedirectView("/recipe/" + recipe.getNo()));

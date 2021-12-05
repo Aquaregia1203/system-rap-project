@@ -37,9 +37,9 @@
                                                 <div class="col-md-8">
                                                     <input type="text" id="inputText" name="name" class="form-control" value="${ingredient.name}" >
                                                     <div class="col-md-8" style="color:red; font-size:15px" id="errorName">
-<%--                                                        <c:if test="${param.msg eq '1'}">--%>
-<%--                                                            *중복되는 원재료 입니다.--%>
-<%--                                                        </c:if>--%>
+                                                        <c:if test="${param.error eq '1'}">
+                                                            * 이미 존재하는 원재료 입니다.
+                                                        </c:if>
                                                     </div>
                                                 </div>
                                             </div>

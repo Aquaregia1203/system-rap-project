@@ -18,8 +18,11 @@
 <script src="${pageContext.servletContext.contextPath}/assets/libs/jszip/jszip.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/assets/libs/pdfmake/pdfmake.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/assets/libs/pdfmake/vfs_fonts.js"></script>
+<script src="${pageContext.servletContext.contextPath}/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="${pageContext.servletContext.contextPath}/assets/js/pages/sweetalerts.init.js"></script>
 <!-- Datatables init -->
 <script src="${pageContext.servletContext.contextPath}/assets/js/pages/datatables.init.js"></script>
 <!-- App js -->
 <script src="${pageContext.servletContext.contextPath}/assets/js/app.min.js"></script>
-<!-- <script src="${pageContext.servletContext.contextPath}/assets/js/app.min.js"></script> -->

@@ -24,23 +24,23 @@
                         <form action="${pageContext.servletContext.contextPath}/manager" method="post" id="formId">
                             <div class="card-box">
 
-                                <div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">
-                                    <div class="modal-dialog modal-sm">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title mt-0">오류!</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                관리자 정보를 모두 입력해 주세요.
-                                            </div>
-                                        </div>
-                                        <!-- /.modal-content -->
-                                    </div>
-                                    <!-- /.modal-dialog -->
-                                </div>
+<%--                                <div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">--%>
+<%--                                    <div class="modal-dialog modal-sm">--%>
+<%--                                        <div class="modal-content">--%>
+<%--                                            <div class="modal-header">--%>
+<%--                                                <h5 class="modal-title mt-0">오류!</h5>--%>
+<%--                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
+<%--                                                    <span aria-hidden="true">×</span>--%>
+<%--                                                </button>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="modal-body">--%>
+<%--                                                관리자 정보를 모두 입력해 주세요.--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <!-- /.modal-content -->--%>
+<%--                                    </div>--%>
+<%--                                    <!-- /.modal-dialog -->--%>
+<%--                                </div>--%>
 
                                 <h4 class="header-title"></h4>
                                 <p class="sub-header">

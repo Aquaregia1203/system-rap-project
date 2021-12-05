@@ -92,7 +92,11 @@ public class IngredientController {
             return mav;
         }
 
-        return new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo() + "/form"));
+        ModelAndView retry = new ModelAndView(new RedirectView("/ingredient/" + ingredient.getNo() + "/form"));
+        retry.addObject("error", "1");
+
+        return retry;
+
     }
 
     @DeleteMapping

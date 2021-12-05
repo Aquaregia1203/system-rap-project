@@ -35,6 +35,9 @@
                                             <div class="col-md-9">
                                                 <input type="text" name="name" id="recipe" class="form-control" value="${recipe.name}">
                                                 <div id="recipeError" style="color: crimson;font-size:12px" >
+                                                    <c:if test="${param.error eq '1'}">
+                                                        * 이미 존재하는 레시피 입니다.
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>

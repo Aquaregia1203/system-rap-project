@@ -25,23 +25,23 @@
                         <div class="col-sm-8">
                             <div class="card-box">
 
-                                <div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">
-                                    <div class="modal-dialog modal-sm">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title mt-0">오류!</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                생산계획 정보를 모두 입력해 주세요.
-                                            </div>
-                                        </div>
-                                        <!-- /.modal-content -->
-                                    </div>
-                                    <!-- /.modal-dialog -->
-                                </div>
+<%--                                <div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">--%>
+<%--                                    <div class="modal-dialog modal-sm">--%>
+<%--                                        <div class="modal-content">--%>
+<%--                                            <div class="modal-header">--%>
+<%--                                                <h5 class="modal-title mt-0">오류!</h5>--%>
+<%--                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
+<%--                                                    <span aria-hidden="true">×</span>--%>
+<%--                                                </button>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="modal-body">--%>
+<%--                                                생산계획 정보를 모두 입력해 주세요.--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <!-- /.modal-content -->--%>
+<%--                                    </div>--%>
+<%--                                    <!-- /.modal-dialog -->--%>
+<%--                                </div>--%>
 
                                 <h4 class="header-title"></h4>
                                 <p class="sub-header">
@@ -80,8 +80,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 text-right">
-<%--                                <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light">등록</button>--%>
-                                <input type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-sm" value="등록" />
+                                <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light">등록</button>
+<%--                                <input type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-sm" value="등록" />--%>
                                 <a href="${pageContext.servletContext.contextPath}/manufacture-plan" class="btn btn-secondary waves-effect waves-light">
                                     목록</a>
                             </div>
@@ -95,39 +95,36 @@
 
 <script type="text/javascript">
     document.getElementById("submitButton").addEventListener("click", click, false);
-    document.getElementById("submitButton")
 
 
     function click() {
         var selectValue = $("#selectBox option:selected").val();
         var inputValue = Number($("#inputBox").val());
-        var execution;
+        var execution = 0;
 
-        if (selectValue === 0) {
+        if (selectValue == 0) {
             $("#recipeError").text("* 레시피를 선택해 주세요.");
 
-            execution = false;
+            execution++;
         } else {
             $("#recipeError").text("");
-            execution = true;
         }
 
-        if (inputValue === "") {
+        if (inputValue == 0) {
             $("#outputError").text("* 생산량을 입력해 주세요.");
 
-            execution = false;
+            execution++;
         } else if (inputValue < 1
                        || inputValue > 120) {
 
             $("#outputError").text("* 0 ~ 120 사이에 값을 입력해 주세요");
 
-            execution = false;
+            execution++;
         } else {
             $("#outputError").text("");
-            execution = true;
         }
 
-        if (execution) {
+        if (execution === 0) {
             $ ("#formId").submit();
         }
     }
