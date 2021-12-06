@@ -31,8 +31,16 @@
         WHERE PLAN.NO = #{no}
     </select>
 
-    <select id="count" resultType="int">
+    <select id="count"
+            parameterType="Map"
+            resultType="int">
         SELECT COUNT(*) FROM MANUFACTURE_PLAN
+        <where>
+            <if test="start != null and start != ''
+                        and end != null and end != ''">
+                MANUFACTURE_DATE BETWEEN #{start} AND CONCAT(#{end}, ' 23:59:59')
+            </if>
+        </where>
     </select>
 
     <insert id="insert" useGeneratedKeys="true" parameterType="Manufacture"

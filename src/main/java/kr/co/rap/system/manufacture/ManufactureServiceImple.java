@@ -15,8 +15,6 @@ import java.util.Map;
 
 @Service
 public class ManufactureServiceImple implements ManufactureService {
-    private static Logger logger
-            = LogManager.getLogger(ManufactureServiceImple.class);
     @Autowired
     private ManufactureMapper manufactureMapper;
     @Autowired

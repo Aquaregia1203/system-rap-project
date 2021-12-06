@@ -24,8 +24,15 @@
         WHERE NO = #{no}
     </select>
 
-    <select id="count" resultType="int">
+    <select id="count"
+            parameterType="Map"
+            resultType="int">
         SELECT COUNT(*) FROM RECIPE
+        <where>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+        </where>
     </select>
 
     <insert id="insert" useGeneratedKeys="true" parameterType="Recipe"

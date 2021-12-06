@@ -8,7 +8,6 @@ public class InputInfo implements Serializable {
     private List<Map<String, String>> pumpInfo;
 
     public InputInfo() {
-
     }
 
     public List<Map<String, String>> getPumpInfo() {

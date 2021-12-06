@@ -23,8 +23,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/recipe")
 public class RecipeController {
-    private static Logger logger
-            = LogManager.getLogger(RecipeController.class);
     @Autowired
     private RecipeServiceImple recipeService;
     @Autowired
@@ -41,7 +39,7 @@ public class RecipeController {
     public Map<String, Object> search(@RequestParam Map<String, String> recipe) {
         Map<String, Object> result = new HashMap<String, Object>();
 
-        String tag = pageUtil.getNavigator(recipe.get("url"), Integer.parseInt(recipe.get("page")));
+        String tag = pageUtil.getNavigator(recipe.get("url"), Integer.parseInt(recipe.get("page")), recipe);
 
         int limitNo = Integer.parseInt(recipe.get("page"));
         recipe.put("page", (limitNo * 10 -10) + "");

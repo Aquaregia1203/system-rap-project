@@ -17,5 +17,5 @@ public interface IngredientMapper {
 
     public int delete(Ingredient ingredient);
 
-    public int count();
+    public int count(Map<String, String> ingredient);
 }

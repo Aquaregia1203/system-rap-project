@@ -17,5 +17,5 @@ public interface ManufactureMapper {
 
     public int delete(Manufacture manufacture);
 
-    public int count();
+    public int count(Map<String, String> manufacture);
 }

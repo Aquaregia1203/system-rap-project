@@ -18,5 +18,5 @@ public interface RecipeMapper {
 
     public int delete(Recipe recipe);
 
-    public int count();
+    public int count(Map<String, String> recipe);
 }

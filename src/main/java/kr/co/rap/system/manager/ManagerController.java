@@ -30,7 +30,7 @@ public class ManagerController {
     public Map<String, Object> viewManagerList(@RequestParam Map<String, String> manager) {
         Map<String, Object> result = new HashMap<String, Object>();
 
-        String tag = pageUtil.getNavigator(manager.get("url"), Integer.parseInt(manager.get("page")));
+        String tag = pageUtil.getNavigator(manager.get("url"), Integer.parseInt(manager.get("page")), manager);
 
         int limitNo = Integer.parseInt(manager.get("page"));
         manager.put("page", (limitNo * 10 - 10) + "");

@@ -7,6 +7,8 @@ import kr.co.rap.system.recipe.RecipeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 
 @Component
 public class PageUtil {
@@ -19,17 +21,17 @@ public class PageUtil {
     @Autowired
     private IngredientMapper ingredientMapper;
 
-    public String getNavigator(String url, int page) {
+    public String getNavigator(String url, int page, Map<String, String> resource) {
         int count = 0;
 
         if ("/manager".equals(url)) {
-            count = managerMapper.count();
+            count = managerMapper.count(resource);
         } else if ("/recipe".equals(url)) {
-            count = recipeMapper.count();
+            count = recipeMapper.count(resource);
         } else if ("/manufacture-plan".equals(url)) {
-            count = manufactureMapper.count();
+            count = manufactureMapper.count(resource);
         } else if ("/ingredient".equals(url)) {
-            count = ingredientMapper.count();
+            count = ingredientMapper.count(resource);
         }
 
         int totalPage = count % 10 != 0

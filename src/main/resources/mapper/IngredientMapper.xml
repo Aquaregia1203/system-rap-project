@@ -27,8 +27,14 @@
     </select>
 
     <select id="count"
+            parameterType="Map"
             resultType="int">
         SELECT count(*) FROM INGREDIENT
+        <where>
+            <if test="name != null and name != ''">
+                NAME = #{name}
+            </if>
+        </where>
     </select>
 
     <insert id="insert"

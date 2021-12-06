@@ -8,9 +8,14 @@ import java.util.Map;
 @Mapper
 public interface ManagerMapper {
     public List<Manager> selectAll(Map<String, String> manager);
+
     public Manager select(Manager manager);
+
     public int insert(Manager manager);
+
     public int update(Manager manager);
-    public int count();
+
+    public int count(Map<String, String> manager);
+
     public List<Manager> paging(Map<String, String> manager);
 }

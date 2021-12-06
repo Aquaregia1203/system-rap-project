@@ -10,26 +10,8 @@ public class Manager implements Serializable {
     private String division;
     private String addDate;
     private String status;
-    private int page;
-    private int total;
 
     public Manager() {
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
-    public int getTotal() {
-        return total;
     }
 
     public String getId() {

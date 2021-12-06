@@ -21,8 +21,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/manufacture-plan")
 public class ManufactureController {
-    private static Logger logger
-            = LogManager.getLogger(ManufactureController.class);
     @Autowired
     private ManufactureService manufactureService;
     @Autowired
@@ -41,7 +39,7 @@ public class ManufactureController {
     public Map<String, Object> search(@RequestParam(required = false) Map<String, String> period) {
         Map<String, Object> result = new HashMap<String, Object>();
 
-        String tag = pageUtil.getNavigator(period.get("url"), Integer.parseInt(period.get("page")));
+        String tag = pageUtil.getNavigator(period.get("url"), Integer.parseInt(period.get("page")), period);
 
         int limitNo = Integer.parseInt(period.get("page"));
         period.put("page", (limitNo * 10 - 10) + "");

@@ -13,8 +13,6 @@ import java.util.Map;
 
 @Service
 public class RecipeServiceImple implements RecipeService{
-    private static Logger logger
-            = LogManager.getLogger(RecipeServiceImple.class);
     @Autowired
     private RecipeMapper recipeMapper;
     @Autowired

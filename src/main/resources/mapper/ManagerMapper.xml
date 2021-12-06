@@ -20,8 +20,14 @@
     </select>
 
     <select id="count"
-            resultType="Integer">
+            parameterType="Map"
+            resultType="int">
         SELECT count(*) FROM MANAGER
+        <where>
+            <if test="name != null and name != ''">
+                NAME LIKE CONCAT('%', #{name}, '%')
+            </if>
+        </where>
     </select>
 
     <select id="select"
