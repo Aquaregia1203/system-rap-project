@@ -2,6 +2,7 @@ package kr.co.rap.system.recipe;
 
 import kr.co.rap.system.ingredient.Ingredient;
 import kr.co.rap.system.ingredient.IngredientMapper;
+import kr.co.rap.system.ingredient.IngredientService;
 import kr.co.rap.system.ingredient.IngredientServiceImple;
 import kr.co.rap.system.page.PageUtil;
 import org.apache.logging.log4j.LogManager;
@@ -24,9 +25,9 @@ import java.util.Map;
 @RequestMapping("/recipe")
 public class RecipeController {
     @Autowired
-    private RecipeServiceImple recipeService;
+    private RecipeService recipeService;
     @Autowired
-    private IngredientServiceImple ingredientService;
+    private IngredientService ingredientService;
     @Autowired
     private PageUtil pageUtil;
 
@@ -37,14 +38,11 @@ public class RecipeController {
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Object> search(@RequestParam Map<String, String> recipe) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        String tag = pageUtil.getNavigator(recipe);
 
-        String tag = pageUtil.getNavigator(recipe.get("url"), Integer.parseInt(recipe.get("page")), recipe);
-
-        int limitNo = Integer.parseInt(recipe.get("page"));
-        recipe.put("page", (limitNo * 10 -10) + "");
         List<Recipe> recipeList = recipeService.viewRecipeList(recipe);
 
+        Map<String, Object> result = new HashMap<String, Object>();
         result.put("recipeList", recipeList);
         result.put("tag", tag);
 

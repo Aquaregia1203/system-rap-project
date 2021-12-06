@@ -25,6 +25,11 @@ public class ManufactureServiceImple implements ManufactureService {
     private MixMapper mixMapper;
 
     public List<Manufacture> viewManufactureList(Map<String, String> period) {
+        if (period.get("page") != null) {
+            int limitNo = Integer.parseInt(period.get("page"));
+            period.put("page", (limitNo * 10 - 10) + "");
+        }
+
         return manufactureMapper.selectAll(period);
     }
 

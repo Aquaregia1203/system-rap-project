@@ -14,6 +14,11 @@ public class IngredientServiceImple implements IngredientService{
 
 
     public List<Ingredient> viewIngredientList(Map<String, String> ingredient) {
+        if (ingredient.get("page") != null) {
+            int limitNo = Integer.parseInt(ingredient.get("page"));
+            ingredient.put("page",(limitNo * 10 - 10) + "");
+        }
+
         return ingredientMapper.selectAll(ingredient);
     }
 

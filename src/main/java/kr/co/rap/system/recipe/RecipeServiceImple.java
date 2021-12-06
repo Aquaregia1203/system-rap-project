@@ -21,6 +21,10 @@ public class RecipeServiceImple implements RecipeService{
     private IngredientMapper ingredientMapper;
 
     public List<Recipe> viewRecipeList(Map<String, String> recipe) {
+        if (recipe.get("page") != null) {
+            int limitNo = Integer.parseInt(recipe.get("page"));
+            recipe.put("page", (limitNo * 10 - 10) + "");
+        }
 
         return recipeMapper.selectAll(recipe);
     }

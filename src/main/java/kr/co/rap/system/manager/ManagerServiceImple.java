@@ -12,9 +12,12 @@ public class ManagerServiceImple implements ManagerService {
     private ManagerMapper managerMapper;
 
     public List<Manager> viewManagerList(Map<String, String> manager) {
-        List<Manager> rows = managerMapper.selectAll(manager);
+        if (manager.get("page") != null) {
+            int limitNo = Integer.parseInt(manager.get("page"));
+            manager.put("page", (limitNo * 10 - 10) + "");
+        }
 
-        return rows;
+        return managerMapper.selectAll(manager);
     }
 
     public Manager viewManager(Manager manager) {

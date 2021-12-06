@@ -37,14 +37,11 @@ public class ManufactureController {
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Object> search(@RequestParam(required = false) Map<String, String> period) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        String tag = pageUtil.getNavigator(period);
 
-        String tag = pageUtil.getNavigator(period.get("url"), Integer.parseInt(period.get("page")), period);
-
-        int limitNo = Integer.parseInt(period.get("page"));
-        period.put("page", (limitNo * 10 - 10) + "");
         List<Manufacture> manufactureList = manufactureService.viewManufactureList(period);
 
+        Map<String, Object> result = new HashMap<String, Object>();
         result.put("tag", tag);
         result.put("manufactureList", manufactureList);
 

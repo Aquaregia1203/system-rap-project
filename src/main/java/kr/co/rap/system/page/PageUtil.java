@@ -21,16 +21,17 @@ public class PageUtil {
     @Autowired
     private IngredientMapper ingredientMapper;
 
-    public String getNavigator(String url, int page, Map<String, String> resource) {
+    public String getNavigator(Map<String, String> resource) {
         int count = 0;
+        int page = Integer.parseInt(resource.get("page"));
 
-        if ("/manager".equals(url)) {
+        if ("/manager".equals(resource.get("url"))) {
             count = managerMapper.count(resource);
-        } else if ("/recipe".equals(url)) {
+        } else if ("/recipe".equals(resource.get("url"))) {
             count = recipeMapper.count(resource);
-        } else if ("/manufacture-plan".equals(url)) {
+        } else if ("/manufacture-plan".equals(resource.get("url"))) {
             count = manufactureMapper.count(resource);
-        } else if ("/ingredient".equals(url)) {
+        } else if ("/ingredient".equals(resource.get("url"))) {
             count = ingredientMapper.count(resource);
         }
 

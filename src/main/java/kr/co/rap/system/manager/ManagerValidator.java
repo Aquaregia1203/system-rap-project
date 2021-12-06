@@ -6,7 +6,7 @@ import org.springframework.validation.Validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterRequestValidator implements Validator {
+public class ManagerValidator implements Validator {
     private static final String idAndPasswordExp = "^[a-zA-Z0-9]*$";
     private static final String nameExp = "^[ㄱ-ㅎ가-힣]*$";
     private static final String contaxtExp ="^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$";

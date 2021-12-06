@@ -26,14 +26,11 @@ public class IngredientController {
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Object> viewIngredientList(@RequestParam Map<String, String> ingredient) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        String tag = pageUtil.getNavigator(ingredient);
 
-        String tag = pageUtil.getNavigator(ingredient.get("url"), Integer.parseInt(ingredient.get("page")), ingredient);
-
-        int limitNo = Integer.parseInt(ingredient.get("page"));
-        ingredient.put("page",(limitNo * 10 - 10) + "");
         List<Ingredient> ingredientList = ingredientService.viewIngredientList(ingredient);
 
+        Map<String, Object> result = new HashMap<String, Object>();
         result.put("ingredientList", ingredientList);
         result.put("tag", tag);
 

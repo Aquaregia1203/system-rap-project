@@ -28,14 +28,11 @@ public class ManagerController {
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Object> viewManagerList(@RequestParam Map<String, String> manager) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        String tag = pageUtil.getNavigator(manager);
 
-        String tag = pageUtil.getNavigator(manager.get("url"), Integer.parseInt(manager.get("page")), manager);
-
-        int limitNo = Integer.parseInt(manager.get("page"));
-        manager.put("page", (limitNo * 10 - 10) + "");
         List<Manager> managerList = managerService.viewManagerList(manager);
 
+        Map<String, Object> result = new HashMap<String, Object>();
         result.put("managerList", managerList);
         result.put("tag", tag);
 
@@ -59,7 +56,7 @@ public class ManagerController {
 
     @PostMapping
     public ModelAndView addManager(Manager manager, Errors errors) {
-        new RegisterRequestValidator().validate(manager, errors);
+        new ManagerValidator().validate(manager, errors);
 
         if (errors.hasErrors()) {
             ModelAndView mav = new ModelAndView("/manager/add");
