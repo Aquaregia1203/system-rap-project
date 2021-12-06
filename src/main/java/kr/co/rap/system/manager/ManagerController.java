@@ -47,8 +47,8 @@ public class ManagerController {
         ModelAndView mav = new ModelAndView("manager/view");
 
         manager = managerService.viewManager(manager);
-
         mav.addObject("manager", manager);
+
         return mav;
     }
 
@@ -68,9 +68,9 @@ public class ManagerController {
 
             for (FieldError error : errorsList) {
                 mav.addObject("error" + error.getField(), error.getCode());
-                System.out.println(error.getField());
-                System.out.println(error.getCode());
+
             }
+
             return mav;
         }
 
@@ -95,7 +95,7 @@ public class ManagerController {
     }
 
     @PutMapping
-    public ModelAndView editManager(Manager manager, Errors errors) {
+    public ModelAndView editManager(Manager manager) {
 
         managerService.editManager(manager);
 
