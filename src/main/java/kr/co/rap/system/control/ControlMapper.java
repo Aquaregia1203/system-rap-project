@@ -4,6 +4,7 @@ import kr.co.rap.system.manufacture.InputInfo;
 import okhttp3.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -18,27 +19,12 @@ public class ControlMapper {
     private String url;
 
     public boolean sendInputInfo(InputInfo inputInfo) throws Exception {
-        List<Map<String, String>> pumpInfo = inputInfo.getPumpInfo();
-
-        StringBuffer body = new StringBuffer();
-
-        body.append("{")
-            .append("\"pumpInfo\" : [");
-
-        for (Map info : pumpInfo) {
-            body.append("{")
-                .append("\"input\" : ")
-                .append(info.get("input") + ",")
-                .append("\"pumpNo\" : ")
-                .append(info.get("pumpNo"))
-                .append("},");
-        }
-
-        body.deleteCharAt(body.length() - 1);
-        body.append("]}");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String body = objectMapper.writeValueAsString(inputInfo);
 
         OkHttpClient okHttpClient = new OkHttpClient();
         Response response = null;
+        ResponseBody responseBody = null;
 
         try {
             RequestBody requestBody = RequestBody.create(
@@ -48,16 +34,22 @@ public class ControlMapper {
                                                  .url(url)
                                                  .post(requestBody);
             Request request = builder.build();
+
+
             response = okHttpClient.newCall(request).execute();
 
             if (response.isSuccessful()) {
-                ResponseBody responseBody = response.body();
+                responseBody = response.body();
 
                 if (responseBody != null) {
                     String result = responseBody.string();
+                    Map<String, String> responseInfo = objectMapper.readValue(result, Map.class);
 
-                    System.out.println(result);
                     responseBody.close();
+
+                    if ("300".equals(responseInfo.get("code"))) {
+                        return false;
+                    }
 
                     return true;
                 }
@@ -66,6 +58,10 @@ public class ControlMapper {
             e.printStackTrace();
         } finally {
             try {
+                if (responseBody != null) {
+                    responseBody.close();
+                }
+
                 if (response != null) {
                     response.close();
                 }

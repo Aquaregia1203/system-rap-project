@@ -122,10 +122,14 @@ public class RecipeServiceImple implements RecipeService{
             return false;
         }
 
+        Recipe oldRecipe = recipeMapper.select(recipe);
+
+        if (oldRecipe == null) {
+            return false;
+        }
+
         Map<String, String> authorRecipe = new HashMap<String, String>();
         authorRecipe.put("name", recipe.getName());
-
-        Recipe oldRecipe = recipeMapper.select(recipe);
 
         if ((!oldRecipe.getName().equals(recipe.getName())
                   && recipeMapper.selectAll(authorRecipe).size() != 0)
@@ -193,7 +197,8 @@ public class RecipeServiceImple implements RecipeService{
     public boolean removeRecipe(Recipe recipe) {
         recipe = recipeMapper.select(recipe);
 
-        if (recipe.getUsedCount() != 0) {
+        if (recipe != null
+                &&recipe.getUsedCount() != 0) {
             return false;
         }
 
@@ -210,6 +215,7 @@ public class RecipeServiceImple implements RecipeService{
 
         Mix mix = new Mix();
         mix.setRecipeNo(recipe.getNo());
+
         mixMapper.delete(mix);
         recipeMapper.delete(recipe);
 

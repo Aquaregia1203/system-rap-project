@@ -17,5 +17,5 @@ public interface ManufactureService {
 
     public boolean removeManufacture(Manufacture manufacture);
 
-    public boolean executeManufacture(Manufacture manufacture);
+    public InputInfo executeManufacture(Manufacture manufacture);
 }

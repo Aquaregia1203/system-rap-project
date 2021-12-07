@@ -7,7 +7,7 @@ public class Manufacture implements Serializable {
     private String manufactureDate;
     private int recipeNo;
     private String recipeName;
-    private int output;
+    private double output;
     private String id;
     private String managerName;
     private double errorAmount;
@@ -41,11 +41,11 @@ public class Manufacture implements Serializable {
         this.recipeNo = recipeNo;
     }
 
-    public int getOutput() {
+    public double getOutput() {
         return output;
     }
 
-    public void setOutput(int output) {
+    public void setOutput(double output) {
         this.output = output;
     }
 

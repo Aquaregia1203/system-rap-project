@@ -1,5 +1,6 @@
 package kr.co.rap.system.manufacture;
 
+import kr.co.rap.system.control.ControlService;
 import kr.co.rap.system.page.PageUtil;
 import kr.co.rap.system.recipe.Recipe;
 import kr.co.rap.system.recipe.RecipeServiceImple;
@@ -29,6 +30,8 @@ public class ManufactureController {
     private ServletContext servletContext;
     @Autowired
     private PageUtil pageUtil;
+    @Autowired
+    private ControlService controlService;
 
     @GetMapping
     public ModelAndView viewManufactureList() {
@@ -89,8 +92,8 @@ public class ManufactureController {
 
         Manufacture manufacture = new Manufacture();
         manufacture.setNo(no);
-
         manufacture = manufactureService.viewManufacture(manufacture);
+
         if ("Y".equals(manufacture.getStatus())) {
             return new ModelAndView(new RedirectView("/manufacture-plan"));
         }
@@ -107,7 +110,7 @@ public class ManufactureController {
                                             HttpSession session) {
         if (manufacture.getRecipeNo() == 0
                 && manufacture.getOutput() == 0) {
-            new ModelAndView(new RedirectView("/manufacture-plan/" + manufacture.getNo()));
+            return new ModelAndView(new RedirectView("/manufacture-plan/" + manufacture.getNo()));
         }
 
         manufacture.setId((String) session.getAttribute("id"));
@@ -125,17 +128,23 @@ public class ManufactureController {
 
     @GetMapping("/execution")
     public ModelAndView executeManufacture(Manufacture manufacture) {
+        ModelAndView mav = new ModelAndView(new RedirectView("/manufacture-plan"));
+
         String status = servletContext.getAttribute("status") != null
                              ? (String) servletContext.getAttribute("status")
                              : "OFF";
 
         if ("OFF".equals(status)
                 && "N".equals(manufacture.getStatus())) {
-            manufactureService.executeManufacture(manufacture);
+            InputInfo inputInfo = manufactureService.executeManufacture(manufacture);
 
-            return new ModelAndView(new RedirectView("/manufacture-plan"));
+            controlService.sendInputInfo(inputInfo, manufacture);
+
+            return mav;
         }
 
-        return new ModelAndView(new RedirectView("/manufacture-plan"));
+        mav.addObject("error","fail");
+
+        return mav;
     }
 }

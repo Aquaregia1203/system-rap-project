@@ -94,8 +94,9 @@ public class RecipeController {
             ModelAndView mav = new ModelAndView("recipe/add");
             List<Ingredient> ingredientList =
                     ingredientService.viewIngredientList(new HashMap<String, String>());
+
             mav.addObject("ingredientList", ingredientList);
-            mav.addObject("recipeDuplication", "* 레시피명이 중복됩니다.");
+            mav.addObject("error", "* 레시피명이 중복됩니다.");
 
             return mav;
         }
@@ -158,7 +159,6 @@ public class RecipeController {
         recipeService.removeRecipe(recipe);
 
         ModelAndView mav = new ModelAndView(new RedirectView("/recipe"));
-        mav.addObject("redirect", "라고합니다");
 
         return mav;
     }

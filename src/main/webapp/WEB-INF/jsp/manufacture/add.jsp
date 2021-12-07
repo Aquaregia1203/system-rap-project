@@ -114,7 +114,7 @@
             $("#outputError").text("* 생산량을 입력해 주세요.");
 
             execution++;
-        } else if (inputValue < 1
+        } else if (inputValue < 0
                        || inputValue > 120) {
 
             $("#outputError").text("* 0 ~ 120 사이에 값을 입력해 주세요");

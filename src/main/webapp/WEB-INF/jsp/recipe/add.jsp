@@ -117,8 +117,9 @@
             }
 
             if (thisRatio == ""
-                || (thisRatio > 99 || thisRatio < 1)) {
-                $("#ratioError" + i).text("* 1 ~ 99 사이의 숫자를 입력해 주세요.")
+                || (thisRatio > 99 || thisRatio < 1)
+                    || Number.isInteger(thisRatio)) {
+                $("#ratioError" + i).text("* 1 ~ 99 사이의 정수를 입력해 주세요.")
                 result++;
             } else {
                 $("#ratioError" + i).text("");

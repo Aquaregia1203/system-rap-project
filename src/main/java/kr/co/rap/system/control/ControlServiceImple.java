@@ -25,6 +25,17 @@ public class ControlServiceImple implements ControlService{
     private ManufactureMapper manufactureMapper;
 
     public Map<String, String> receiveProductInfo(Map<String, Integer> productInfo) {
+        if (productInfo.get("code") != 200) {
+            servletContext.setAttribute("status", "OFF");
+            servletContext.removeAttribute("manufactureNo");
+            servletContext.removeAttribute("output");
+
+            Map<String, String> responseInfo = new HashMap<String, String>();
+            responseInfo.put("code", "200");
+
+            return responseInfo;
+        }
+
         int manufactureNo = servletContext.getAttribute("manufactureNo") != null
                             ? (int) servletContext.getAttribute("manufactureNo")
                             : 0;
@@ -46,33 +57,39 @@ public class ControlServiceImple implements ControlService{
 
         int result = manufactureMapper.update(manufacture);
 
-        servletContext.setAttribute("status", "OFF");
-        servletContext.removeAttribute("manufactureNo");
-        servletContext.removeAttribute("output");
-
         Map<String, String> responseInfo = new HashMap<String, String>();
 
         if (result != 1) {
             responseInfo.put("code", "300");
             responseInfo.put("message", "송신 후 서비스 처리에 실패했습니다.");
-
-            return responseInfo;
         } else {
-            responseInfo.put("code", "300");
+            responseInfo.put("code", "200");
             responseInfo.put("message", "생산이 정상적으로 반영되었습니다.");
-
-            return responseInfo;
         }
+
+        servletContext.setAttribute("status", "OFF");
+        servletContext.removeAttribute("manufactureNo");
+        servletContext.removeAttribute("output");
+
+        return responseInfo;
     }
 
     public boolean sendInputInfo(InputInfo inputInfo, Manufacture manufacture) {
+        int sendCount = 0;
+
         try {
-            if (controlUtil.sendInputInfo(inputInfo)) {
-                servletContext.setAttribute("status", "ON");
-                servletContext.setAttribute("manufactureNo", manufacture.getNo());
-                servletContext.setAttribute("output", manufacture.getOutput());
-                
-                return true;
+            while (sendCount < 5) {
+                if (controlUtil.sendInputInfo(inputInfo)) {
+                    servletContext.setAttribute("status", "ON");
+                    servletContext.setAttribute("manufactureNo", manufacture.getNo());
+                    servletContext.setAttribute("output", manufacture.getOutput());
+
+                    return true;
+                }
+
+                Thread.sleep(1000);
+
+                sendCount++;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,6 +97,6 @@ public class ControlServiceImple implements ControlService{
             return false;
         }
 
-        return true;
+        return false;
     }
 }

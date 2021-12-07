@@ -20,14 +20,14 @@ public class ManufactureServiceImple implements ManufactureService {
     @Autowired
     private RecipeMapper recipeMapper;
     @Autowired
-    private ControlServiceImple controlService;
+    private ControlService controlService;
     @Autowired
     private MixMapper mixMapper;
 
     public List<Manufacture> viewManufactureList(Map<String, String> period) {
         if (period.get("page") != null) {
-            int limitNo = Integer.parseInt(period.get("page"));
-            period.put("page", (limitNo * 10 - 10) + "");
+            String limitNo = (Integer.parseInt(period.get("page")) * 10 - 10) + "";
+            period.put("page", limitNo);
         }
 
         return manufactureMapper.selectAll(period);
@@ -96,7 +96,7 @@ public class ManufactureServiceImple implements ManufactureService {
         return true;
     }
 
-    public boolean executeManufacture(Manufacture manufacture) {
+    public InputInfo executeManufacture(Manufacture manufacture) {
         Recipe recipe = new Recipe();
         recipe.setNo(manufacture.getRecipeNo());
         List<Mix> mixList = mixMapper.selectAll(recipe);
@@ -117,6 +117,6 @@ public class ManufactureServiceImple implements ManufactureService {
         InputInfo inputInfo = new InputInfo();
         inputInfo.setPumpInfo(pumpInfo);
 
-        return controlService.sendInputInfo(inputInfo, manufacture);
+        return inputInfo;
     }
 }
