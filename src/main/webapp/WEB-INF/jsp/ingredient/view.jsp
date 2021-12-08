@@ -32,16 +32,16 @@
                             <table class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="text-center">
                                 <tr>
-                                    <th>원재료 명</th>
                                     <th>등록 일자</th>
+                                    <th>원재료 명</th>
                                     <th>사용 여부</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <tr>
+                                    <td class="text-center" style="width: 30%">${ingredient.addDate}</td>
                                     <td class="text-center">${ingredient.name}</td>
-                                    <td class="text-center">${ingredient.addDate}</td>
                                     <td class="text-center">
                                         <c:choose>
                                             <c:when test="${ingredient.usedCount eq 0}">

@@ -99,7 +99,7 @@
 
             if (thisRatio == ""
                 || (thisRatio > 99 || thisRatio < 1)
-                    || Number.isInteger(thisRatio)) {
+                    || !Number.isInteger(thisRatio)) {
                 $("#ratioError" + i).text("* 1 ~ 99 사이의 정수를 입력해 주세요.")
                 result++;
             } else {

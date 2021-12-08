@@ -39,10 +39,10 @@ public class ControlServiceImple implements ControlService{
         int manufactureNo = servletContext.getAttribute("manufactureNo") != null
                             ? (int) servletContext.getAttribute("manufactureNo")
                             : 0;
-        int output = servletContext.getAttribute("output") != null
-                            ? (int) servletContext.getAttribute("output")
+        double output = servletContext.getAttribute("output") != null
+                            ? (double) servletContext.getAttribute("output")
                             : 0;
-        int errorAmount = productInfo.get("productWeight") - (output * 1000);
+        int errorAmount = (int) (productInfo.get("productWeight") - (output * 1000.0));
 
         String currentTime = LocalDateTime.now()
                                           .format(

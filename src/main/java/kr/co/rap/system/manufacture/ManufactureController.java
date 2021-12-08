@@ -147,4 +147,15 @@ public class ManufactureController {
 
         return mav;
     }
+    
+    
+    // TODO: 배포 전 삭제할 것
+    @GetMapping("/reset/{key}")
+    public RedirectView setStatus(@PathVariable(required = false) String key) {
+        if ("1203".equals(key)) {
+            servletContext.setAttribute("status", "OFF");
+        }
+
+        return new RedirectView("/manufacture-plan");
+    }
 }

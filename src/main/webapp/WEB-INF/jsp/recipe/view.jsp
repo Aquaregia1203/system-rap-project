@@ -31,11 +31,18 @@
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
                             <div class="row">
-                                <div class="col-sm-12 col-md-9">
+                                <div class="col-sm-12 col-md-10">
                                     <div style="font-size: 20pt; font-weight: bold">${recipe.name}</div>
                                 </div>
-                                <div class="col-sm-12 col-md-3 text-right">
-                                    <div style="font-size: 20pt; font-weight: bold">등록일자:${recipe.addDate}</div>
+                                <div class="col-sm-12 col-md-2 text-left">
+                                    <div style="font-size: 13pt; font-weight: bold">등록 일자 : ${recipe.addDate}<br/>
+                                        <c:if test="${recipe.usedCount gt 0}">
+                                            사용 여부 : 사용
+                                        </c:if>
+                                        <c:if test="${recipe.usedCount eq 0}">
+                                            사용 여부 : 미사용
+                                        </c:if>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">

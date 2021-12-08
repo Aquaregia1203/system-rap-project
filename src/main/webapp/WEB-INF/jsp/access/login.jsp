@@ -31,7 +31,11 @@
                                     <div class="form-group">
                                         <input class="form-control" type="password" required="" id="password" name="password" placeholder="비밀번호">
                                     </div>
-
+                                    <c:if test="${!empty result}">
+                                        <div class="form-group">
+                                            <label class="control-label">${result}</label>
+                                        </div>
+                                    </c:if>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox checkbox-success">
                                             <input type="checkbox" name="remember" value="check" class="custom-control-input" id="checkbox-signin" checked>
@@ -51,6 +55,11 @@
                                     <div class="form-group">
                                         <input class="form-control" type="password" name="password" required="" id="password" placeholder="비밀번호">
                                     </div>
+                                    <c:if test="${!empty result}">
+                                        <div class="form-group">
+                                            <label class="control-label">${result}</label>
+                                        </div>
+                                    </c:if>
 
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox checkbox-success">
@@ -72,11 +81,11 @@
 </div>
 
 <script type="text/javascript">
-
     function login(){
         var loginForm = document.loginForm;
         var id = loginForm.id.value;
         var password = loginForm.password.value;
+
         const errorId = document.getElementById("errorId");
         const errorPw = document.getElementById("errorPw");
 

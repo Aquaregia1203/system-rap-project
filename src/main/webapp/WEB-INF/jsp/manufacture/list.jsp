@@ -94,6 +94,7 @@
             drawTable();
         });
     });
+
     function drawTable() {
         $.ajax({
             url:'${pageContext.servletContext.contextPath}/manufacture-plan',

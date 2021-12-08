@@ -56,6 +56,8 @@ public class ControlMapper {
             }
         } catch (Exception e) {
             e.printStackTrace();
+
+            return false;
         } finally {
             try {
                 if (responseBody != null) {

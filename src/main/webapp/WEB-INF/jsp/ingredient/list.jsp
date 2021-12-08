@@ -8,63 +8,60 @@
 </head>
 
 <body data-layout="horizontal" style="font-family: 'Nanum Gothic',sans-serif">
-<!-- Begin page -->
-<div id="wrapper">
-    <!-- Navigation Bar-->
+    <div id="wrapper">
     <jsp:include page="${pageContext.servletContext.contextPath}/include.jsp" />
-
-    <div class="content-page">
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box">
-                            <ol class="breadcrumb m-0">
-                            </ol>
-                            <div class="page-title-right">
-                                <label>원재료 명 :</label>
-                                <label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Search..." id="keywordName">
-                                </label>
-                                <label>
-                                    <button id="search" class="btn btn-sm btn-secondary waves-effect">검색</button>
-                                </label>
+        <div class="content-page">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <ol class="breadcrumb m-0">
+                                </ol>
+                                <div class="page-title-right">
+                                    <label>원재료 명 :</label>
+                                    <label>
+                                        <input class="form-control form-control-sm" type="text" placeholder="Search..." id="keywordName">
+                                    </label>
+                                    <label>
+                                        <button id="search" class="btn btn-sm btn-secondary waves-effect">검색</button>
+                                    </label>
+                                </div>
+                                <h4 style="font-family: 'Nanum Gothic',sans-serif">원재료</h4>
                             </div>
-                            <h4 style="font-family: 'Nanum Gothic',sans-serif">원재료</h4>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card-box table-responsive">
-                            <div id="table"></div>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-1">
-                                </div>
-                                <div class="col-sm-12 col-md-10">
-                                    <div id="pageBox">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+                                <div id="table"></div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-1">
+                                    </div>
+                                    <div class="col-sm-12 col-md-10">
+                                        <div id="pageBox">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-1 text-right">
+                                        <a href="${pageContext.servletContext.contextPath}/ingredient/form"><button class="btn btn-primary waves-effect">등록</button></a>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-1 text-right">
-                                    <a href="${pageContext.servletContext.contextPath}/ingredient/form"><button class="btn btn-primary waves-effect">등록</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Recipe-based automatic formulation and production management System
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </footer>
                 </div>
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                Recipe-based automatic formulation and production management System
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
         </div>
     </div>
-</div>
 
 <script type="text/javascript">
     var page = 1;
@@ -131,7 +128,7 @@
                     script += '    <td class="text-center">' + ((i + 1) + (10 * (page - 1))) + '</td>';
                     script += '    <td class="text-center">' + ingredientList[i].addDate + '</td>';
                     script += '    <td><a href="${pageContext.servletContext.contextPath}/ingredient/' + ingredientList[i].no +'">' + ingredientList[i].name + '</a></td>';
-                    script += '    <td class="text-right">' + used + '</td>'
+                    script += '    <td class="text-center">' + used + '</td>'
                     script += '</tr>';
                 }
                 script += "</tbody>";
@@ -142,7 +139,6 @@
         });
     }
 </script>
-
 <jsp:include page="${pageContext.servletContext.contextPath}/bottom.jsp" />
 </body>
 </html>

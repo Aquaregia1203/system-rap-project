@@ -72,8 +72,8 @@ public class PageUtil {
         for (int i = printStart, id = 1; i <= printEnd; i++, id++) {
             if (i == page) {
                 tag.append("    <li class='paginate_button page-item active'>")
-                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton" + id + "' class='page-link' value='" + i + "'>" + i + "</button>")
-                 .append("    </li>");
+                   .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton" + id + "' class='page-link' value='" + i + "'>" + i + "</button>")
+                   .append("    </li>");
             } else {
                 tag.append("    <li class='paginate_button page-item'>")
                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton" + id + "' class='page-link' value='" + i + "'>" + i + "</button>")
@@ -87,16 +87,16 @@ public class PageUtil {
 
         if (page == totalPage) {
             tag.append("    <li class='paginate_button page-item next disabled' id='c'>")
-                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton6' class='page-link'>다음</button>")
-                    .append("    </li>")
-                    .append("    </ul>")
-                    .append("</div>");
+               .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton6' class='page-link'>다음</button>")
+               .append("    </li>")
+               .append("    </ul>")
+               .append("</div>");
         } else {
             tag.append("    <li class='paginate_button page-item next' id='c'>")
-                    .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton6' class='page-link'>다음</button>")
-                    .append("    </li>")
-                    .append("    </ul>")
-                    .append("</div>");
+               .append("        <button type='button' onclick='navigatePage(this.id)' id='pageButton6' class='page-link'>다음</button>")
+               .append("    </li>")
+               .append("    </ul>")
+               .append("</div>");
         }
 
         return tag.toString();
