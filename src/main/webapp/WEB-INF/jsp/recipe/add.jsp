@@ -24,25 +24,6 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-8">
                             <div class="card-box">
-
-<%--                                <div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">--%>
-<%--                                    <div class="modal-dialog modal-sm">--%>
-<%--                                        <div class="modal-content">--%>
-<%--                                            <div class="modal-header">--%>
-<%--                                                <h5 class="modal-title mt-0">오류!</h5>--%>
-<%--                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
-<%--                                                    <span aria-hidden="true">×</span>--%>
-<%--                                                </button>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="modal-body">--%>
-<%--                                                레시피 정보를 모두 입력해 주세요.--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                        <!-- /.modal-content -->--%>
-<%--                                    </div>--%>
-<%--                                    <!-- /.modal-dialog -->--%>
-<%--                                </div>--%>
-
                                 <h4 class="header-title"></h4>
                                 <p class="sub-header">
                                     레시피를 등록합니다. <br/>* 원재료와 펌프 번호는 중복될 수 없으며, 비율은 합이 100이여야 합니다.
@@ -54,7 +35,7 @@
                                             <div class="col-md-9">
                                                 <input type="text" name="name" id="recipe" class="form-control" >
                                                 <div id="recipeError" style="color: crimson;font-size:12px" >
-                                                    ${recipeDuplication}
+                                                    ${error}
                                                 </div>
                                             </div>
                                         </div>

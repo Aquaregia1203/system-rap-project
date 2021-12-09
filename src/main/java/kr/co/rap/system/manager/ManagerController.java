@@ -58,25 +58,26 @@ public class ManagerController {
     public ModelAndView addManager(Manager manager, Errors errors) {
         new ManagerValidator().validate(manager, errors);
 
+        ModelAndView mav = new ModelAndView("/manager/add");
+
+        if (!managerService.addManager(manager)) {
+            mav.addObject("error", "* 관리자 ID가 중복됩니다.");
+
+            return mav;
+        }
+
         if (errors.hasErrors()) {
-            ModelAndView mav = new ModelAndView("/manager/add");
 
             List<FieldError> errorsList = errors.getFieldErrors();
 
             for (FieldError error : errorsList) {
                 mav.addObject("error" + error.getField(), error.getCode());
-
             }
 
             return mav;
         }
 
-        if (managerService.addManager(manager)) {
-            return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
-        }
-
-        ModelAndView retry = new ModelAndView("manager/add");
-        return retry;
+        return new ModelAndView(new RedirectView("/manager/" + manager.getId()));
     }
 
     @GetMapping("/{id}/form")
@@ -93,7 +94,6 @@ public class ManagerController {
 
     @PutMapping
     public ModelAndView editManager(Manager manager) {
-
         managerService.editManager(manager);
 
         return new ModelAndView(new RedirectView("/manager/" + manager.getId()));

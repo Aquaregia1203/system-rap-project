@@ -25,25 +25,6 @@
                     <div class="col-sm-8">
                         <form action="${pageContext.servletContext.contextPath}/manager" method="post" id="formId">
                             <div class="card-box">
-
-<%--                                <div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">--%>
-<%--                                    <div class="modal-dialog modal-sm">--%>
-<%--                                        <div class="modal-content">--%>
-<%--                                            <div class="modal-header">--%>
-<%--                                                <h5 class="modal-title mt-0">오류!</h5>--%>
-<%--                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
-<%--                                                    <span aria-hidden="true">×</span>--%>
-<%--                                                </button>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="modal-body">--%>
-<%--                                                관리자 정보를 모두 입력해 주세요.--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                        <!-- /.modal-content -->--%>
-<%--                                    </div>--%>
-<%--                                    <!-- /.modal-dialog -->--%>
-<%--                                </div>--%>
-
                                 <h4 class="header-title"></h4>
                                 <p class="sub-header">
                                     생산관리자를 등록합니다. <br/> * 아이디는 중복하여 등록할 수 없습니다.
@@ -55,9 +36,7 @@
                                             <div class="col-md-7">
                                                 <input type="text" name="id" id="id" class="form-control" value="${manager.id}">
                                                 <div style="color: crimson; font-size:12px" id="idError">
-                                                    <c:if test="${!empty errorid}">
-                                                       * ${errorid}
-                                                    </c:if>
+                                                       ${error}
                                                 </div>
                                             </div>
                                         </div>
