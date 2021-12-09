@@ -54,9 +54,7 @@ public class IngredientController {
 
     @PostMapping
     public ModelAndView addIngredient(Ingredient ingredient) {
-        boolean result = ingredientService.addIngredient(ingredient);
-
-        if (result) {
+        if (ingredientService.addIngredient(ingredient)) {
             ModelAndView mav = new ModelAndView(new RedirectView("/ingredient"));
 
             return mav;

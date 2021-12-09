@@ -20,6 +20,7 @@ public class ControlMapper {
 
     public boolean sendInputInfo(InputInfo inputInfo) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
+
         String body = objectMapper.writeValueAsString(inputInfo);
 
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -28,7 +29,9 @@ public class ControlMapper {
 
         try {
             RequestBody requestBody = RequestBody.create(
-                    MediaType.parse("application/json; charset=UTF-8"), body.toString());
+                                                 MediaType
+                                                .parse("application/json; charset=UTF-8"),
+                                                        body);
 
             Request.Builder builder = new Request.Builder()
                                                  .url(url)
@@ -55,9 +58,7 @@ public class ControlMapper {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
-
-            return false;
+            throw new Exception("Fail send InputInfo. -->" + e.getMessage());
         } finally {
             try {
                 if (responseBody != null) {
@@ -68,7 +69,7 @@ public class ControlMapper {
                     response.close();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new Exception("Fail close for responseBody, response -->" + e.getMessage());
             }
         }
 

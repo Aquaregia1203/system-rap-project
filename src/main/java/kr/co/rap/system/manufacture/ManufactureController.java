@@ -1,5 +1,6 @@
 package kr.co.rap.system.manufacture;
 
+import kr.co.rap.system.control.ControlController;
 import kr.co.rap.system.control.ControlService;
 import kr.co.rap.system.page.PageUtil;
 import kr.co.rap.system.recipe.Recipe;
@@ -22,6 +23,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/manufacture-plan")
 public class ManufactureController {
+    private static Logger logger
+            = LogManager.getLogger(ManufactureController.class);
     @Autowired
     private ManufactureService manufactureService;
     @Autowired
@@ -138,7 +141,13 @@ public class ManufactureController {
                 && "N".equals(manufacture.getStatus())) {
             InputInfo inputInfo = manufactureService.executeManufacture(manufacture);
 
-            controlService.sendInputInfo(inputInfo, manufacture);
+            try {
+                controlService.sendInputInfo(inputInfo, manufacture);
+            } catch (Exception e) {
+                logger.debug(e.getMessage());
+
+                return mav;
+            }
 
             return mav;
         }
@@ -148,7 +157,7 @@ public class ManufactureController {
         return mav;
     }
     
-    
+
     // TODO: 배포 전 삭제할 것
     @GetMapping("/reset/{key}")
     public RedirectView setStatus(@PathVariable(required = false) String key) {

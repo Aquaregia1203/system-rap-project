@@ -4,7 +4,6 @@ import kr.co.rap.system.manager.Manager;
 import kr.co.rap.system.manager.ManagerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Objects;
 
 @Service
@@ -13,8 +12,12 @@ public class AccessServiceImple implements AccessService{
     private ManagerMapper managerMapper;
 
     public boolean login(Manager manager) {
-        String id = manager.getId();
-        String pw = manager.getPassword();
+        String id = manager.getId() != null
+                    ? manager.getId()
+                    : "";
+        String pw = manager.getPassword() != null
+                    ? manager.getPassword()
+                    : "";
 
         Manager checkManager = managerMapper.select(manager);
 
@@ -28,7 +31,7 @@ public class AccessServiceImple implements AccessService{
 
         if (pw.equals(password)
                 && id.equals(checkId)
-                && "Y".equals(status)) {
+                    && "Y".equals(status)) {
             manager.setName(checkManager.getName());
             manager.setDivision(checkManager.getDivision());
             return true;
@@ -38,6 +41,5 @@ public class AccessServiceImple implements AccessService{
     }
 
     public void logout() {
-        //TODO : 로그아웃 업무 생길 시 구현
     }
 }

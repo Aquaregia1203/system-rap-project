@@ -74,27 +74,21 @@ public class ControlServiceImple implements ControlService{
         return responseInfo;
     }
 
-    public boolean sendInputInfo(InputInfo inputInfo, Manufacture manufacture) {
+    public boolean sendInputInfo(InputInfo inputInfo, Manufacture manufacture) throws Exception {
         int sendCount = 0;
 
-        try {
-            while (sendCount < 5) {
-                if (controlUtil.sendInputInfo(inputInfo)) {
-                    servletContext.setAttribute("status", "ON");
-                    servletContext.setAttribute("manufactureNo", manufacture.getNo());
-                    servletContext.setAttribute("output", manufacture.getOutput());
+        while (sendCount < 5) {
+            if (controlUtil.sendInputInfo(inputInfo)) {
+                servletContext.setAttribute("status", "ON");
+                servletContext.setAttribute("manufactureNo", manufacture.getNo());
+                servletContext.setAttribute("output", manufacture.getOutput());
 
-                    return true;
-                }
-
-                Thread.sleep(1000);
-
-                sendCount++;
+                return true;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
 
-            return false;
+            Thread.sleep(1000);
+
+            sendCount++;
         }
 
         return false;

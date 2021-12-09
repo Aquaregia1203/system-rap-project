@@ -9,13 +9,10 @@ import javax.servlet.http.HttpSession;
 public class SessionCheckInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HttpSession httpSession = request.getSession(false);
+        HttpSession httpSession = request.getSession();
 
-        if (httpSession != null) {
-            Object division = httpSession.getAttribute("division");
-            if (division != null) {
-                return true;
-            }
+        if (httpSession.getAttribute("id") != null) {
+            return true;
         }
 
         response.sendRedirect("/login");

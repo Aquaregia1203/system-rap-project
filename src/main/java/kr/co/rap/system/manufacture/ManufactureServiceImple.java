@@ -26,7 +26,7 @@ public class ManufactureServiceImple implements ManufactureService {
 
     public List<Manufacture> viewManufactureList(Map<String, String> period) {
         if (period.get("page") != null) {
-            String limitNo = (Integer.parseInt(period.get("page")) * 10 - 10) + "";
+            String limitNo = String.valueOf(Integer.parseInt(period.get("page")) * 10 - 10);
             period.put("page", limitNo);
         }
 
@@ -64,6 +64,7 @@ public class ManufactureServiceImple implements ManufactureService {
         }
         
         manufactureMapper.update(newManufacture);
+
         if (newManufacture.getRecipeNo() != beforeManufacture.getRecipeNo()) {
             Recipe recipe = new Recipe();
 

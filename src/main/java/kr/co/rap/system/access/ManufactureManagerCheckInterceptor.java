@@ -10,7 +10,7 @@ public class ManufactureManagerCheckInterceptor extends HandlerInterceptorAdapte
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession httpSession = request.getSession();
-        String division = httpSession.getAttribute("division") + "";
+        String division = (String) httpSession.getAttribute("division");
 
         if ("M".equals(division)) {
             return true;
