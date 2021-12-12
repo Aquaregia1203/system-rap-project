@@ -34,6 +34,7 @@ public class AccessController {
     public ModelAndView login(Manager manager, HttpSession httpSession, String remember) {
         boolean result = accessService.login(manager);
 
+        httpSession.setMaxInactiveInterval(2592000);
         if ("check".equals(remember)) {
             httpSession.setAttribute("saveId", manager.getId());
         } else {

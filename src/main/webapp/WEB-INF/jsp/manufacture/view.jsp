@@ -37,10 +37,15 @@
                                 <input type="hidden" name="status" value="${manufacture.status}" />
                                 <div class="row text-right">
                                     <div class="col-sm-12 col-md-12">
-                                        <c:if test="${(applicationScope.status eq 'OFF' || applicationScope.status eq null)
+                                        <c:choose>
+                                            <c:when test="${(applicationScope.status eq 'OFF' || applicationScope.status eq null)
                                                             && manufacture.status eq 'N'}">
-                                            <button type="submit" class="btn btn-primary waves-effect">생산 시작</button>
-                                        </c:if>
+                                                <button type="submit" class="btn btn-primary waves-effect">생산 시작</button>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <button type="submit" class="btn btn-primary waves-effect" disabled>생산 시작</button>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </div>
                             </form>
@@ -74,6 +79,12 @@
                                         <td>${manufacture.recipeName}</td>
                                         <td class="text-right">${manufacture.output}kg</td>
                                         <c:choose>
+                                            <c:when test="${manufacture.errorAmount eq 0 && manufacture.status eq 'Y'}">
+                                                <td class="text-right">
+                                                    <fmt:formatNumber type="number" value="${manufacture.errorAmount}"/>
+                                                    kg
+                                                </td>
+                                            </c:when>
                                             <c:when test="${manufacture.errorAmount eq 0}">
                                                 <td class="text-right">-</td>
                                             </c:when>

@@ -50,11 +50,13 @@ public class ControlMapper {
 
                     responseBody.close();
 
-                    if ("300".equals(responseInfo.get("code"))) {
-                        return false;
+                    if ("200".equals(responseInfo.get("code"))) {
+                        return true;
                     }
 
-                    return true;
+                    logger.info("response code --->" + responseInfo.get("code"));
+
+                    return false;
                 }
             }
         } catch (Exception e) {

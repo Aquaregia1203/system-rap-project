@@ -8,7 +8,8 @@ import javax.servlet.http.HttpSession;
 
 public class SessionCheckInterceptor extends HandlerInterceptorAdapter {
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
         HttpSession httpSession = request.getSession();
 
         if (httpSession.getAttribute("id") != null) {

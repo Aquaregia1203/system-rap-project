@@ -53,7 +53,6 @@
                                 <div class="col-md-6 text-left" id="ratioMsg" style="color: crimson;font-size:16px" >
                                 </div>
                                 <button type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" >등록</button>
-<%--                                <input type="button" id="submitButton" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-sm" value="등록" />--%>
                                 <a href="${pageContext.servletContext.contextPath}/recipe" class="btn btn-secondary waves-effect waves-light">
                                     목록
                                 </a>
