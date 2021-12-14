@@ -1,10 +1,10 @@
 package kr.co.rap.system.manufacture;
 
 import kr.co.rap.system.control.ControlService;
-import kr.co.rap.system.control.ControlServiceImple;
-import kr.co.rap.system.recipe.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import kr.co.rap.system.recipe.Mix;
+import kr.co.rap.system.recipe.MixMapper;
+import kr.co.rap.system.recipe.Recipe;
+import kr.co.rap.system.recipe.RecipeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

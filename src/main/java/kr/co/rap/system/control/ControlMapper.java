@@ -28,16 +28,12 @@ public class ControlMapper {
         ResponseBody responseBody = null;
 
         try {
-            RequestBody requestBody = RequestBody.create(
-                                                 MediaType
-                                                .parse("application/json; charset=UTF-8"),
-                                                        body);
-
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=UTF-8"),
+                                                         body);
             Request.Builder builder = new Request.Builder()
                                                  .url(url)
                                                  .post(requestBody);
             Request request = builder.build();
-
 
             response = okHttpClient.newCall(request).execute();
 
@@ -53,8 +49,6 @@ public class ControlMapper {
                     if ("200".equals(responseInfo.get("code"))) {
                         return true;
                     }
-
-                    logger.info("response code --->" + responseInfo.get("code"));
 
                     return false;
                 }

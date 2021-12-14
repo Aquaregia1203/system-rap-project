@@ -43,7 +43,7 @@ public class ManagerServiceImple implements ManagerService {
 
         if ("S".equals(checkManager.getDivision())) {
             checkManager.setStatus("Y");
-            managerMapper.update(manager);
+            managerMapper.update(checkManager);
         } else {
             managerMapper.update(manager);
         }
