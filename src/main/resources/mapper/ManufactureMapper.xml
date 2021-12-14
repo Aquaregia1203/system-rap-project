@@ -7,15 +7,23 @@
 <mapper namespace="kr.co.rap.system.manufacture.ManufactureMapper">
     <select id="selectAll" parameterType="Map"
                            resultType="Manufacture">
-        SELECT PLAN.NO, PLAN.MANUFACTURE_DATE, PLAN.RECIPE_NO, PLAN.OUTPUT, PLAN.ID,
-        PLAN.ERROR_AMOUNT, PLAN.ADD_DATE, PLAN.STATUS, RP.NAME as RECIPE_NAME
+        SELECT PLAN.NO
+             , PLAN.MANUFACTURE_DATE
+             , PLAN.RECIPE_NO
+             , PLAN.OUTPUT
+             , PLAN.ID
+             , PLAN.ERROR_AMOUNT
+             , PLAN.ADD_DATE
+             , PLAN.STATUS
+             , RP.NAME as RECIPE_NAME
         FROM MANUFACTURE_PLAN as PLAN INNER JOIN RECIPE as RP
         ON RP.NO = PLAN.RECIPE_NO
         <if test="start != null and start != ''
                         and end != null and end != ''">
             WHERE MANUFACTURE_DATE BETWEEN #{start} AND CONCAT(#{end}, ' 23:59:59')
         </if>
-            ORDER BY MANUFACTURE_DATE IS NULL DESC, MANUFACTURE_DATE DESC
+            ORDER BY MANUFACTURE_DATE IS NULL DESC
+                   , MANUFACTURE_DATE DESC
         <if test="page != null and page != ''">
             LIMIT ${page}, 10
         </if>
@@ -23,9 +31,15 @@
 
     <select id="select" parameterType="Manufacture"
                         resultType="Manufacture">
-        SELECT PLAN.NO, PLAN.RECIPE_NO, RP.NAME as RECIPE_NAME, OUTPUT,
-            MANUFACTURE_DATE, ERROR_AMOUNT, MGR.NAME as MANAGER_NAME, PLAN.STATUS,
-            PLAN.ADD_DATE
+        SELECT PLAN.NO
+             , PLAN.RECIPE_NO
+             , RP.NAME as RECIPE_NAME
+             , OUTPUT
+             , MANUFACTURE_DATE
+             , ERROR_AMOUNT
+             , MGR.NAME as MANAGER_NAME
+             , PLAN.STATUS
+             , PLAN.ADD_DATE
         FROM MANUFACTURE_PLAN as PLAN INNER JOIN MANAGER as MGR INNER JOIN RECIPE as RP
         ON PLAN.ID = MGR.ID AND RP.NO = PLAN.RECIPE_NO
         WHERE PLAN.NO = #{no}
@@ -34,7 +48,8 @@
     <select id="count"
             parameterType="Map"
             resultType="int">
-        SELECT COUNT(*) FROM MANUFACTURE_PLAN
+        SELECT COUNT(*)
+        FROM MANUFACTURE_PLAN
         <where>
             <if test="start != null and start != ''
                         and end != null and end != ''">
@@ -46,11 +61,7 @@
     <insert id="insert" useGeneratedKeys="true" parameterType="Manufacture"
                         keyColumn="NO" keyProperty="no">
         INSERT INTO MANUFACTURE_PLAN (RECIPE_NO, OUTPUT, ID, ADD_DATE)
-        VALUES (#{recipeNo},
-                #{output},
-                #{id},
-                current_timestamp()
-                )
+        VALUES (#{recipeNo}, #{output}, #{id}, current_timestamp())
     </insert>
 
     <update id="update" useGeneratedKeys="true" keyColumn="NO" keyProperty="no"
@@ -80,7 +91,8 @@
     </update>
 
     <delete id="delete" parameterType="Manufacture">
-        DELETE FROM MANUFACTURE_PLAN
+        DELETE
+        FROM MANUFACTURE_PLAN
         WHERE NO = #{no}
     </delete>
 </mapper>

@@ -21,7 +21,7 @@ public class AccessServiceImple implements AccessService{
 
         Manager checkManager = managerMapper.select(manager);
 
-        if(Objects.isNull(checkManager)) {
+        if (Objects.isNull(checkManager)) {
             return false;
         }
 

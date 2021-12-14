@@ -41,7 +41,7 @@ public class ManagerServiceImple implements ManagerService {
     public boolean editManager(Manager manager) {
         Manager checkManager = managerMapper.select(manager);
 
-        if("S".equals(checkManager.getDivision())) {
+        if ("S".equals(checkManager.getDivision())) {
             checkManager.setStatus("Y");
             managerMapper.update(manager);
         } else {

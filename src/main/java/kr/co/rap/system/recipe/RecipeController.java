@@ -1,19 +1,12 @@
 package kr.co.rap.system.recipe;
 
 import kr.co.rap.system.ingredient.Ingredient;
-import kr.co.rap.system.ingredient.IngredientMapper;
 import kr.co.rap.system.ingredient.IngredientService;
-import kr.co.rap.system.ingredient.IngredientServiceImple;
 import kr.co.rap.system.page.PageUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
