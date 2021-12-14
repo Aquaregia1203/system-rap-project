@@ -181,8 +181,6 @@ public class RecipeServiceImple implements RecipeService{
             }
         }
 
-
-
         for (Mix mix : oldMixList) {
             ingredient.setNo(mix.getIngredientNo());
             ingredient.setUsedCount(-1);
