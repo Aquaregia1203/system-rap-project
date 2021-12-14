@@ -7,7 +7,11 @@
     <select id="selectAll"
             parameterType="Map"
             resultType="Ingredient">
-        SELECT NO, NAME, USED_COUNT, ADD_DATE FROM INGREDIENT
+        SELECT NO
+             , NAME
+             , USED_COUNT
+             , ADD_DATE
+        FROM INGREDIENT
         <where>
             <if test="name != null and name != ''">
                 NAME = #{name}
@@ -22,14 +26,19 @@
     <select id="select"
             parameterType="Ingredient"
             resultType="Ingredient">
-        SELECT NO, NAME, USED_COUNT, ADD_DATE FROM INGREDIENT
+        SELECT NO
+             , NAME
+             , USED_COUNT
+             , ADD_DATE
+        FROM INGREDIENT
         WHERE NO = #{no}
     </select>
 
     <select id="count"
             parameterType="Map"
             resultType="int">
-        SELECT count(*) FROM INGREDIENT
+        SELECT count(*)
+        FROM INGREDIENT
         <where>
             <if test="name != null and name != ''">
                 NAME = #{name}
@@ -39,9 +48,12 @@
 
     <insert id="insert"
             parameterType="Ingredient">
-        INSERT INTO INGREDIENT (NAME, ADD_DATE) VALUES (#{name}, NOW())
+        INSERT INTO INGREDIENT (NAME, ADD_DATE)
+        VALUES (#{name}, NOW())
         <selectKey order="AFTER" keyColumn="NO" keyProperty="no" resultType="int">
-            SELECT NO FROM INGREDIENT WHERE NAME = #{name}
+            SELECT NO
+            FROM INGREDIENT
+            WHERE NAME = #{name}
         </selectKey>
     </insert>
 
@@ -61,7 +73,8 @@
 
     <delete id="delete"
             parameterType="Ingredient">
-        DELETE FROM INGREDIENT
+        DELETE
+        FROM INGREDIENT
         <if test="no gt 0">
             WHERE NO = #{no}
         </if>

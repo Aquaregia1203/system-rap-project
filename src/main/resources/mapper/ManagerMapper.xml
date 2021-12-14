@@ -7,13 +7,22 @@
     <select id="selectAll"
             parameterType="Map"
             resultType="Manager">
-        SELECT ID, PASSWORD, NAME, CONTACT, DIVISION, ADD_DATE, STATUS FROM MANAGER
+        SELECT ID
+             , PASSWORD
+             , NAME
+             , CONTACT
+             , DIVISION
+             , ADD_DATE
+             , STATUS
+        FROM MANAGER
         <where>
             <if test="name != null and name != ''">
                 NAME LIKE CONCAT('%', #{name}, '%')
             </if>
         </where>
-        ORDER BY DIVISION DESC, STATUS DESC, NAME ASC
+        ORDER BY DIVISION DESC
+               , STATUS DESC
+               , NAME ASC
         <if test="page != null and page != ''">
             LIMIT ${page}, 10
         </if>
@@ -22,7 +31,8 @@
     <select id="count"
             parameterType="Map"
             resultType="int">
-        SELECT count(*) FROM MANAGER
+        SELECT count(*)
+        FROM MANAGER
         <where>
             <if test="name != null and name != ''">
                 NAME LIKE CONCAT('%', #{name}, '%')
@@ -33,7 +43,14 @@
     <select id="select"
             parameterType="Manager"
             resultType="Manager">
-        SELECT ID, PASSWORD, NAME, CONTACT, DIVISION, ADD_DATE, STATUS FROM MANAGER
+        SELECT ID
+             , PASSWORD
+             , NAME
+             , CONTACT
+             , DIVISION
+             , ADD_DATE
+             , STATUS
+        FROM MANAGER
         <where>
             <if test="id != null and id != ''">
                 ID = #{id}

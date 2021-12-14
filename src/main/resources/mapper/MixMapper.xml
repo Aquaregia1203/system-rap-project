@@ -6,7 +6,12 @@
 <mapper namespace="kr.co.rap.system.recipe.MixMapper">
     <select id="selectAll" parameterType="Recipe"
             resultType="Mix">
-        SELECT NO, RECIPE_NO, INGREDIENT_NO, PUMP_NO, RATIO FROM MIX
+        SELECT NO
+             , RECIPE_NO
+             , INGREDIENT_NO
+             , PUMP_NO
+             , RATIO
+        FROM MIX
         <where>
             <if test="no gt 0">
                 AND RECIPE_NO = #{no}
@@ -18,12 +23,7 @@
     <insert id="insert" parameterType="Mix" useGeneratedKeys="true"
                         keyColumn="NO" keyProperty="no">
         INSERT INTO MIX (RECIPE_NO, INGREDIENT_NO, PUMP_NO, RATIO)
-        VALUES(
-                #{recipeNo},
-                #{ingredientNo},
-                #{pumpNo},
-                #{ratio}
-              )
+        VALUES(#{recipeNo}, #{ingredientNo}, #{pumpNo}, #{ratio})
     </insert>
 
     <update id="update" parameterType="Mix">
@@ -48,7 +48,8 @@
     </update>
 
     <delete id="delete" parameterType="Mix">
-        DELETE FROM MIX
+        DELETE
+        FROM MIX
         <where>
             <if test="recipeNo gt 0">
                 AND RECIPE_NO = #{recipeNo}

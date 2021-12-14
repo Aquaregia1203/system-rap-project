@@ -100,6 +100,7 @@ public class ManufactureServiceImple implements ManufactureService {
     public InputInfo executeManufacture(Manufacture manufacture) {
         Recipe recipe = new Recipe();
         recipe.setNo(manufacture.getRecipeNo());
+
         List<Mix> mixList = mixMapper.selectAll(recipe);
 
         List<Map<String, String>> pumpInfo = new ArrayList<Map<String, String>>();
