@@ -1,6 +1,5 @@
 package kr.co.rap.system.manufacture;
 
-import kr.co.rap.system.control.ControlController;
 import kr.co.rap.system.control.ControlService;
 import kr.co.rap.system.page.PageUtil;
 import kr.co.rap.system.recipe.Recipe;
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;

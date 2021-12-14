@@ -34,6 +34,7 @@
 			   <mvc:mapping path="/manager/**"/>
 			   <bean class="kr.co.rap.system.access.SystemManagerCheckInterceptor"/>
 		   </mvc:interceptor>
+
 		   <mvc:interceptor>
 			   <mvc:mapping path="/ingredient/**"/>
 			   <mvc:mapping path="/recipe/**"/>

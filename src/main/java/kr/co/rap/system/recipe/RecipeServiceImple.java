@@ -1,9 +1,7 @@
 package kr.co.rap.system.recipe;
 
-import kr.co.rap.system.ingredient.IngredientMapper;
 import kr.co.rap.system.ingredient.Ingredient;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import kr.co.rap.system.ingredient.IngredientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

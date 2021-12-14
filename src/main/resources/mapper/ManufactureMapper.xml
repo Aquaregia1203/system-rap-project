@@ -7,10 +7,17 @@
 <mapper namespace="kr.co.rap.system.manufacture.ManufactureMapper">
     <select id="selectAll" parameterType="Map"
                            resultType="Manufacture">
-        SELECT PLAN.NO, PLAN.MANUFACTURE_DATE, PLAN.RECIPE_NO, PLAN.OUTPUT, PLAN.ID,
-        PLAN.ERROR_AMOUNT, PLAN.ADD_DATE, PLAN.STATUS, RP.NAME as RECIPE_NAME
+        SELECT PLAN.NO
+             , PLAN.MANUFACTURE_DATE
+             , PLAN.RECIPE_NO
+             , PLAN.OUTPUT
+             , PLAN.ID
+             , PLAN.ERROR_AMOUNT
+             , PLAN.ADD_DATE
+             , PLAN.STATUS,RP.NAME as RECIPE_NAME
         FROM MANUFACTURE_PLAN as PLAN INNER JOIN RECIPE as RP
         ON RP.NO = PLAN.RECIPE_NO
+
         <if test="start != null and start != ''
                         and end != null and end != ''">
             WHERE MANUFACTURE_DATE BETWEEN #{start} AND CONCAT(#{end}, ' 23:59:59')
@@ -23,9 +30,15 @@
 
     <select id="select" parameterType="Manufacture"
                         resultType="Manufacture">
-        SELECT PLAN.NO, PLAN.RECIPE_NO, RP.NAME as RECIPE_NAME, OUTPUT,
-            MANUFACTURE_DATE, ERROR_AMOUNT, MGR.NAME as MANAGER_NAME, PLAN.STATUS,
-            PLAN.ADD_DATE
+        SELECT PLAN.NO
+             , PLAN.RECIPE_NO
+             , RP.NAME as RECIPE_NAME
+             , OUTPUT
+             , MANUFACTURE_DATE
+             , ERROR_AMOUNT
+             , MGR.NAME as MANAGER_NAME
+             , PLAN.STATUS
+             , PLAN.ADD_DATE
         FROM MANUFACTURE_PLAN as PLAN INNER JOIN MANAGER as MGR INNER JOIN RECIPE as RP
         ON PLAN.ID = MGR.ID AND RP.NO = PLAN.RECIPE_NO
         WHERE PLAN.NO = #{no}
