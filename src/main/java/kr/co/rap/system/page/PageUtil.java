@@ -1,13 +1,19 @@
 package kr.co.rap.system.page;
 
+import jdk.tools.jlink.internal.plugins.ExcludePlugin;
 import kr.co.rap.system.ingredient.IngredientMapper;
 import kr.co.rap.system.manager.ManagerMapper;
 import kr.co.rap.system.manufacture.ManufactureMapper;
 import kr.co.rap.system.recipe.RecipeMapper;
+import org.apache.ibatis.io.Resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.Reader;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Properties;
 
 
 @Component
@@ -21,9 +27,41 @@ public class PageUtil {
     @Autowired
     private IngredientMapper ingredientMapper;
 
+    private Properties propertie = new Properties();
+    private final String PATH = "classpath:pageconfig.properties";
+
+    public PageUtil() {
+        try {
+            Reader reader = Resources.getResourceAsReader(PATH);
+            propertie.load(reader);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public String getNavigator(Map<String, String> resource) {
         int count = 0;
         int page = Integer.parseInt(resource.get("page"));
+
+        /* TODO: 새로운 메뉴가 생겨 해당 메뉴에 대한 페이징 처리를 할 때에는
+         *       추가적인 하드코딩이 필요하므로 따로 빼서 관리할 필요가 있다.
+         *       url과 Mapper 객체이름을 프로퍼티로 빼고, reflection을 활용하는 것으로 수정했다.
+         *       테스트는 아직 거치지 않았다. 테스트가 필요
+         *
+         *  String url = propertie.getProperty(resource.get("url"));
+         *  try {
+         *     Field field = PageUtil.class.getDeclaredField(url);
+         *     Class<?> mapper = field.getClass();
+         *     Method mapperMethod = mapper.getDeclaredMethod("count");
+         *
+         *     count = (int) mapperMethod.invoke(null);
+         * } catch (Exception e) {
+         *     e.printStackTrace();
+         *
+         *     return "";
+         * }
+         *
+         */
 
         if ("/manager".equals(resource.get("url"))) {
             count = managerMapper.count(resource);
