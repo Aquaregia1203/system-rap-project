@@ -15,6 +15,11 @@ public class AccessController {
     @Autowired
     private AccessService accessService;
 
+    @GetMapping("/")
+    public ModelAndView main() {
+        return new ModelAndView("main");
+    }
+
     @GetMapping("/login")
     public ModelAndView login(HttpSession httpSession) {
         if (httpSession.getAttribute("id") != null) {

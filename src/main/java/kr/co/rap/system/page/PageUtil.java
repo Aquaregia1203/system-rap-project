@@ -1,6 +1,5 @@
 package kr.co.rap.system.page;
 
-import jdk.tools.jlink.internal.plugins.ExcludePlugin;
 import kr.co.rap.system.ingredient.IngredientMapper;
 import kr.co.rap.system.manager.ManagerMapper;
 import kr.co.rap.system.manufacture.ManufactureMapper;
@@ -10,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.Reader;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Properties;
 

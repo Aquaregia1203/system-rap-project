@@ -14,8 +14,8 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/RAP?useSSL=false&amp;serverTimezone=UTC" />
-        <property name="username" value="root" />
-        <property name="password" value="mybatis$" />
+        <property name="username" value="realizedkings" />
+        <property name="password" value="rapsystem123" />
     </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
